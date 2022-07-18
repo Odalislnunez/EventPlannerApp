@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "654016870650",
+    "project_id": "eventplannerapp-f2fed",
+    "storage_bucket": "eventplannerapp-f2fed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654016870650:android:706a6fb74c8c90485e3143",
+        "android_client_info": {
+          "package_name": "es.usj.mastertsa.onunez.eventplannerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654016870650-kbvhl6plvjujdt455l4qtkn7qol9qmvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuHAcnpGTs3jBiTdT71yImV1WjL5VrJ0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654016870650-kbvhl6plvjujdt455l4qtkn7qol9qmvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

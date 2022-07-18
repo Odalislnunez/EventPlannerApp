@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EventPlannerApp</string>
+    <string name="login_in">Iniciar Sesión</string>
+    <string name="forgot_password">Olvidaste tu contraseña?</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo</string>
+    <string name="todo">TODO</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="sign_up">Regístrate</string>
+    <string name="register">Registrar</string>
+    <string name="have_account_log_in">Tienes una cuenta? Inicia Sesion</string>
+    <string name="cellphone">Celular</string>
+    <string name="dont_have_account_register">No tienes cuenta aún? Registrate</string>
+    <string name="remember_user_password">Recordar Usuario/Contraseña</string>
+    <string name="enter_with_email_password">Ingresa con tu correo y contraseña.</string>
+    <string name="login">Login</string>
+    <string name="complete_details">Completa estos datos.</string>
+    <string name="password_not_matching">Contraseñas no coinciden.</string>
+    <string name="complete_everything">Debes completar todos los campos.</string>
+</resources>
