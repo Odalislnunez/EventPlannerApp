@@ -14,8 +14,10 @@
         android:theme="@style/Theme.LoginsandRegisterDesignXML"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.activities.DashboardActivity"
-            android:exported="false" />
+            android:name=".presentation.view.activities.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.LoginsandRegisterDesignXML.NoActionBar" />
         <activity
             android:name=".presentation.view.activities.SignUpActivity"
             android:exported="false" />
