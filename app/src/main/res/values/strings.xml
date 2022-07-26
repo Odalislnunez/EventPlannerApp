@@ -35,4 +35,7 @@
     <string name="menu_public_events">Public Events</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_log_out">Log out</string>
+    <string name="menu_dashboard">DASHBOARD</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

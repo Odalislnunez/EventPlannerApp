@@ -6,35 +6,39 @@
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
         <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_dashboard"
+            android:title="@string/menu_dashboard" />
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_profile" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/ic_event_gray"
+            android:icon="@drawable/ic_menu_event"
             android:title="@string/menu_events" />
         <item
             android:id="@+id/nav_contacts"
-            android:icon="@drawable/ic_contacts_gray"
+            android:icon="@drawable/ic_menu_contacts"
             android:title="@string/menu_contacts" />
         <item
             android:id="@+id/nav_invitations"
-            android:icon="@drawable/ic_calendar_gray"
+            android:icon="@drawable/ic_menu_calendar"
             android:title="@string/menu_invitations" />
         <item
             android:id="@+id/nav_public_events"
-            android:icon="@drawable/ic_event_gray"
+            android:icon="@drawable/ic_menu_event"
             android:title="@string/menu_public_events" />
     </group>
     <group android:checkableBehavior="single"
         android:id="@+id/group2">
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings_gray"
+            android:icon="@drawable/ic_menu_settings"
             android:title="@string/menu_settings" />
         <item
             android:id="@+id/nav_log_out"
-            android:icon="@drawable/ic_exit_gray"
+            android:icon="@drawable/ic_menu_exit"
             android:title="@string/menu_log_out" />
     </group>
 </menu>

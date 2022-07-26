@@ -19,6 +19,25 @@
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.3034134007585335" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/menu/main.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp2/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_calendar_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_contacts_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_dashboard_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_event_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_exit_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_menu_camera.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_menu_white.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/drawable/ic_settings_gray.xml" value="0.352" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_contacts.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_dashb.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

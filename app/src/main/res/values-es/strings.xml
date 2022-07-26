@@ -37,4 +37,5 @@
     <string name="menu_public_events">Eventos Públicos</string>
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log_out">Cerrar Sesión</string>
+    <string name="menu_dashboard">DASHBOARD</string>
 </resources>
