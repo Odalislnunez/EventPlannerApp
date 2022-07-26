@@ -26,13 +26,7 @@ class PublicEventsFragment : Fragment() {
             ViewModelProvider(this).get(PublicEventsViewModel::class.java)
 
         _binding = FragmentPublicEventsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textSlideshow
-        public_eventsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

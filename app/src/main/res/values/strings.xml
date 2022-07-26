@@ -38,4 +38,8 @@
     <string name="menu_dashboard">DASHBOARD</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_label">Name</string>
+    <string name="lastname_label">Lastname</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="btn_edit">Edit</string>
 </resources>

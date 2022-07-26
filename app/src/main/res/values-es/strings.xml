@@ -38,4 +38,8 @@
     <string name="menu_settings">Ajustes</string>
     <string name="menu_log_out">Cerrar Sesión</string>
     <string name="menu_dashboard">DASHBOARD</string>
+    <string name="name_label">Nombres</string>
+    <string name="lastname_label">Apellidos</string>
+    <string name="phone_label">Teléfono</string>
+    <string name="btn_edit">Editar</string>
 </resources>

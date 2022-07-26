@@ -26,13 +26,8 @@ class ContactsFragment : Fragment() {
             ViewModelProvider(this).get(ContactsViewModel::class.java)
 
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        contactsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
