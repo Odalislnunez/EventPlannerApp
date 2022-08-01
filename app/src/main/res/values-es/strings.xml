@@ -42,4 +42,13 @@
     <string name="lastname_label">Apellidos</string>
     <string name="phone_label">Teléfono</string>
     <string name="btn_edit">Editar</string>
+    <string name="new_event">Nuevo Evento</string>
+    <string name="title">Título</string>
+    <string name="description">Descripción</string>
+    <string name="place">Lugar</string>
+    <string name="date">Fecha</string>
+    <string name="event_type">Tipo de Evento</string>
+    <string name="owners">Creador/es</string>
+    <string name="participants">Participantes</string>
+    <string name="create">Crear</string>
 </resources>

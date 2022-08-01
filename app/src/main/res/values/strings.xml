@@ -40,4 +40,13 @@
     <string name="lastname_label">Lastname</string>
     <string name="phone_label">Phone Number</string>
     <string name="btn_edit">Edit</string>
+    <string name="new_event">New Event</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="place">Place</string>
+    <string name="date">Date</string>
+    <string name="event_type">Event Type</string>
+    <string name="owners">Owner/s</string>
+    <string name="participants">Participants</string>
+    <string name="create">Create</string>
 </resources>
