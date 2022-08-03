@@ -11,15 +11,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/new_events/NewEventFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/new_events/NewEventViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_event.xml" afterDir="false" />
+    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Adding New Event fragment.">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/domain/models/Contact.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/domain/models/Event.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/domain/models/Invitation.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-es/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/domain/models/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/domain/models/User.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +52,7 @@
       <list>
         <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -132,7 +131,7 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VisitRD - BD Android" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -336,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658863362800</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Adding New Event fragment.">
+      <created>1659318355047</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1659318355047</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -359,6 +365,7 @@
     <MESSAGE value="Design Changes." />
     <MESSAGE value="Design menu header Changes." />
     <MESSAGE value="Adapting Changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adapting Changes." />
+    <MESSAGE value="Adding New Event fragment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding New Event fragment." />
   </component>
 </project>
