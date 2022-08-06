@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.contacts
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

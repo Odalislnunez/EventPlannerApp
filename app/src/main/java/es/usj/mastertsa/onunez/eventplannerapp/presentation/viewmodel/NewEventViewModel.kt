@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.new_events
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 

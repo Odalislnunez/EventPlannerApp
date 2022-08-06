@@ -1,17 +1,17 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.profile
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentProfileBinding
+import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentContactsBinding
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.ContactsViewModel
 
-class ProfileFragment : Fragment() {
+class ContactsFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentContactsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,10 +22,11 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val contactsViewModel =
+            ViewModelProvider(this).get(ContactsViewModel::class.java)
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentContactsBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 

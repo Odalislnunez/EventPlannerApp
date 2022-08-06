@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.settings
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentSettingsBinding
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.SettingsViewModel
 
 class SettingsFragment : Fragment() {
 

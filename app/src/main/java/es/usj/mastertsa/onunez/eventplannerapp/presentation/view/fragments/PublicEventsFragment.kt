@@ -1,17 +1,17 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.invitations
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentInvitationsBinding
+import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentPublicEventsBinding
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.PublicEventsViewModel
 
-class InvitationsFragment : Fragment() {
+class PublicEventsFragment : Fragment() {
 
-    private var _binding: FragmentInvitationsBinding? = null
+    private var _binding: FragmentPublicEventsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,10 +22,10 @@ class InvitationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val invitationsViewModel =
-            ViewModelProvider(this).get(InvitationsViewModel::class.java)
+        val public_eventsViewModel =
+            ViewModelProvider(this).get(PublicEventsViewModel::class.java)
 
-        _binding = FragmentInvitationsBinding.inflate(inflater, container, false)
+        _binding = FragmentPublicEventsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.view.fragments.new_events.NewEventFragment">
+    tools:context=".presentation.view.fragments.NewEventFragment">
 
     <TextView
         android:layout_width="match_parent"
@@ -101,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:padding="25dp"
         android:textSize="16sp"/>
 
     <TextView
@@ -112,13 +114,15 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/et_owners"
+    <TextView
+        android:id="@+id/sp_owners"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:padding="16dp"
+        android:background="@android:drawable/editbox_background"
+        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
     <TextView
         android:layout_width="match_parent"
@@ -129,13 +133,16 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/et_participants"
+    <TextView
+        android:id="@+id/sp_participants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:hint="@string/select_participants"
+        android:padding="16dp"
+        android:background="@android:drawable/editbox_background"
+        app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
     <Button
         android:layout_width="match_parent"

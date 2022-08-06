@@ -7,43 +7,43 @@
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.dashboard.DashboardFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.DashboardFragment"
         android:label="@string/menu_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.profile.ProfileFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_events"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.events.EventsFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.EventsFragment"
         android:label="@string/menu_events"
         tools:layout="@layout/fragment_events" />
 
     <fragment
         android:id="@+id/nav_contacts"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.contacts.ContactsFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ContactsFragment"
         android:label="@string/menu_contacts"
         tools:layout="@layout/fragment_contacts" />
 
     <fragment
         android:id="@+id/nav_invitations"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.invitations.InvitationsFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.InvitationsFragment"
         android:label="@string/menu_invitations"
         tools:layout="@layout/fragment_invitations" />
 
     <fragment
         android:id="@+id/nav_public_events"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.public_events.PublicEventsFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.PublicEventsFragment"
         android:label="@string/menu_public_events"
         tools:layout="@layout/fragment_public_events" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.settings.SettingsFragment"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

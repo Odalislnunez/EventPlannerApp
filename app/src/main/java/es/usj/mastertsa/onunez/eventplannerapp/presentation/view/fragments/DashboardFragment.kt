@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.dashboard
+package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentDashboardBinding
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 
