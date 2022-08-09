@@ -76,7 +76,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:hint="@string/name"
                         android:inputType="textPersonName"
                         android:padding="15dp"
-                        android:textSize="17sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill" />
 
@@ -101,32 +101,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:hint="@string/last_name"
                         android:inputType="textPersonName"
                         android:padding="15dp"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        tools:ignore="Autofill" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
-                        android:background="#DFDFDF"
-                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-
-                    <EditText
-                        android:id="@+id/et_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:background="@color/white"
-                        android:drawableEnd="@drawable/ic_gray_email"
-                        android:fontFamily="@font/cairo_light"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"
-                        android:padding="15dp"
-                        android:textSize="17sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill" />
 
@@ -150,7 +125,31 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:hint="@string/cellphone"
                         android:inputType="phone"
                         android:padding="15dp"
-                        android:textSize="17sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:ignore="Autofill" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginEnd="35dp"
+                        android:background="#DFDFDF"
+                        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@color/white"
+                        android:drawableEnd="@drawable/ic_gray_email"
+                        android:fontFamily="@font/cairo_light"
+                        android:hint="@string/user"
+                        android:inputType="textEmailAddress"
+                        android:padding="15dp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill" />
 
@@ -175,7 +174,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="15dp"
-                        android:textSize="17sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill" />
 
@@ -200,7 +199,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:hint="@string/confirm_password"
                         android:inputType="textPassword"
                         android:padding="15dp"
-                        android:textSize="17sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:ignore="Autofill,TextContrastCheck" />
 
@@ -256,7 +255,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                             android:fontFamily="@font/cairo_light"
                             android:text="@string/have_account_log_in"
                             android:textColor="@color/grey_primary_dark"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
 

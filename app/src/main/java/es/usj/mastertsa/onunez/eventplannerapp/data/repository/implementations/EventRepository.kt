@@ -1,5 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.repository.implementations
 
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import es.usj.mastertsa.onunez.eventplannerapp.data.repository.Mapper
 import es.usj.mastertsa.onunez.eventplannerapp.data.repository.firebase.dao.EventDao
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
@@ -11,6 +13,7 @@ class EventRepository (
     private val eventDao: EventDao
 ): IEventRepository {
 //    private val db = placeSqLiteHelper.writableDatabase
+    val db = Firebase.firestore
 
     override suspend fun getEvents(): Flow<List<Event>>? {
 

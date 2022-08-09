@@ -4,8 +4,9 @@
     <string name="login_in">Iniciar Sesión</string>
     <string name="forgot_password">Olvidaste tu contraseña?</string>
     <string name="password">Contraseña</string>
-    <string name="email">Correo</string>
+    <string name="user">Usuario</string>
     <string name="todo">TODO</string>
+    <string name="or_sign_in">Ó Inicia Sesión con</string>
     <string name="name">Nombre</string>
     <string name="last_name">Apellido</string>
     <string name="confirm_password">Confirmar Contraseña</string>
@@ -14,7 +15,7 @@
     <string name="have_account_log_in">Tienes una cuenta? Inicia Sesion</string>
     <string name="cellphone">Celular</string>
     <string name="dont_have_account_register">No tienes cuenta aún? Registrate</string>
-    <string name="remember_user_password">Recordar Usuario/Contraseña</string>
+    <string name="remember_me">Recordarme</string>
     <string name="enter_with_email_password">Ingresa con tu correo y contraseña.</string>
     <string name="login">Login</string>
     <string name="complete_details">Completa estos datos.</string>

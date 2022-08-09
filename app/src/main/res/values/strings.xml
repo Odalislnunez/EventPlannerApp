@@ -1,19 +1,20 @@
 <resources>
     <string name="app_name">Event Planner</string>
-    <string name="login_in">Log In</string>
+    <string name="login_in">Sign In</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="password">Password</string>
-    <string name="email">E-mail</string>
+    <string name="user">User</string>
     <string name="todo">TODO</string>
+    <string name="or_sign_in">Or Sign in using</string>
     <string name="name">Name</string>
     <string name="last_name">Lastname</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="register">Register</string>
-    <string name="have_account_log_in">Have an account? Log In.</string>
+    <string name="have_account_log_in">Have an account? Sign In.</string>
     <string name="cellphone">Phone</string>
-    <string name="dont_have_account_register">Dont have an account? Sign Up.</string>
-    <string name="remember_user_password">Remember User/Password</string>
+    <string name="dont_have_account_register">Don\'t have an account? Sign Up.</string>
+    <string name="remember_me">Remember Me</string>
     <string name="enter_with_email_password">Enter with your email and password.</string>
     <string name="login">Login</string>
     <string name="complete_details">Complete details.</string>
