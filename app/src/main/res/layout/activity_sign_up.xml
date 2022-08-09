@@ -54,7 +54,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="185dp"
+                        android:layout_width="175dp"
                         android:layout_height="80dp"
                         android:layout_gravity="end"
                         android:layout_marginTop="15dp"
@@ -220,7 +220,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:layout_marginTop="10dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/cairo_light"
-                        android:text="@string/register"
+                        android:text="@string/sign_up"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp"

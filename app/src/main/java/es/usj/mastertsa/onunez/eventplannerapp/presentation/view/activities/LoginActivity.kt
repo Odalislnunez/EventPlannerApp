@@ -23,25 +23,25 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         _binding.btnLogin.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-//            val email = _binding.etEmaillog.text.toString()
-//            val pass = _binding.etPasswordlog.text.toString()
-//
-//            if(!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
-//                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-//                    if (it.isSuccessful) {
-//                        val intent = Intent(this, MainActivity::class.java)
-//                        startActivity(intent)
-//                    }
-//                    else {
-//                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//            else {
-//                Toast.makeText(this, this.getString(R.string.complete_everything), Toast.LENGTH_SHORT).show()
-//            }
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+            val email = _binding.etUserlog.text.toString()
+            val pass = _binding.etPasswordlog.text.toString()
+
+            if(!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else {
+                Toast.makeText(this, this.getString(R.string.complete_everything), Toast.LENGTH_SHORT).show()
+            }
         }
 
         _binding.tvDontAccount.setOnClickListener {
