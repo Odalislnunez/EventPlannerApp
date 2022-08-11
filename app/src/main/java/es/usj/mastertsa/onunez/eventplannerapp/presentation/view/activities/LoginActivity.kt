@@ -49,6 +49,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        _binding.ivFacebook.setOnClickListener {
+
+        }
+
     }
 
     override fun onStart() {
@@ -63,5 +67,9 @@ class LoginActivity : AppCompatActivity() {
     fun ViewRegister(view: View) {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
+    }
+
+    fun ViewFacebook(view: View) {
+
     }
 }
