@@ -46,4 +46,9 @@
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <activity
+        android:id="@+id/nav_log_out"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities.LoginActivity"
+        tools:layout="@layout/activity_login" />
 </navigation>

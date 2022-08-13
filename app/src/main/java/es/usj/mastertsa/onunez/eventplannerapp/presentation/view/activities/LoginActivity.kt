@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -34,17 +35,18 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
 
+        // TO LOG IN WITH EMAIL AND PASSWORD.
         _binding.btnLogin.setOnClickListener {
             val email = _binding.etUserlog.text.toString()
             val pass = _binding.etPasswordlog.text.toString()
 
-            if(!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
+            if(email.isNotEmpty() && pass.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        showMainActivity()
+                        showMainActivity(it.result?.user?.email ?: "")
                     }
                     else {
-                        showError(it.exception.toString())
+                        showAlert(this.getString(R.string.error) + " " +  it.exception.toString())
                     }
                 }
             }
@@ -53,37 +55,59 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // TO GO SIGN UP ACTIVITY.
         _binding.tvDontAccount.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-
-        _binding
-    }
-
-    fun showMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun showError(exception: String) {
-        Toast.makeText(this, exception, Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart() {
         super.onStart()
 
+        firebaseAuth.signOut()
         if(firebaseAuth.currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    // TO GO MAIN ACTIVITY.
+    private fun showMainActivity(email: String) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("email", email)
+        }
+        startActivity(intent)
+    }
+
+    // TO SHOW TOAST ERROR MESSAGE.
+    private fun showError(exception: String) {
+        Toast.makeText(this, exception, Toast.LENGTH_SHORT).show()
+    }
+
+    // TO SHOW ALERT ERROR MESSAGE.
+    private fun showAlert(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage(message)
+        builder.setPositiveButton(this.getString(R.string.button_OK), null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+
+    // TO GO SIGN UP ACTIVITY.
     fun ViewRegister(view: View) {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
 
+    // TO LOG IN WITH FACEBOOK ACCOUNT.
     fun ViewFacebook(view: View) {
 
         LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
@@ -98,11 +122,9 @@ class LoginActivity : AppCompatActivity() {
 
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            showMainActivity()
-//                            showHome(it.result?.user?.email ?: "", ProviderType.FACEBOOK)
+                            showMainActivity(it.result?.user?.email?: "")
                         } else {
-                            showError(it.exception.toString())
-//                            showAlert()
+                            showAlert(getString(R.string.error) + " " + it.exception.toString())
                         }
                     }
                 }
@@ -118,6 +140,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    // TO LOG IN WITH GOOGLE ACCOUNT.
     fun ViewGoogle(view: View) {
         // Configuration
 
@@ -142,9 +165,8 @@ class LoginActivity : AppCompatActivity() {
         startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
+    // TO LOG IN WITH TWITTER ACCOUNT.
+    fun ViewTwitter(view: View) {
 
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }
