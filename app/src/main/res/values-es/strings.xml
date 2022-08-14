@@ -31,7 +31,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="button_OK">Aceptar</string>
+    <string name="button_CANCEL">Cancelar</string>
     <string name="error">Se ha producido un error…</string>
+    <string name="message_close">¿Desea salir de la aplicación?</string>
 
     <string name="dashboard">Dashboard</string>
     <string name="menu_profile">Mi Perfil</string>

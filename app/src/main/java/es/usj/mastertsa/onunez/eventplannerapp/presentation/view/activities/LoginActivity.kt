@@ -41,9 +41,9 @@ class LoginActivity : AppCompatActivity() {
             val pass = _binding.etPasswordlog.text.toString()
 
             if(email.isNotEmpty() && pass.isNotEmpty()) {
-                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+                firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { it ->
                     if (it.isSuccessful) {
-                        showMainActivity(it.result?.user?.email ?: "")
+                        showMainActivity(it.result?.user?.uid?: "", it.result?.user?.email?: "", it.result?.user?.displayName?: "")
                     }
                     else {
                         showAlert(this.getString(R.string.error) + " " +  it.exception.toString())
@@ -65,10 +65,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        firebaseAuth.signOut()
         if(firebaseAuth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            showMainActivity(firebaseAuth.currentUser?.uid?: "", firebaseAuth.currentUser?.email?: "", firebaseAuth.currentUser?.displayName?: "")
         }
     }
 
@@ -79,9 +77,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // TO GO MAIN ACTIVITY.
-    private fun showMainActivity(email: String) {
+    private fun showMainActivity(userId: String, email: String, userName: String) {
         val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("userId", userId)
             putExtra("email", email)
+            putExtra("userName", userName)
         }
         startActivity(intent)
     }
@@ -115,14 +115,14 @@ class LoginActivity : AppCompatActivity() {
         LoginManager.getInstance().registerCallback(callbackManager,
         object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
-                result.let {
+                result.let { it ->
                     val token = it.accessToken
 
                     val credential = FacebookAuthProvider.getCredential(token.token)
 
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            showMainActivity(it.result?.user?.email?: "")
+                            showMainActivity(it.result?.user?.uid?: "", it.result?.user?.email?: "", it.result?.user?.displayName?: "")
                         } else {
                             showAlert(getString(R.string.error) + " " + it.exception.toString())
                         }
