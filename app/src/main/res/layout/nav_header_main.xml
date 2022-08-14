@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/user1" />
 
     <TextView
-        android:id="@+id/user"
+        android:id="@+id/tv_userName"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
@@ -30,7 +30,7 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/tv_email"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:paddingStart="13dp"

@@ -1,10 +1,9 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -55,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         val email = bundle?.getString("email")
         val userName = bundle?.getString("userName")
 
+        val header = navView.getHeaderView(0)
+
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
             .setOnMenuItemClickListener {
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
+//        onBackPressed()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
