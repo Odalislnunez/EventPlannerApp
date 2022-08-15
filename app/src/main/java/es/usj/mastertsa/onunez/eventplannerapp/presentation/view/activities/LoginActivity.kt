@@ -1,9 +1,13 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities
 
+import android.app.Activity
+import android.app.Instrumentation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
@@ -14,8 +18,10 @@ import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityLoginBinding
 
@@ -68,12 +74,6 @@ class LoginActivity : AppCompatActivity() {
         if(firebaseAuth.currentUser != null) {
             showMainActivity(firebaseAuth.currentUser?.uid?: "", firebaseAuth.currentUser?.email?: "", firebaseAuth.currentUser?.displayName?: "")
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     // TO GO MAIN ACTIVITY.
@@ -130,39 +130,49 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onCancel() {
-                TODO("Not yet implemented")
-            }
-
-            override fun onError(error: FacebookException) {
-                TODO("Not yet implemented")
-            }
+            override fun onCancel() { TODO("Not yet implemented") }
+            override fun onError(error: FacebookException) { TODO("Not yet implemented") }
         })
     }
 
     // TO LOG IN WITH GOOGLE ACCOUNT.
     fun ViewGoogle(view: View) {
-        // Configuration
-
-        val signInRequest = BeginSignInRequest.builder()
-            .setGoogleIdTokenRequestOptions(
-                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                    .setSupported(true)
-                    // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.default_web_client_id))
-                    // Only show accounts previously used to sign in.
-                    .setFilterByAuthorizedAccounts(true)
-                    .build())
-            .build()
-
         val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
         val googleClient = GoogleSignIn.getClient(this, googleConf)
+        googleClient.signOut()
 
         startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == GOOGLE_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            try {
+                val account = task.getResult(ApiException::class.java)
+
+                if(account != null) {
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            showMainActivity(account.id?: "", account.email?: "", account.givenName?: "")
+                        } else {
+                            showAlert(this.getString(R.string.error) + " " +  it.exception.toString())
+                        }
+                    }
+                }
+            } catch(e: ApiException) {
+                showAlert(this.getString(R.string.error) + " " +  e.message.toString())
+            }
+        }
     }
 
     // TO LOG IN WITH TWITTER ACCOUNT.
