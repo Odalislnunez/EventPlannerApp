@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import es.usj.mastertsa.onunez.eventplannerapp.R
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.NewEventViewModel
 
 class NewEventFragment : Fragment() {
+
+    val viewModel: EventsViewModel by viewModels()
 
     companion object {
         fun newInstance() = NewEventFragment()
     }
 
-    private lateinit var viewModel: NewEventViewModel
+//    private lateinit var viewModel: EventsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

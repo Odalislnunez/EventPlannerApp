@@ -11,14 +11,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Logo changes.">
+    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="floating button adding to fragment views.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/activities/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/activities/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/logo_orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contacts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contacts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_events.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_events.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/viewmodel/EventsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/viewmodel/EventsViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -555,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660593577054</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="floating button adding to fragment views.">
+      <created>1660599032594</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1660599032594</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -587,6 +590,7 @@
     <MESSAGE value="Changes." />
     <MESSAGE value="Addings." />
     <MESSAGE value="Logo changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Logo changes." />
+    <MESSAGE value="floating button adding to fragment views." />
+    <option name="LAST_COMMIT_MESSAGE" value="floating button adding to fragment views." />
   </component>
 </project>
