@@ -54,13 +54,13 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="175dp"
-                        android:layout_height="80dp"
+                        android:layout_width="130dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="end"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/logo_transparent"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginBottom="55dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/logo_blanco2"
                         android:backgroundTint="@color/white"
                         android:contentDescription="@string/todo" />
 

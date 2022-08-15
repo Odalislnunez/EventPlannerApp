@@ -54,12 +54,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="190dp"
-                        android:layout_height="110dp"
+                        android:layout_width="180dp"
+                        android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="50dp"
                         android:layout_marginBottom="50dp"
-                        android:background="@drawable/logo_transparent"
+                        android:background="@drawable/logo_blanco2"
                         android:backgroundTint="@color/white"
                         android:contentDescription="@string/todo" />
 
@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="35dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginEnd="35dp"
                         android:drawableEnd="@drawable/ic_gray_email"
                         android:fontFamily="@font/cairo_light"

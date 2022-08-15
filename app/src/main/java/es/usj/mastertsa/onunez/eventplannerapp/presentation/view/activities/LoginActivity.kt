@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-firebaseAuth.signOut()
+
         if(firebaseAuth.currentUser != null) {
             showMainActivity(firebaseAuth.currentUser?.uid?: "", firebaseAuth.currentUser?.email?: "", firebaseAuth.currentUser?.displayName?: "")
         }
