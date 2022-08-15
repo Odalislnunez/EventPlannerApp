@@ -1,13 +1,9 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities
 
-import android.app.Activity
-import android.app.Instrumentation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
@@ -15,7 +11,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -24,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityLoginBinding
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityLoginBinding
@@ -70,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
+firebaseAuth.signOut()
         if(firebaseAuth.currentUser != null) {
             showMainActivity(firebaseAuth.currentUser?.uid?: "", firebaseAuth.currentUser?.email?: "", firebaseAuth.currentUser?.displayName?: "")
         }

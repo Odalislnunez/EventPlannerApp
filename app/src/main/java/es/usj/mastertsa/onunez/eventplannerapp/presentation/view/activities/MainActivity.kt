@@ -58,6 +58,12 @@ class MainActivity : AppCompatActivity() {
 
         val header = navView.getHeaderView(0)
 
+        val headerName: TextView = header.findViewById(R.id.tv_userName)
+        val headerEmail: TextView = header.findViewById(R.id.tv_email)
+
+        headerName.text = userName
+        headerEmail.text = email
+
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
             .setOnMenuItemClickListener {

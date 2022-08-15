@@ -174,12 +174,12 @@
                             android:onClick="ViewGoogle"
                             android:src="@drawable/ic_google" />
 
-                        <ImageView
-                            android:id="@+id/iv_twitter"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:onClick="ViewTwitter"
-                            android:src="@drawable/ic_twitter" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/iv_twitter"-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:onClick="ViewTwitter"-->
+<!--                            android:src="@drawable/ic_twitter" />-->
                     </LinearLayout>
 
                     <LinearLayout
