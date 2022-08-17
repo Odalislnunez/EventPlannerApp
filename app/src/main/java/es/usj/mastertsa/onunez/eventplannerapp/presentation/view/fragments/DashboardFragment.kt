@@ -28,7 +28,7 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         binding.btnAddEvent.setOnClickListener {
             val dialog = NewEventFragment()
-            dialog.creatorUser = this.creatorUser
+//            dialog.creatorUser = this.creatorUser
             dialog.show(parentFragmentManager, "newEventDialog")
         }
 

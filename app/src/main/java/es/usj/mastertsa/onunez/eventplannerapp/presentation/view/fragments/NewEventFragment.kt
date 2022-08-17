@@ -21,7 +21,7 @@ class NewEventFragment : DialogFragment() {
     private var _binding: FragmentNewEventBinding? = null
     private val binding get() = _binding!!
     val viewModel: EventsViewModel by viewModels()
-    lateinit var creatorUser: User
+//    lateinit var creatorUser: User
 
     companion object {
         fun newInstance() = NewEventFragment()
@@ -50,7 +50,7 @@ class NewEventFragment : DialogFragment() {
             }
         }
 
-        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
 
         binding.btnCancel.setOnClickListener {
             dismiss()
