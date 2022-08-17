@@ -17,6 +17,6 @@ class EventsViewModel(
         get() = _events
 
     suspend fun getEvents(user: User) {
-        _events.value = eventRepository.getEvents(user)
+//        _events.value = eventRepository.getEvents(user)
     }
 }
