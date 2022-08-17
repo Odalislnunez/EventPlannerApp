@@ -7,6 +7,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.data.repository.firebase.dao.Even
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
+import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 
 class EventRepository (
@@ -16,7 +17,7 @@ class EventRepository (
 //    private val db = placeSqLiteHelper.writableDatabase
     val db = Firebase.firestore
 
-    override suspend fun getEvents(user: User): Flow<List<Event>>? {
+    override suspend fun getEvents(user: User): Flow<DataState<List<Event>>>? {
 
 //        return commentDao.getComments(placeCode).map { commentList ->
 //            commentList.map { comment -> PlaceMapper.mapCommentFromDbToDomain(comment) }
@@ -24,7 +25,7 @@ class EventRepository (
         return null;
     }
 
-    override suspend fun getPublicEvents(): Flow<List<Event>>? {
+    override suspend fun getPublicEvents(): Flow<DataState<List<Event>>>? {
 
 //        return commentDao.getComments(placeCode).map { commentList ->
 //            commentList.map { comment -> PlaceMapper.mapCommentFromDbToDomain(comment) }
