@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +16,7 @@ class EventsViewModel(
     val event: LiveData<Flow<List<Event>>>
         get() = _events
 
-    suspend fun getEvents() {
-        _events.value = eventRepository.getEvents()
+    suspend fun getEvents(user: User) {
+        _events.value = eventRepository.getEvents(user)
     }
 }

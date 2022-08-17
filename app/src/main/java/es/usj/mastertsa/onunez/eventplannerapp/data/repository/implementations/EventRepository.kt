@@ -5,6 +5,7 @@ import com.google.firebase.ktx.Firebase
 import es.usj.mastertsa.onunez.eventplannerapp.data.repository.Mapper
 import es.usj.mastertsa.onunez.eventplannerapp.data.repository.firebase.dao.EventDao
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +16,7 @@ class EventRepository (
 //    private val db = placeSqLiteHelper.writableDatabase
     val db = Firebase.firestore
 
-    override suspend fun getEvents(): Flow<List<Event>>? {
+    override suspend fun getEvents(user: User): Flow<List<Event>>? {
 
 //        return commentDao.getComments(placeCode).map { commentList ->
 //            commentList.map { comment -> PlaceMapper.mapCommentFromDbToDomain(comment) }
@@ -23,7 +24,21 @@ class EventRepository (
         return null;
     }
 
-    override suspend fun addEvents(event: Event) {
+    override suspend fun getPublicEvents(): Flow<List<Event>>? {
+
+//        return commentDao.getComments(placeCode).map { commentList ->
+//            commentList.map { comment -> PlaceMapper.mapCommentFromDbToDomain(comment) }
+//        }
+        return null;
+    }
+
+    override suspend fun addEvent(event: Event) {
+
+//        val eventToAdd = Mapper.mapDbToDomainFromEvent(event)
+//        commentDao.insertComment(eventToAdd)
+    }
+
+    override suspend fun updateEvent(event: Event) {
 
 //        val eventToAdd = Mapper.mapDbToDomainFromEvent(event)
 //        commentDao.insertComment(eventToAdd)

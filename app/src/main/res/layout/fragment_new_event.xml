@@ -15,7 +15,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/new_event"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:text="@string/title"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:textSize="13sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/description"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <EditText
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:textSize="13sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/place"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <EditText
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:textSize="13sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/date"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <EditText
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="16sp"/>
+        android:textSize="13sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/event_type"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <Spinner
@@ -103,7 +103,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:padding="25dp"
-        android:textSize="16sp"/>
+        android:textSize="12sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/owners"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -130,7 +130,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/participants"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -144,12 +144,33 @@
         android:background="@android:drawable/editbox_background"
         app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange_logo"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/create"/>
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_logo"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:text="@string/button_CANCEL"/>
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_logo"
+            android:layout_marginStart="20dp"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:text="@string/button_create"/>
+    </LinearLayout>
+
 </LinearLayout>

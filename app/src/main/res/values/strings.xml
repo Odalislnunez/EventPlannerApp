@@ -55,9 +55,13 @@
     <string name="event_type">Event Type</string>
     <string name="owners">Owner/s</string>
     <string name="participants">Participants</string>
-    <string name="create">Create</string>
+    <string name="button_create">Create</string>
+    <string name="button_chat">Chat</string>
     <string name="select_participants">Select participants</string>
-
+    <string-array name="event_type_array">
+        <item>Private</item>
+        <item>Public</item>
+    </string-array>
 
     <string name="facebook_app_id">426945392718149</string>
     <string name="fb_login_protocol_scheme">fb426945392718149</string>
