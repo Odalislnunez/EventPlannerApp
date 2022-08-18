@@ -9,7 +9,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
-//import kotlinx.coroutines.await
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
@@ -25,7 +25,7 @@ class LoginRepository @Inject constructor(
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnSuccessListener { isSuccesful = true }
                     .addOnFailureListener { isSuccesful = false }
-//                .await()
+                .await()
         } catch (exc: Exception) {
 
         }
