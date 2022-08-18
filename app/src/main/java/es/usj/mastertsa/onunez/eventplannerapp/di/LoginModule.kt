@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import es.usj.mastertsa.onunez.eventplannerapp.data.repository.implementations.LoginRepository
+import es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations.LoginRepository
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.ILoginRepository
 import javax.inject.Singleton
 
@@ -19,6 +19,8 @@ object LoginModule {
         auth: FirebaseAuth,
         @FirebaseModule.UsersCollection usersCollection: CollectionReference
     ): ILoginRepository {
-        return LoginRepository()
+        return LoginRepository(
+            auth, usersCollection
+        )
     }
 }

@@ -1,8 +1,7 @@
-package es.usj.mastertsa.onunez.eventplannerapp.data.repository.implementations
+package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import es.usj.mastertsa.onunez.eventplannerapp.data.repository.Mapper
 import es.usj.mastertsa.onunez.eventplannerapp.data.repository.firebase.dao.EventDao
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
