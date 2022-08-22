@@ -46,16 +46,18 @@ class LoginActivity : AppCompatActivity() {
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(_binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         initObserves()
         initListeners()
-        firebaseAuth = FirebaseAuth.getInstance()
     }
 
     override fun onStart() {
         super.onStart()
 
+//        firebaseAuth.signOut()
         if(firebaseAuth.currentUser != null) {
-            showMainActivity(firebaseAuth.currentUser?.uid?: "", firebaseAuth.currentUser?.email?: "", firebaseAuth.currentUser?.displayName?: "")
+            showMainActivity()
         }
     }
 
@@ -105,29 +107,6 @@ class LoginActivity : AppCompatActivity() {
         // TO LOG IN WITH FACEBOOK ACCOUNT.
         _binding.ivFacebook.setOnClickListener {
             loginUser(1)
-//            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
-//
-//            LoginManager.getInstance().registerCallback(callbackManager,
-//                object : FacebookCallback<LoginResult> {
-//                    override fun onSuccess(result: LoginResult) {
-//                        result.let { it ->
-//                            val token = it.accessToken
-//
-//                            val credential = FacebookAuthProvider.getCredential(token.token)
-//
-//                            FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
-//                                if (it.isSuccessful) {
-//                                    showMainActivity(it.result?.user?.uid?: "", it.result?.user?.email?: "", it.result?.user?.displayName?: "")
-//                                } else {
-//                                    showAlert(getString(R.string.error) + " " + it.exception.toString())
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                    override fun onCancel() { TODO("Not yet implemented") }
-//                    override fun onError(error: FacebookException) { TODO("Not yet implemented") }
-//                })
         }
 
         // TO LOG IN WITH GOOGLE ACCOUNT.
@@ -166,13 +145,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(type: Int){
-        if (isUserDataOk()){
-            showProgressBar()
+        if (type == 0){
+            if(isUserDataOk()) {
+                showProgressBar()
 
-            val email = _binding.etUserlog.text.toString().trim()
-            val password = _binding.etPasswordlog.text.toString().trim()
+                val email = _binding.etUserlog.text.toString().trim()
+                val password = _binding.etPasswordlog.text.toString().trim()
 
-            viewModel.login(email, password, type)
+                viewModel.login(email, password, type)
+            }
+        }
+        else {
+            viewModel.login("", "", type)
         }
     }
 
@@ -203,19 +187,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // TO GO MAIN ACTIVITY.
-    private fun showMainActivity(userId: String, email: String, userName: String) {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            putExtra("userId", userId)
-            putExtra("email", email)
-            putExtra("userName", userName)
-        }
-        startActivity(intent)
+    private fun showMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-
         super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == GOOGLE_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -224,10 +203,11 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
 
                 if(account != null) {
-                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
+                    val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
+                    firebaseAuth.signInWithCredential(credential)
+                    .addOnCompleteListener(this) {
                         if (it.isSuccessful) {
-                            showMainActivity(account.id?: "", account.email?: "", account.givenName?: "")
+                            showMainActivity()
                         } else {
                             showAlert(this.getString(R.string.error) + " " +  it.exception.toString())
                         }

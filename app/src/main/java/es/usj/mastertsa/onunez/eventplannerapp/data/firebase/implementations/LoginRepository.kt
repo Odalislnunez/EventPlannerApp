@@ -28,7 +28,6 @@ class LoginRepository @Inject constructor(
     @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
         ): ILoginRepository {
 
-    private val GOOGLE_SIGN_IN = 100
     private val callbackManager = CallbackManager.Factory.create()
 
     override suspend fun login(email: String, password: String, loginType: Int): Flow<DataState<Boolean>> = flow {
@@ -57,7 +56,6 @@ class LoginRepository @Inject constructor(
                                 FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { isSuccesful = it.isSuccessful }
                             }
                         }
-
                         override fun onCancel() { TODO("Not yet implemented") }
                         override fun onError(error: FacebookException) { TODO("Not yet implemented") }
                     })
