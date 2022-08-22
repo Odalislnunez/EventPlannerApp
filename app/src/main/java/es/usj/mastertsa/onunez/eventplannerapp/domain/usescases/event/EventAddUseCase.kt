@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.domain.usescases
+package es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event
 
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event

@@ -3,7 +3,6 @@
     <string name="login_in">Sign In</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="password">Password</string>
-    <string name="user">User</string>
     <string name="email">E-mail</string>
     <string name="todo">TODO</string>
     <string name="or_sign_in">Or Sign in using</string>
@@ -14,27 +13,26 @@
     <string name="have_account_log_in">Have an account? Sign In.</string>
     <string name="cellphone">Phone</string>
     <string name="dont_have_account_register">Don\'t have an account? Sign Up.</string>
-    <string name="remember_me">Remember Me</string>
-    <string name="enter_with_email_password">Enter with your email and password.</string>
-    <string name="login">Login</string>
-    <string name="complete_details">Complete details.</string>
-    <string name="password_not_matching">Passwords are not matching.</string>
     <string name="complete_everything">You have to complete all the fields.</string>
 
     <string name="title_activity_main">Dashboard</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="button_OK">OK</string>
     <string name="button_CANCEL">CANCEL</string>
+    <string name="login_error_user_no_registered">There is no user register with this email account.</string>
+    <string name="login_error_wrong_password">Wrong password.</string>
+    <string name="login_error_enter_email">Type your email account.</string>
+    <string name="login_error_enter_password">Type your password.</string>
+    <string name="signup_successfully">The account was successfully created.</string>
+    <string name="signup_password_insecure">The password must have 6 characters, at least.</string>
+    <string name="password_not_matching">Passwords are not matching.</string>
+    <string name="signup_email_already_registered">There is already an account for this email.</string>
     <string name="error">An error has occurred…</string>
     <string name="message_close">Do you want to exit the application?</string>
 
-    <string name="dashboard">Dashboard</string>
     <string name="menu_profile">My Profile</string>
     <string name="menu_events">My Events</string>
     <string name="menu_contacts">My Contacts</string>

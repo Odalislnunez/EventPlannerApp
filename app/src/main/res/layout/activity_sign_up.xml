@@ -211,6 +211,19 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/pb_register"
+                        style="@style/CircularProgressIndicator"
+                        android:indeterminate="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@id/btn_register"
+                        app:layout_constraintEnd_toEndOf="@id/btn_register"
+                        app:layout_constraintTop_toTopOf="@id/btn_register"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_register"/>
+
+
                     <Button
                         android:id="@+id/btn_register"
                         android:layout_width="match_parent"
@@ -239,7 +252,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:id="@+id/imageview_go_to_login"
+                            android:id="@+id/iv_login"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:onClick="ViewLogin"

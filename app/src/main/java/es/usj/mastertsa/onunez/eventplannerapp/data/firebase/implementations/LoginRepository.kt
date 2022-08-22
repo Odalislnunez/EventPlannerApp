@@ -1,23 +1,15 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
 import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
-import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.ILoginRepository
@@ -69,18 +61,6 @@ class LoginRepository @Inject constructor(
                         override fun onCancel() { TODO("Not yet implemented") }
                         override fun onError(error: FacebookException) { TODO("Not yet implemented") }
                     })
-            }
-            else if (loginType == 2) { // LOGIN WITH GOOGLE
-
-                val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(activity.getString(R.string.default_web_client_id))
-                    .requestEmail()
-                    .build()
-
-                val googleClient = GoogleSignIn.getClient(activity, googleConf)
-                googleClient.signOut()
-
-//                startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
             }
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)

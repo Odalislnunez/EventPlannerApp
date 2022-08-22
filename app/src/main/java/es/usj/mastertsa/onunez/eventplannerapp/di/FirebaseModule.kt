@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EVENTS_COLLECTION
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USERS_COLLECTION
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -35,7 +36,20 @@ object FirebaseModule {
         return firestore.collection(USERS_COLLECTION)
     }
 
+    @EventsCollection
+    @Provides
+    @Singleton
+    fun provideEventsCollection(
+        firestore: FirebaseFirestore
+    ): CollectionReference {
+        return firestore.collection(EVENTS_COLLECTION)
+    }
+
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class UsersCollection
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class EventsCollection
 }

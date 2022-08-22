@@ -4,7 +4,6 @@
     <string name="login_in">Iniciar Sesión</string>
     <string name="forgot_password">Olvidaste tu contraseña?</string>
     <string name="password">Contraseña</string>
-    <string name="user">Usuario</string>
     <string name="email">Correo Electrónico</string>
     <string name="todo">TODO</string>
     <string name="or_sign_in">Ó Inicia Sesión con</string>
@@ -15,27 +14,26 @@
     <string name="have_account_log_in">Tienes una cuenta? Inicia Sesion</string>
     <string name="cellphone">Celular</string>
     <string name="dont_have_account_register">No tienes cuenta aún? Registrate</string>
-    <string name="remember_me">Recordarme</string>
-    <string name="enter_with_email_password">Ingresa con tu correo y contraseña.</string>
-    <string name="login">Login</string>
-    <string name="complete_details">Completa estos datos.</string>
-    <string name="password_not_matching">Contraseñas no coinciden.</string>
     <string name="complete_everything">Debes completar todos los campos.</string>
 
     <string name="title_activity_main">Dashboard</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="button_OK">Aceptar</string>
     <string name="button_CANCEL">Cancelar</string>
-    <string name="error">Se ha producido un error…</string>
+    <string name="login_error_user_no_registered">No existe un usuario registrado con este correo electrónico</string>
+    <string name="login_error_wrong_password">Contraseña incorrecta</string>
+    <string name="login_error_enter_email">Ingrese su correo electrónico.</string>
+    <string name="login_error_enter_password">Ingrese su contraseña.</string>
+    <string name="signup_successfully">Cuenta creada correctamente</string>
+    <string name="signup_password_insecure">Tu contraseña debe tener al menos 6 caracteres</string>
+    <string name="password_not_matching">Contraseñas no coinciden.</string>
+    <string name="signup_email_already_registered">Ya existe una cuenta registrada con este correo electrónico</string>
+    <string name="error">Se ha producido un error, intente de nuevo más tarde…</string>
     <string name="message_close">¿Desea salir de la aplicación?</string>
 
-    <string name="dashboard">Dashboard</string>
     <string name="menu_profile">Mi Perfil</string>
     <string name="menu_events">Mis Eventos</string>
     <string name="menu_contacts">Mis Contactos</string>

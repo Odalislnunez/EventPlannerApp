@@ -1,5 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.di
 
+import android.app.Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import dagger.Module
@@ -20,7 +21,7 @@ object LoginModule {
         @FirebaseModule.UsersCollection usersCollection: CollectionReference
     ): ILoginRepository {
         return LoginRepository(
-            auth, usersCollection
+            Activity(), auth, usersCollection
         )
     }
 }

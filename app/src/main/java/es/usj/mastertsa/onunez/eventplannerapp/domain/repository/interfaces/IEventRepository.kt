@@ -6,7 +6,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 
 interface IEventRepository {
-    suspend fun getEvents(user: User): Flow<DataState<List<Event>>>?
+    suspend fun getEvents(userId: String): Flow<DataState<List<Event>>>
 
     suspend fun getPublicEvents(): Flow<DataState<List<Event>>>?
 

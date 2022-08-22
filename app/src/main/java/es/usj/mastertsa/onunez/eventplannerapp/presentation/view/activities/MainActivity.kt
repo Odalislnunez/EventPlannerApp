@@ -1,6 +1,5 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -15,12 +14,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -34,10 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-//        binding.appBarMain.addEvent.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -51,18 +46,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val bundle = intent.extras
-        val userId = bundle?.getString("userId")
-        val email = bundle?.getString("email")
-        val userName = bundle?.getString("userName")
-
         val header = navView.getHeaderView(0)
 
         val headerName: TextView = header.findViewById(R.id.tv_userName)
         val headerEmail: TextView = header.findViewById(R.id.tv_email)
 
-        headerName.text = userName
-        headerEmail.text = email
+//        headerName.text = userName
+//        headerEmail.text = email
 
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
