@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                 is DataState.Success<Boolean> -> {
                     hideProgressDialog()
                     manageUserLogin()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    showMainActivity()
                     this.finish()
                 }
                 is DataState.Error -> {

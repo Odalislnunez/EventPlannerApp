@@ -1,5 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.di
 
+import android.app.Activity
 import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
