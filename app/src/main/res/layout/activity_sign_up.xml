@@ -46,7 +46,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                 android:layout_margin="20dp"
                 app:cardBackgroundColor="#00FFFFFF"
                 app:cardCornerRadius="50dp"
-                app:cardElevation="10dp">
+                app:cardElevation="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,7 +55,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
 
                     <ImageView
                         android:layout_width="130dp"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="end"
                         android:layout_marginTop="35dp"
                         android:layout_marginBottom="55dp"

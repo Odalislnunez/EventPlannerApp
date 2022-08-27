@@ -179,10 +179,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun manageLoginErrorMessages(exception: Exception) {
-        when(exception.message){
-            USER_NOT_EXISTS -> { showAlert(this.getString(R.string.login_error_user_no_registered)) }
-            WRONG_PASSWORD -> { showAlert(this.getString(R.string.login_error_wrong_password)) }
-            else -> { showAlert(this.getString(R.string.error)) }
+        when (exception.message) {
+            USER_NOT_EXISTS -> {
+                showAlert(this.getString(R.string.login_error_user_no_registered))
+            }
+            WRONG_PASSWORD -> {
+                showAlert(this.getString(R.string.login_error_wrong_password))
+            }
+            else -> {
+                showAlert(this.getString(R.string.error) + " " + exception.message)
+            }
         }
     }
 
