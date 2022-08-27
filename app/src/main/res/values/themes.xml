@@ -27,4 +27,9 @@
 
     <style name="Theme.LoginsandRegisterDesignXML.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Theme.SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
 </resources>
