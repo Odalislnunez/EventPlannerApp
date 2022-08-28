@@ -130,13 +130,13 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun hideProgressDialog() {
         _binding.pbRegister.visibility = View.GONE
-        _binding.btnRegister.text = this.getString(R.string.sign_up)
+        _binding.btnRegister.visibility = View.VISIBLE
         _binding.btnRegister.isEnabled = true
     }
 
     private fun showProgressBar() {
-        _binding.btnRegister.text = ""
         _binding.btnRegister.isEnabled = false
         _binding.pbRegister.visibility = View.VISIBLE
+        _binding.btnRegister.visibility = View.GONE
     }
 }

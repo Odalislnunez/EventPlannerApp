@@ -223,14 +223,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun hideProgressDialog() {
-        _binding.pbLogin.visibility = View.GONE
-        _binding.btnLogin.text = this.getString(R.string.login_in)
+        _binding.pbSignIn.visibility = View.GONE
+        _binding.btnLogin.visibility = View.VISIBLE
         _binding.btnLogin.isEnabled = true
     }
 
     private fun showProgressBar() {
-        _binding.btnLogin.text = ""
         _binding.btnLogin.isEnabled = false
-        _binding.pbLogin.visibility = View.VISIBLE
+        _binding.btnLogin.visibility = View.GONE
+        _binding.pbSignIn.visibility = View.VISIBLE
     }
 }

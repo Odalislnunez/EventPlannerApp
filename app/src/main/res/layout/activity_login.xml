@@ -68,9 +68,9 @@
                         style="@style/EditTextGeneral"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginTop="30dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginEnd="25dp"
                         android:drawableEnd="@drawable/ic_gray_email"
                         android:fontFamily="@font/cairo_light"
                         android:hint="@string/email"
@@ -82,8 +82,8 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -92,9 +92,9 @@
                         style="@style/EditTextGeneral"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginEnd="25dp"
                         android:drawableEnd="@drawable/ic__key"
                         android:hint="@string/password"
                         android:inputType="textPassword"
@@ -105,17 +105,17 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="40dp"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/cairo_light"
                         android:text="@string/forgot_password"
@@ -124,38 +124,48 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/pb_login"
-                        style="@style/CircularProgressIndicator"
-                        android:indeterminate="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/btn_login"
-                        app:layout_constraintEnd_toEndOf="@id/btn_login"
-                        app:layout_constraintTop_toTopOf="@id/btn_login"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_login"/>
-
-                    <Button
-                        android:id="@+id/btn_login"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
-                        android:background="@drawable/round_button"
-                        android:fontFamily="@font/cairo_light"
-                        android:text="@string/login_in"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/btn_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="25dp"
+                            android:background="@drawable/round_button"
+                            android:fontFamily="@font/cairo_light"
+                            android:text="@string/login_in"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/pbSignIn"
+                            style="@style/CircularProgressIndicator"
+                            android:indeterminate="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toTopOf="@+id/btn_login"
+                            app:layout_constraintBottom_toBottomOf="@+id/btn_login"
+                            app:layout_constraintStart_toStartOf="@+id/btn_login"
+                            app:layout_constraintEnd_toEndOf="@+id/btn_login"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="30dp"
-                        android:layout_marginEnd="40dp"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/cairo_light"
                         android:text="@string/or_sign_in"
@@ -197,9 +207,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_marginBottom="15dp"
                         android:gravity="end"
                         android:orientation="horizontal"

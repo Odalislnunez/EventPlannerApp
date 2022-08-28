@@ -32,7 +32,6 @@ tools:context=".presentation.view.activities.SignUpActivity">
         android:layout_marginBottom="0dp">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +57,7 @@ tools:context=".presentation.view.activities.SignUpActivity">
                         android:layout_height="60dp"
                         android:layout_gravity="end"
                         android:layout_marginTop="35dp"
-                        android:layout_marginBottom="55dp"
+                        android:layout_marginBottom="45dp"
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/logo_blanco2"
                         android:backgroundTint="@color/white"
@@ -83,8 +82,8 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
 
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -108,8 +107,8 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -132,8 +131,8 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -156,8 +155,8 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -182,8 +181,8 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -206,38 +205,47 @@ tools:context=".presentation.view.activities.SignUpActivity">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#DFDFDF"
                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-                    <com.google.android.material.progressindicator.CircularProgressIndicator
-                        android:id="@+id/pb_register"
-                        style="@style/CircularProgressIndicator"
-                        android:indeterminate="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/btn_register"
-                        app:layout_constraintEnd_toEndOf="@id/btn_register"
-                        app:layout_constraintTop_toTopOf="@id/btn_register"
-                        app:layout_constraintBottom_toBottomOf="@id/btn_register"/>
-
-
-                    <Button
-                        android:id="@+id/btn_register"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginEnd="35dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/round_button"
-                        android:fontFamily="@font/cairo_light"
-                        android:text="@string/sign_up"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/btn_register"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/round_button"
+                            android:fontFamily="@font/cairo_light"
+                            android:text="@string/sign_up"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/pb_register"
+                            style="@style/CircularProgressIndicator"
+                            android:indeterminate="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="@id/btn_register"
+                            app:layout_constraintEnd_toEndOf="@id/btn_register"
+                            app:layout_constraintTop_toTopOf="@id/btn_register"
+                            app:layout_constraintBottom_toBottomOf="@id/btn_register"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
