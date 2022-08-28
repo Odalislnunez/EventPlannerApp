@@ -10,6 +10,8 @@ object Constants {
     const val INVITATIONS_COLLECTION = "invitation"
 
     var USER_LOGGED_IN_ID = USER_NOT_LOGGED
+    var USER_LOGGED_IN_NAME = USER_NOT_LOGGED
+    var USER_LOGGED_IN_EMAIL = USER_NOT_LOGGED
 
     const val USER_NOT_EXISTS : String = "There is no user record corresponding to this identifier. The user may have been deleted."
     const val WRONG_PASSWORD : String = "The password is invalid or the user does not have a password."
@@ -23,4 +25,5 @@ object Constants {
 
     const val SHARED_EMAIL = "email"
     const val SHARED_PASSWORD = "password"
+    const val SHARED_LOGIN_TYPE = "login_type"
 }

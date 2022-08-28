@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -51,8 +53,8 @@ class MainActivity : AppCompatActivity() {
         val headerName: TextView = header.findViewById(R.id.tv_userName)
         val headerEmail: TextView = header.findViewById(R.id.tv_email)
 
-//        headerName.text = userName
-//        headerEmail.text = email
+        headerName.text = USER_LOGGED_IN_NAME
+        headerEmail.text = USER_LOGGED_IN_EMAIL
 
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)

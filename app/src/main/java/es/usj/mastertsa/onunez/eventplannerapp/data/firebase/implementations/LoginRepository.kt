@@ -14,7 +14,9 @@ import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.ILoginRepository
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -122,6 +124,8 @@ class LoginRepository @Inject constructor(
                         val user = document.toObject(User::class.java)!!
                         request = true
                         USER_LOGGED_IN_ID = user.userId
+                        USER_LOGGED_IN_NAME = user.givenName
+                        USER_LOGGED_IN_EMAIL = user.email
                     }
                     .addOnFailureListener { request = false }
                     .await()

@@ -18,6 +18,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityLoginBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_EMAIL
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_LOGIN_TYPE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_PASSWORD
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_NOT_EXISTS
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.WRONG_PASSWORD
@@ -31,10 +32,11 @@ import javax.inject.Inject
 class LoginActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private var login_type: Int = 0
 
     private val viewModel: LoginViewModel by viewModels()
 
-//    @Inject
+    @Inject
     lateinit var sharedPreferences: SharedPreferences
 
     private val GOOGLE_SIGN_IN = 100
@@ -50,15 +52,6 @@ class LoginActivity : AppCompatActivity() {
 
         initObserves()
         initListeners()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-//        firebaseAuth.signOut()
-        if(firebaseAuth.currentUser != null) {
-            showMainActivity()
-        }
     }
 
     private fun initObserves() {
@@ -101,16 +94,19 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners() {
         // TO LOG IN WITH EMAIL AND PASSWORD.
         _binding.btnLogin.setOnClickListener {
-            loginUser(0)
+            login_type = 0
+            loginUser(login_type)
         }
 
         // TO LOG IN WITH FACEBOOK ACCOUNT.
         _binding.ivFacebook.setOnClickListener {
-            loginUser(1)
+            login_type = 1
+            loginUser(login_type)
         }
 
         // TO LOG IN WITH GOOGLE ACCOUNT.
         _binding.ivGoogle.setOnClickListener {
+            login_type = 2
             val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -142,6 +138,7 @@ class LoginActivity : AppCompatActivity() {
     private fun manageUserLogin(){
         sharedPreferences.edit().putString(SHARED_EMAIL, _binding.etUserlog.text.toString().trim()).apply()
         sharedPreferences.edit().putString(SHARED_PASSWORD, _binding.etPasswordlog.text.toString().trim()).apply()
+        sharedPreferences.edit().putString(SHARED_LOGIN_TYPE, login_type.toString().trim()).apply()
     }
 
     private fun loginUser(type: Int){
