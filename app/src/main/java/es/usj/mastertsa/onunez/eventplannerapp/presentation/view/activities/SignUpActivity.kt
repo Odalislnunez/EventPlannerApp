@@ -91,7 +91,8 @@ class SignUpActivity : AppCompatActivity() {
         return User(
             email = email,
             givenName = givenName,
-            phoneNumber = phone
+            phoneNumber = phone,
+            userType = false
         )
     }
 

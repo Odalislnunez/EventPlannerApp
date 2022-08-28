@@ -6,11 +6,14 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 
 interface IEventRepository {
-    suspend fun getEvents(userId: String): Flow<DataState<List<Event>>>
 
-    suspend fun getPublicEvents(): Flow<DataState<List<Event>>>?
+    suspend fun getAllUserEvents(userId: String): Flow<DataState<List<Event>>>
 
-    suspend fun addEvent(event: Event)
+    suspend fun getUncomingUserEvents(userId: String): Flow<DataState<List<Event>>>
 
-    suspend fun updateEvent(event: Event)
+    suspend fun getPastUserEvents(userId: String): Flow<DataState<List<Event>>>
+
+    suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>>
+
+    suspend fun saveEvent(event: Event): Flow<DataState<Boolean>>
 }

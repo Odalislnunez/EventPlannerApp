@@ -78,11 +78,11 @@ class LoginRepository @Inject constructor(
             auth.createUserWithEmailAndPassword(user.email, password)
                 .addOnSuccessListener {
                     registeredUser = User(
-                    it.user!!.uid,
-                    user.email,
-                    user.givenName,
-                    user.phoneNumber,
-                    false
+                        it.user!!.uid,
+                        user.email,
+                        user.givenName,
+                        user.phoneNumber,
+                        user.userType
                     )
                 }
                 .addOnFailureListener { exception = it!! }

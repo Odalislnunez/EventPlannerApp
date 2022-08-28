@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -18,8 +20,13 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
+import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
+import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlert
+import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlertWithNegative
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,12 +34,34 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel: LoginViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initObserves()
+        initListeners()
+    }
+
+    private fun initObserves() {
+        viewModel.logOutState.observe(this, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    this.finish()
+                }
+                is DataState.Error -> {
+                    showAlert(this.getString(R.string.error) + " " + dataState.exception)
+                }
+                else -> Unit
+            }
+        })
+    }
+
+    private fun initListeners() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -59,32 +88,11 @@ class MainActivity : AppCompatActivity() {
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
             .setOnMenuItemClickListener {
-                showAlert(getString(R.string.message_close))
+                if(showAlertWithNegative(getString(R.string.message_close))) {
+                    viewModel.logOut()
+                }
                 false
             }
-    }
-
-    // TO SHOW ALERT MESSAGE.
-    private fun showAlert(message: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("")
-        builder.setMessage(message)
-        builder.setPositiveButton(R.string.button_OK) { _, _ ->
-            logout()
-        }
-        builder.setNegativeButton(this.getString(R.string.button_CANCEL), null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
-
-    // TO SIGN OUT APPLICATION.
-    private fun logout() {
-        LoginManager.getInstance().logOut()
-        FirebaseAuth.getInstance().signOut()
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
-//        onBackPressed()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -1,6 +1,5 @@
 package es.usj.mastertsa.onunez.eventplannerapp.di
 
-import android.app.Activity
 import com.google.firebase.firestore.CollectionReference
 import dagger.Module
 import dagger.Provides
@@ -19,7 +18,7 @@ object EventModule {
         @FirebaseModule.EventsCollection eventsCollection: CollectionReference
     ): IEventRepository {
         return EventRepository(
-            Activity(), eventsCollection
+            eventsCollection
         )
     }
 }

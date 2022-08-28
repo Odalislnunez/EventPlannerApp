@@ -15,16 +15,16 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivPlace"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:contentDescription="TODO"
-        app:srcCompat="@drawable/user1"
-        tools:ignore="ImageContrastCheck" />
+        android:contentDescription="@string/todo"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        android:src="@drawable/user1" />
 
     <TextView
         android:id="@+id/tvNamePlace"
