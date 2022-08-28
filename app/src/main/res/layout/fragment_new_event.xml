@@ -24,7 +24,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/title"
+        android:text="@string/event_title"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/description"
+        android:text="@string/event_description"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/place"
+        android:text="@string/event_place"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/date"
+        android:text="@string/event_date"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/owners"
+        android:text="@string/event_owners"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/participants"
+        android:text="@string/event_participants"
         android:textSize="14sp"
         android:textStyle="bold"/>
 
