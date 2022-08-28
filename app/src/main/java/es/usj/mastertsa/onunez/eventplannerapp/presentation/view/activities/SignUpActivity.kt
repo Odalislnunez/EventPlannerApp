@@ -72,32 +72,6 @@ class SignUpActivity : AppCompatActivity() {
             if (isUserDataOk()) {
                 viewModel.signUp(createUser(), _binding.etPassword.text.toString())
             }
-
-//            val name = _binding.etName.text.toString()
-//            val lastname = _binding.etLastname.text.toString()
-//            val phone = _binding.etPhone.text.toString()
-//            val email = _binding.etEmail.text.toString()
-//            val pass = _binding.etPassword.text.toString()
-//            val confirmPass = _binding.etConfirmPassword.text.toString()
-//
-//            if(name.isNotEmpty() && lastname.isNotEmpty() && phone.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
-//                if(pass == confirmPass) {
-//                    firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-//                        if (it.isSuccessful) {
-//                            this.onBackPressed()
-//                        }
-//                        else {
-//                            showAlert(this.getString(R.string.error) + " " +  it.exception.toString())
-//                        }
-//                    }
-//                }
-//                else {
-//                    showError(this.getString(R.string.password_not_matching))
-//                }
-//            }
-//            else {
-//                showError(this.getString(R.string.complete_everything))
-//            }
         }
 
         _binding.tvAccount.setOnClickListener {
