@@ -2,7 +2,6 @@ package es.usj.mastertsa.onunez.eventplannerapp.domain.models
 
 import android.os.Parcelable
 import com.google.type.DateTime
-import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
 import kotlinx.android.parcel.Parcelize
 import java.util.*
