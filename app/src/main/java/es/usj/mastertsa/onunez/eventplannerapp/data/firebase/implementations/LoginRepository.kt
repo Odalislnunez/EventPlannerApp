@@ -78,11 +78,12 @@ class LoginRepository @Inject constructor(
             auth.createUserWithEmailAndPassword(user.email, password)
                 .addOnSuccessListener {
                     registeredUser = User(
-                        it.user!!.uid,
-                        user.email,
-                        user.givenName,
-                        user.phoneNumber,
-                        user.userType
+                        userId = it.user!!.uid,
+                        email = user.email,
+                        name = user.name,
+                        lastname = user.lastname,
+                        phoneNumber = user.phoneNumber,
+                        userType = user.userType
                     )
                 }
                 .addOnFailureListener { exception = it!! }
@@ -124,7 +125,7 @@ class LoginRepository @Inject constructor(
                         val user = document.toObject(User::class.java)!!
                         request = true
                         USER_LOGGED_IN_ID = user.userId
-                        USER_LOGGED_IN_NAME = user.givenName
+                        USER_LOGGED_IN_NAME = user.name + " " + user.lastname
                         USER_LOGGED_IN_EMAIL = user.email
                     }
                     .addOnFailureListener { request = false }
