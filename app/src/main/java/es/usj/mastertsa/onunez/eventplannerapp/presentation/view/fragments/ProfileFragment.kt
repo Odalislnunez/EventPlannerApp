@@ -60,10 +60,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initView(){
-        if (!mUser.name.isNullOrEmpty()){
-            binding.tvEmail.setText(mUser.email)
+        if (mUser.name.isNotEmpty()){
+            binding.tvEmail.text = mUser.email
             binding.etName.setText(mUser.name)
-            binding.etLastname.setText(mUser.lastName)
+            binding.etLastname.setText(mUser.lastname)
             binding.etPhone.setText(mUser.phoneNumber)
             mProfileImageURL = mUser.profileImage
             isImageSelected = true

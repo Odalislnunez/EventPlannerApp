@@ -85,12 +85,14 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun createUser(): User {
         val email = _binding.etEmail.text.toString()
-        val givenName = _binding.etName.text.toString() + " " + _binding.etLastname.text.toString()
+        val name = _binding.etName.text.toString()
+        val lastname = _binding.etLastname.text.toString()
         val phone = _binding.etPhone.text.toString()
 
         return User(
             email = email,
-            givenName = givenName,
+            name = name,
+            lastname = lastname,
             phoneNumber = phone,
             userType = false
         )
