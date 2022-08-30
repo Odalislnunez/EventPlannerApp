@@ -8,6 +8,7 @@
     tools:context=".presentation.view.fragments.NewEventFragment">
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -138,18 +139,7 @@
         android:gravity="end">
 
         <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange_logo"
-            android:textSize="12sp"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_gravity="end"
-            android:text="@string/button_CANCEL"/>
-
-        <Button
-            android:id="@+id/btnChat"
+            android:id="@+id/btn_chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/orange_logo"
@@ -160,7 +150,8 @@
             android:text="@string/button_chat"/>
 
         <Button
-            android:id="@+id/btnCreate"
+            android:id="@+id/btn_save"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/orange_logo"
@@ -168,7 +159,19 @@
             android:paddingEnd="30dp"
             android:textSize="12sp"
             android:layout_gravity="end"
-            android:text="@string/button_create"/>
+            android:text="@string/button_save"/>
+
+        <Button
+            android:id="@+id/btn_participate"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_logo"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:text="@string/button_save"/>
     </LinearLayout>
 
 </LinearLayout>

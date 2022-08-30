@@ -56,6 +56,7 @@
     <string name="event_uncoming">Uncoming Events</string>
     <string name="event_past">Past Events</string>
     <string name="button_create">Create</string>
+    <string name="button_save">Save</string>
     <string name="button_chat">Chat</string>
     <string name="select_participants">Select participants</string>
     <string-array name="event_type_array">
@@ -66,4 +67,10 @@
     <string name="facebook_app_id">426945392718149</string>
     <string name="fb_login_protocol_scheme">fb426945392718149</string>
     <string name="facebook_client_token">82c9ab03d49dce96561687cc4c1a690f</string>
+
+    <string name="read_storage_permission_denied">Oops, it looks like you haven\'t accepted the request permissions. You can do it from phone configurations.</string>
+    <string name="error_something_went_wrong">Oops, it looks like something went wrong.</string>
+    <string name="add_fields_new_event">You have to complete title, description, place and date fields.</string>
+    <string name="add_fields_edit_event">You have to complete description, place and date fields.</string>
+    <string name="everything_correctly_saved">Done! Everything correctly saved.</string>
 </resources>

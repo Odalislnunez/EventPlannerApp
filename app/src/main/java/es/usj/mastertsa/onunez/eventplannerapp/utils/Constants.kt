@@ -26,4 +26,8 @@ object Constants {
     const val SHARED_EMAIL = "email"
     const val SHARED_PASSWORD = "password"
     const val SHARED_LOGIN_TYPE = "login_type"
+
+    const val DEFAULT_PROFILE_IMAGE = "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
+    const val EXTRAS_EVENT = "event"
+    const val EXTRAS_USER = "user"
 }

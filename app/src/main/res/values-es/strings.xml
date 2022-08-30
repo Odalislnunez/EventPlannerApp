@@ -57,6 +57,7 @@
     <string name="event_uncoming">Eventos Próximos</string>
     <string name="event_past">Eventos Pasados</string>
     <string name="button_create">Crear</string>
+    <string name="button_save">Guardar</string>
     <string name="button_chat">Chat</string>
     <string name="select_participants">Seleccione participantes</string>
     <string-array name="event_type_array">
@@ -67,4 +68,10 @@
     <string name="facebook_app_id">426945392718149</string>
     <string name="fb_login_protocol_scheme">fb426945392718149</string>
     <string name="facebook_client_token">82c9ab03d49dce96561687cc4c1a690f</string>
+
+    <string name="read_storage_permission_denied">Oops, parece que no aceptaste los permisos necesarios. Puedes hacerlo desde configuración.</string>
+    <string name="error_something_went_wrong">Oops, parece que algo salió mal.</string>
+    <string name="add_fields_new_event">Debe llenar los campos de título, descripción, Lugar y Fecha.</string>
+    <string name="add_fields_edit_event">Debe llenar los campos descripción, Lugar y Fecha.</string>
+    <string name="everything_correctly_saved">Listo! Todo guardado correctamente.</string>
 </resources>
