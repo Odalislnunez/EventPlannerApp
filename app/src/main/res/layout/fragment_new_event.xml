@@ -193,39 +193,27 @@
             android:layout_marginEnd="20dp"
             android:gravity="end">
 
-            <RelativeLayout
+            <Button
+                android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange_logo"
+                android:textSize="12sp"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:layout_gravity="end"
+                android:text="@string/button_CANCEL"/>
 
-                <Button
-                    android:id="@+id/btnCancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange_logo"
-                    android:textSize="12sp"
-                    android:paddingStart="50dp"
-                    android:paddingEnd="50dp"
-                    android:layout_gravity="end"
-                    android:text="@string/button_CANCEL"/>
-            </RelativeLayout>
-
-            <RelativeLayout
+            <Button
+                android:id="@+id/btnCreate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/btnCreate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange_logo"
-                    android:paddingStart="50dp"
-                    android:paddingEnd="50dp"
-                    android:textSize="12sp"
-                    android:layout_gravity="end"
-                    android:text="@string/button_create"/>
-
-            </RelativeLayout>
-
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange_logo"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:textSize="12sp"
+                android:layout_gravity="end"
+                android:text="@string/button_create"/>
         </LinearLayout>
 
         </LinearLayout>

@@ -1,6 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.widget.TextView
@@ -22,11 +23,15 @@ import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_EMAIL
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_LOGIN_TYPE
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_PASSWORD
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlert
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlertWithNegative
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -35,6 +40,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: LoginViewModel by viewModels()
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.logOutState.observe(this, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
+                    manageUserLogout()
                     startActivity(Intent(this, LoginActivity::class.java))
                     this.finish()
                 }
@@ -104,5 +113,11 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun manageUserLogout(){
+        sharedPreferences.edit().putString(SHARED_EMAIL, "email").apply()
+        sharedPreferences.edit().putString(SHARED_PASSWORD, "password").apply()
+        sharedPreferences.edit().putString(SHARED_LOGIN_TYPE, "login_type").apply()
     }
 }
