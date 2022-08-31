@@ -110,9 +110,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun manageUserLogout(){
-        sharedPreferences.edit().putString(SHARED_EMAIL, "email").apply()
-        sharedPreferences.edit().putString(SHARED_PASSWORD, "password").apply()
-        sharedPreferences.edit().putString(SHARED_LOGIN_TYPE, "login_type").apply()
+        sharedPreferences.edit().putString(SHARED_EMAIL, "").apply()
+        sharedPreferences.edit().putString(SHARED_PASSWORD, "").apply()
+        sharedPreferences.edit().putString(SHARED_LOGIN_TYPE, "").apply()
     }
 
     // TO SHOW ALERT MESSAGE.
