@@ -14,11 +14,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes">
+    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/activities/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/activities/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_new_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/utils/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/utils/Extensions.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,13 +374,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00010" summary="Changes.">
-      <created>1658369855222</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1658369855222</updated>
-    </task>
     <task id="LOCAL-00011" summary="Changes.">
       <created>1658370175178</created>
       <option name="number" value="00011" />
@@ -718,7 +710,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661957002604</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Changes.">
+      <created>1661958291668</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1661958291668</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -757,9 +756,9 @@
     <MESSAGE value="Adding view models events." />
     <MESSAGE value="Adding logic for new and edit events, and for user profile page." />
     <MESSAGE value="Fixing User Model Changes." />
-    <MESSAGE value="Changes." />
     <MESSAGE value="Adding work PC to local properties." />
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="Changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes." />
   </component>
 </project>

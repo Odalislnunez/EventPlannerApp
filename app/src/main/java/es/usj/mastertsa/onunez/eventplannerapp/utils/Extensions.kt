@@ -32,21 +32,6 @@ fun Activity.showAlert(message: String) {
     dialog.show()
 }
 
-// TO SHOW ALERT MESSAGE.
-fun Activity.showAlertWithNegative(message: String): Boolean {
-    var isSuccessful = false
-    val builder = AlertDialog.Builder(this)
-    builder.setTitle("")
-    builder.setMessage(message)
-    builder.setPositiveButton(R.string.button_OK) { _, _ ->
-        isSuccessful = true
-    }
-    builder.setNegativeButton(this.getString(R.string.button_CANCEL), null)
-    val dialog: AlertDialog = builder.create()
-    dialog.show()
-    return isSuccessful
-}
-
 fun Activity.isInputEmpty(editText: TextInputEditText, errorMessage: Boolean = false) : Boolean {
     return if (TextUtils.isEmpty(editText.text.toString().trim { it <= ' ' })){
         if (errorMessage){

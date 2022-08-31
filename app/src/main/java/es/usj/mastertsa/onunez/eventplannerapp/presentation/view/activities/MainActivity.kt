@@ -15,14 +15,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_LOGIN_TYPE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_PASSWORD
@@ -30,7 +27,6 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EM
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlert
-import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlertWithNegative
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -97,9 +93,7 @@ class MainActivity : AppCompatActivity() {
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
             .setOnMenuItemClickListener {
-                if(showAlertWithNegative(getString(R.string.message_close))) {
-                    viewModel.logOut()
-                }
+                showAlertWithNegative(getString(R.string.message_close))
                 false
             }
     }
@@ -119,5 +113,18 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences.edit().putString(SHARED_EMAIL, "email").apply()
         sharedPreferences.edit().putString(SHARED_PASSWORD, "password").apply()
         sharedPreferences.edit().putString(SHARED_LOGIN_TYPE, "login_type").apply()
+    }
+
+    // TO SHOW ALERT MESSAGE.
+    private fun showAlertWithNegative(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("")
+        builder.setMessage(message)
+        builder.setPositiveButton(R.string.button_OK) { _, _ ->
+            viewModel.logOut()
+        }
+        builder.setNegativeButton(this.getString(R.string.button_CANCEL), null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }
