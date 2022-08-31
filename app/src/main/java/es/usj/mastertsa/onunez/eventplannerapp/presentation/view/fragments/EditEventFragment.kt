@@ -18,6 +18,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
+import java.sql.Timestamp
 
 class EditEventFragment : Fragment() {
 
@@ -64,7 +65,8 @@ class EditEventFragment : Fragment() {
             binding.tvTitle.text = mEvent.event_title
             binding.etDescription.setText(mEvent.event_description)
             binding.etPlace.setText(mEvent.event_place)
-            binding.etDate.setText(mEvent.event_date)
+//            binding.etDate.setText(mEvent.event_date)
+//            binding.etTime.setText(mEvent.event_date)
             binding.spEventType.setSelection(mEvent.event_type)
             binding.spOwners.text = mEvent.event_creators.toString()
             binding.spParticipants.text = mEvent.event_participants.toString()
@@ -111,6 +113,8 @@ class EditEventFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             if (isAllDataSet()){
                 showProgressBar()
+                val date = Timestamp.valueOf(binding.etDate.text.toString() + " " + binding.etTime.text.toString())
+
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(
                         Event(
@@ -118,7 +122,7 @@ class EditEventFragment : Fragment() {
                             event_title = binding.tvTitle.text.toString(),
                             event_description = binding.etDescription.text.toString(),
                             event_place = binding.etPlace.text.toString(),
-                            event_date = binding.etDate.text.toString(),
+                            event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
                             event_creators = getAllCreators(),
                             event_participants = getAllParticipants()
@@ -132,7 +136,7 @@ class EditEventFragment : Fragment() {
                             event_title = binding.tvTitle.text.toString(),
                             event_description = binding.etDescription.text.toString(),
                             event_place = binding.etPlace.text.toString(),
-                            event_date = binding.etDate.text.toString(),
+                            event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
                             event_creators = getAllCreators()
                         )
