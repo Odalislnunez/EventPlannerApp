@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentPublicEventsBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.PublicEventsViewModel
 
+@AndroidEntryPoint
 class PublicEventsFragment : Fragment() {
 
     private var _binding: FragmentPublicEventsBinding? = null

@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentInvitationsBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.InvitationsViewModel
 
+@AndroidEntryPoint
 class InvitationsFragment : Fragment() {
 
     private var _binding: FragmentInvitationsBinding? = null

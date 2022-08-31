@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentEditEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
@@ -20,6 +21,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 
+@AndroidEntryPoint
 class EditEventFragment : Fragment() {
 
     private var _binding: FragmentEditEventBinding? = null

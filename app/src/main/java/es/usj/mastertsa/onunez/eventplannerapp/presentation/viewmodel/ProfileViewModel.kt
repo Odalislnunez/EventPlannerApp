@@ -1,19 +1,44 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel
 
+import android.app.Activity
+import android.net.Uri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.SaveEventUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.SaveProfileImageUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-
+    private val saveUserToFirestoreUseCase: SaveUserToFirestoreUseCase,
+    private val saveProfileImageUseCase: SaveProfileImageUseCase
 ): ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _saveUserState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val saveUserState : LiveData<DataState<Boolean>>
+        get() =_saveUserState
+
+    fun saveUser(user: User){
+        viewModelScope.launch {
+            saveUserToFirestoreUseCase(user)
+                .onEach { dataState ->
+                    _saveUserState.value = dataState
+                }.launchIn(viewModelScope)
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun saveProfileImage(activity: Activity, imageFileURI: Uri?, imageType: String, fragment: Fragment){
+        saveProfileImageUseCase(activity, imageFileURI, imageType, fragment)
+    }
 }

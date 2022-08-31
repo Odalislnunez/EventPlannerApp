@@ -5,12 +5,18 @@ import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUserRepository
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ProfileFragment
+import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(

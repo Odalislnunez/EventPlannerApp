@@ -14,6 +14,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentProfileBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
@@ -23,9 +25,11 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.*
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.DEFAULT_PROFILE_IMAGE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_USER
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils.USER_IMAGE
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.IOException
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
@@ -73,21 +77,20 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initObservers(){
-//        viewModel.saveBichoState.observe(viewLifecycleOwner, Observer { dataState ->
-//            when(dataState){
-//                is DataState.Success -> {
-//                    hideProgressDialog()
-//                    activity?.onBackPressed()
-//                    activity?.toast("Listo! Bicho guardado correctamente")
-//                }
-//                is DataState.Error -> {
-//                    hideProgressDialog()
-//                    activity?.toast("Oops, algo salio mal, intente de nuevo ")
-//                }
-//
-//                else -> Unit
-//            }
-//        })
+        viewModel.saveUserState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    activity?.onBackPressed()
+                    activity?.showToast(getString(R.string.everything_correctly_saved))
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+                else -> Unit
+            }
+        })
     }
 
     private fun initListeners(){
@@ -103,25 +106,27 @@ class ProfileFragment : Fragment() {
             if (isAllDataSet()){
                 if (!isImageSelected){
                     showProgressBar()
-//                    viewModel.saveUser(User(
-//                        userId = USER_LOGGED_IN_ID,
-//                        name = binding.etName.text.toString(),
-//                        lastName = binding.etLastname.text.toString(),
-//                        phoneNumber = binding.etPhone.text.toString()
-//                    ))
+                    viewModel.saveUser(User(
+                        userId = USER_LOGGED_IN_ID,
+                        name = binding.etName.text.toString(),
+                        lastname = binding.etLastname.text.toString(),
+                        phoneNumber = binding.etPhone.text.toString(),
+                        userType = false
+                    ))
                     hideKeyboard()
                 }else{
                     showProgressBar()
                     if (comesFromExtras){
-//                        viewModel.saveUser(User(
-//                            userId = USER_LOGGED_IN_ID,
-//                            name = binding.etName.text.toString(),
-//                            lastName = binding.etLastname.text.toString(),
-//                            phoneNumber = binding.etPhone.text.toString(),
-//                            profileImage = mProfileImageURL
-//                        ))
+                        viewModel.saveUser(User(
+                            userId = USER_LOGGED_IN_ID,
+                            name = binding.etName.text.toString(),
+                            lastname = binding.etLastname.text.toString(),
+                            phoneNumber = binding.etPhone.text.toString(),
+                            profileImage = mProfileImageURL,
+                            userType = false
+                        ))
                     } else {
-//                        viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
+                        viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
                     }
                 }
             } else {
@@ -137,13 +142,14 @@ class ProfileFragment : Fragment() {
         hideProgressDialog()
         mProfileImageURL = imageURL
 
-//        viewModel.saveUser(User(
-//            userId = USER_LOGGED_IN_ID,
-//            name = binding.etName.text.toString(),
-//            lastName = binding.etLastname.text.toString(),
-//            phoneNumber = binding.etPhone.text.toString(),
-//            profileImage = mProfileImageURL
-//        ))
+        viewModel.saveUser(User(
+            userId = USER_LOGGED_IN_ID,
+            name = binding.etName.text.toString(),
+            lastname = binding.etLastname.text.toString(),
+            phoneNumber = binding.etPhone.text.toString(),
+            profileImage = mProfileImageURL,
+            userType = false
+        ))
         hideKeyboard()
         activity?.onBackPressed()
     }
