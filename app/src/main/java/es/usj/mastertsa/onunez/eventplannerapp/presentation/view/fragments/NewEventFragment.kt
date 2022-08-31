@@ -1,30 +1,24 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
-import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.NewEventViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
+import java.sql.Timestamp
 
 @AndroidEntryPoint
 class NewEventFragment : DialogFragment() {
@@ -67,6 +61,7 @@ class NewEventFragment : DialogFragment() {
         })
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun initListeners(){
         val spinner: Spinner = binding.spEventType
         activity?.let {
@@ -89,13 +84,16 @@ class NewEventFragment : DialogFragment() {
         binding.btnCreate.setOnClickListener {
             if (isAllDataSet()){
                 showProgressBar()
+
+                val date = Timestamp.valueOf(binding.etDate.text.toString() + " " + binding.etTime.text.toString())
+
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(
                         Event(
                             event_title = binding.etTitle.text.toString(),
                             event_description = binding.etDescription.text.toString(),
                             event_place = binding.etPlace.text.toString(),
-                            event_date = binding.etDate.text.toString(),
+                            event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
                             event_creators = getAllCreators(),
                             event_participants = getAllParticipants()
@@ -108,7 +106,7 @@ class NewEventFragment : DialogFragment() {
                             event_title = binding.etTitle.text.toString(),
                             event_description = binding.etDescription.text.toString(),
                             event_place = binding.etPlace.text.toString(),
-                            event_date = binding.etDate.text.toString(),
+                            event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
                             event_creators = getAllCreators()
                         )
@@ -150,7 +148,7 @@ class NewEventFragment : DialogFragment() {
 
     private fun isAllDataSet(): Boolean {
         return !binding.etTitle.text.isNullOrEmpty() && !binding.etDescription.text.isNullOrEmpty()
-                && !binding.etPlace.text.isNullOrEmpty() && !binding.etDate.text.isNullOrEmpty()
+                && !binding.etPlace.text.isNullOrEmpty() && !binding.etDate.text.isNullOrEmpty() && !binding.etTime.text.isNullOrEmpty()
     }
 
     private fun hideProgressDialog() {

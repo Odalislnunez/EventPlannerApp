@@ -16,4 +16,6 @@ interface IEventRepository {
     suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>>
 
     suspend fun saveEvent(event: Event): Flow<DataState<Boolean>>
+
+    suspend fun cancelEvent(eventId: String): Flow<DataState<Boolean>>
 }

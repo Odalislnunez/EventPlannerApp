@@ -94,4 +94,27 @@ class EventRepository @Inject constructor (
             emit(DataState.Finished)
         }
     }
+
+    override suspend fun cancelEvent(eventId: String): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+
+            val event = Event(eventId = eventId, event_state = 3)
+            var isSuccessfull: Boolean = false
+
+            eventsCollection.document(eventId).set(event, SetOptions.merge())
+                .addOnSuccessListener {
+                    isSuccessfull = true
+                }
+                .addOnFailureListener {
+                    isSuccessfull = false
+                }.await()
+
+            emit(DataState.Success(isSuccessfull))
+            emit(DataState.Finished)
+
+        }catch (e:Exception){
+            emit(DataState.Error(e))
+        }
+    }
 }

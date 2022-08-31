@@ -51,6 +51,7 @@
     <string name="event_description">Descripción</string>
     <string name="event_place">Lugar</string>
     <string name="event_date">Fecha</string>
+    <string name="event_time">Hora</string>
     <string name="event_type">Tipo de Evento</string>
     <string name="event_owners">Creador/es</string>
     <string name="event_participants">Participantes</string>
