@@ -96,7 +96,8 @@ class NewEventFragment : DialogFragment() {
                             event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
                             event_creators = getAllCreators(),
-                            event_participants = getAllParticipants()
+                            event_participants = getAllParticipants(),
+                            event_state = 0
                         )
                     )
                 }
@@ -108,7 +109,8 @@ class NewEventFragment : DialogFragment() {
                             event_place = binding.etPlace.text.toString(),
                             event_datetime = date,
                             event_type = binding.spEventType.selectedItemPosition,
-                            event_creators = getAllCreators()
+                            event_creators = getAllCreators(),
+                            event_state = 0
                         )
                     )
                 }
