@@ -2,6 +2,7 @@ package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -92,8 +93,8 @@ class NewEventFragment : DialogFragment() {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
-                    val dat = (dayOfMonth.toString() + "-" +  (monthOfYear + 1) + "-" + year.toString())
-                    date = (year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth.toString())
+                    val dat = "$dayOfMonth/$monthOfYear/$year"
+                    date = "$year-$monthOfYear-$dayOfMonth"
                     binding.etDate.setText(dat)
                 },
                 year,
@@ -101,6 +102,26 @@ class NewEventFragment : DialogFragment() {
                 day
             )
             datePickerDialog.show()
+        }
+
+        binding.etTime.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { view, hourOfDay, minute ->
+                    val tim = "$hourOfDay:$minute"
+                    time = "$hourOfDay:$minute:00.123456789"
+                    binding.etTime.setText(tim)
+                },
+                hour,
+                minute,
+                false
+            )
+            timePickerDialog.show()
         }
 
         binding.btnCancel.setOnClickListener {
