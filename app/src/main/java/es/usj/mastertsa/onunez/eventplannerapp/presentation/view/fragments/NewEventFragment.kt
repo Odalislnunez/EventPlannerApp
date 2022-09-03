@@ -138,27 +138,27 @@ class NewEventFragment : DialogFragment() {
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(
                         Event(
-                            event_title = binding.etTitle.text.toString(),
-                            event_description = binding.etDescription.text.toString(),
-                            event_place = binding.etPlace.text.toString(),
-                            event_datetime = date,
-                            event_type = binding.spEventType.selectedItemPosition,
-                            event_creators = getAllCreators(),
-                            event_participants = getAllParticipants(),
-                            event_state = 0
+                            title = binding.etTitle.text.toString(),
+                            description = binding.etDescription.text.toString(),
+                            place = binding.etPlace.text.toString(),
+                            datetime = date,
+                            type = binding.spEventType.selectedItemPosition,
+                            creators = getAllCreators(),
+                            participants = getAllParticipants(),
+                            state = 0
                         )
                     )
                 }
                 else {
                     viewModel.saveEvent(
                         Event(
-                            event_title = binding.etTitle.text.toString(),
-                            event_description = binding.etDescription.text.toString(),
-                            event_place = binding.etPlace.text.toString(),
-                            event_datetime = date,
-                            event_type = binding.spEventType.selectedItemPosition,
-                            event_creators = getAllCreators(),
-                            event_state = 0
+                            title = binding.etTitle.text.toString(),
+                            description = binding.etDescription.text.toString(),
+                            place = binding.etPlace.text.toString(),
+                            datetime = date,
+                            type = binding.spEventType.selectedItemPosition,
+                            creators = getAllCreators(),
+                            state = 0
                         )
                     )
                 }

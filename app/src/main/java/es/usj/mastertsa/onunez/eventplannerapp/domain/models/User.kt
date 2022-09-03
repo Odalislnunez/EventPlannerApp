@@ -12,5 +12,6 @@ data class User(
     val lastname: String = INFO_NOT_SET,
     val phoneNumber: String = INFO_NOT_SET,
     val profileImage: String = INFO_NOT_SET,
+    val contacts: List<String> = mutableListOf(),
     val userType: Boolean = false // 0 = PERSONA, 1 = EMPRESA
 ): Parcelable

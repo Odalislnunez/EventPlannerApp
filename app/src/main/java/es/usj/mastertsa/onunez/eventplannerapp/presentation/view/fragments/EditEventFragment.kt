@@ -59,23 +59,23 @@ class EditEventFragment : Fragment() {
 
     @SuppressLint("SimpleDateFormat")
     private fun initView(){
-        if (mEvent.event_title.isNotEmpty()){
-            val mDate = Date(mEvent.event_datetime.time)
-//            val datetime = mEvent.event_datetime.toString().split(" ").toTypedArray()
+        if (mEvent.title.isNotEmpty()){
+            val mDate = Date(mEvent.datetime.time)
+//            val datetime = mEvent.datetime.toString().split(" ").toTypedArray()
             date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
             time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
 
             val dateEt = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
             val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
 
-            binding.tvTitle.text = mEvent.event_title
-            binding.etDescription.setText(mEvent.event_description)
-            binding.etPlace.setText(mEvent.event_place)
+            binding.tvTitle.text = mEvent.title
+            binding.etDescription.setText(mEvent.description)
+            binding.etPlace.setText(mEvent.place)
             binding.etDate.setText(dateEt)
             binding.etTime.setText(timeEt)
-            binding.spEventType.setSelection(mEvent.event_type)
-            binding.spOwners.text = mEvent.event_creators.toString()
-            binding.spParticipants.text = mEvent.event_participants.toString()
+            binding.spEventType.setSelection(mEvent.type)
+            binding.spOwners.text = mEvent.creators.toString()
+            binding.spParticipants.text = mEvent.participants.toString()
 
             binding.btnSave.visibility = View.VISIBLE
 
@@ -181,13 +181,13 @@ class EditEventFragment : Fragment() {
                     viewModel.saveEvent(
                         Event(
                             eventId = mEvent.eventId,
-                            event_title = binding.tvTitle.text.toString(),
-                            event_description = binding.etDescription.text.toString(),
-                            event_place = binding.etPlace.text.toString(),
-                            event_datetime = date,
-                            event_type = binding.spEventType.selectedItemPosition,
-                            event_creators = getAllCreators(),
-                            event_participants = getAllParticipants()
+                            title = binding.tvTitle.text.toString(),
+                            description = binding.etDescription.text.toString(),
+                            place = binding.etPlace.text.toString(),
+                            datetime = date,
+                            type = binding.spEventType.selectedItemPosition,
+                            creators = getAllCreators(),
+                            participants = getAllParticipants()
                         )
                     )
                 }
@@ -195,12 +195,12 @@ class EditEventFragment : Fragment() {
                     viewModel.saveEvent(
                         Event(
                             eventId = mEvent.eventId,
-                            event_title = binding.tvTitle.text.toString(),
-                            event_description = binding.etDescription.text.toString(),
-                            event_place = binding.etPlace.text.toString(),
-                            event_datetime = date,
-                            event_type = binding.spEventType.selectedItemPosition,
-                            event_creators = getAllCreators()
+                            title = binding.tvTitle.text.toString(),
+                            description = binding.etDescription.text.toString(),
+                            place = binding.etPlace.text.toString(),
+                            datetime = date,
+                            type = binding.spEventType.selectedItemPosition,
+                            creators = getAllCreators()
                         )
                     )
                 }
