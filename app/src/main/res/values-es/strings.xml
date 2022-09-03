@@ -75,4 +75,11 @@
     <string name="add_fields_new_event">Debe llenar los campos de título, descripción, Lugar y Fecha.</string>
     <string name="add_fields_edit_event">Debe llenar los campos descripción, Lugar y Fecha.</string>
     <string name="everything_correctly_saved">Listo! Todo guardado correctamente.</string>
+
+    <string name="event_title_hint">Título del evento</string>
+    <string name="event_description_hint">Describe el evento</string>
+    <string name="event_place_hint">Lugar del evento</string>
+    <string name="event_date_hint">Selecciona la fecha del evento</string>
+    <string name="event_time_hint">Selecciona la hora del evento</string>
+
 </resources>

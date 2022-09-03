@@ -74,4 +74,11 @@
     <string name="add_fields_new_event">You have to complete title, description, place and date fields.</string>
     <string name="add_fields_edit_event">You have to complete description, place and date fields.</string>
     <string name="everything_correctly_saved">Done! Everything correctly saved.</string>
+
+    <string name="event_title_hint">Title of event</string>
+    <string name="event_description_hint">Describe the event</string>
+    <string name="event_place_hint">Place of event</string>
+    <string name="event_date_hint">Select the event date</string>
+    <string name="event_time_hint">Select the event time</string>
+
 </resources>
