@@ -99,7 +99,7 @@ class EventRepository @Inject constructor (
         emit(DataState.Loading)
         try {
 
-            val event = Event(eventId = eventId, event_state = 3)
+            val event = Event(eventId = eventId, state = 3)
             var isSuccessfull: Boolean = false
 
             eventsCollection.document(eventId).set(event, SetOptions.merge())
