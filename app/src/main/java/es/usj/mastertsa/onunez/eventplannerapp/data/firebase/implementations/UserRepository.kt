@@ -14,6 +14,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUse
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ProfileFragment
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
@@ -60,5 +61,9 @@ class UserRepository @Inject constructor(
                     exception
                 )
             }
+    }
+
+    override suspend fun getUserContact(userId: String): Flow<DataState<List<String>>> {
+        TODO("Not yet implemented")
     }
 }

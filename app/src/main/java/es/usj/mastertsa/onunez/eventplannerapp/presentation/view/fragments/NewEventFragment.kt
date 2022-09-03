@@ -69,20 +69,6 @@ class NewEventFragment : DialogFragment() {
 
     @SuppressLint("SimpleDateFormat")
     private fun initListeners(){
-        val spinner: Spinner = binding.spEventType
-        activity?.let {
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.event_type_array,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-            }
-        }
-
-//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
-
         binding.etDate.setOnClickListener {
             val c = Calendar.getInstance()
 
@@ -123,6 +109,21 @@ class NewEventFragment : DialogFragment() {
             )
             timePickerDialog.show()
         }
+
+        val spinner: Spinner = binding.spEventType
+        activity?.let {
+            ArrayAdapter.createFromResource(
+                it,
+                R.array.event_type_array,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
+        }
+
+//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+
 
         binding.btnCancel.setOnClickListener {
             dismiss()

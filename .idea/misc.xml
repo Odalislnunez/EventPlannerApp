@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_edit_event.xml" value="0.25" />
+        <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_new_event.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp2/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp2/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_new_event.xml" value="0.23055555555555557" />

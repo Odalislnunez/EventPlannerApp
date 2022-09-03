@@ -1,5 +1,8 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +23,8 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class EditEventFragment : Fragment() {
@@ -30,6 +35,9 @@ class EditEventFragment : Fragment() {
     private var mEvent: Event = Event()
 
     private val viewModel: EditEventViewModel by viewModels()
+
+    private var date: String = ""
+    private var time: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,26 +57,22 @@ class EditEventFragment : Fragment() {
         initObservers()
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun initView(){
-        val spinner: Spinner = binding.spEventType
-        activity?.let {
-            ArrayAdapter.createFromResource(
-                it,
-                R.array.event_type_array,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-            }
-        }
-        //        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+        if (mEvent.event_title.isNotEmpty()){
+            val mDate = Date(mEvent.event_datetime.time)
+//            val datetime = mEvent.event_datetime.toString().split(" ").toTypedArray()
+            date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
+            time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
 
-        if (!mEvent.event_title.isNullOrEmpty()){
+            val dateEt = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
+            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+
             binding.tvTitle.text = mEvent.event_title
             binding.etDescription.setText(mEvent.event_description)
             binding.etPlace.setText(mEvent.event_place)
-//            binding.etDate.setText(mEvent.event_date)
-//            binding.etTime.setText(mEvent.event_date)
+            binding.etDate.setText(dateEt)
+            binding.etTime.setText(timeEt)
             binding.spEventType.setSelection(mEvent.event_type)
             binding.spOwners.text = mEvent.event_creators.toString()
             binding.spParticipants.text = mEvent.event_participants.toString()
@@ -108,6 +112,61 @@ class EditEventFragment : Fragment() {
     }
 
     private fun initListeners(){
+        binding.etDate.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    val dat = "$dayOfMonth/$monthOfYear/$year"
+                    date = "$year-$monthOfYear-$dayOfMonth"
+                    binding.etDate.setText(dat)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
+        }
+
+        binding.etTime.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val hour = c.get(Calendar.HOUR_OF_DAY)
+            val minute = c.get(Calendar.MINUTE)
+
+            val timePickerDialog = TimePickerDialog(
+                requireContext(),
+                { view, hourOfDay, minute ->
+                    val tim = "$hourOfDay:$minute"
+                    time = "$hourOfDay:$minute:00.123456789"
+                    binding.etTime.setText(tim)
+                },
+                hour,
+                minute,
+                false
+            )
+            timePickerDialog.show()
+        }
+
+        val spinner: Spinner = binding.spEventType
+        activity?.let {
+            ArrayAdapter.createFromResource(
+                it,
+                R.array.event_type_array,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
+        }
+
+//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+
         binding.btnChat.setOnClickListener {
 
         }
@@ -115,7 +174,8 @@ class EditEventFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             if (isAllDataSet()){
                 showProgressBar()
-                val date = Timestamp.valueOf(binding.etDate.text.toString() + " " + binding.etTime.text.toString())
+
+                val date = Timestamp.valueOf("$date $time")
 
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(

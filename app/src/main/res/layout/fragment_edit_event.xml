@@ -58,7 +58,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:inputType="textLongMessage"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:hint="@string/event_description_hint"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -75,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textSize="13sp"/>
+            android:textSize="13sp"
+            android:hint="@string/event_place_hint"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -92,7 +94,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:hint="@string/event_date_hint"
+            android:drawableEnd="@drawable/ic_menu_calendar"
+
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -109,7 +118,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:hint="@string/event_time_hint"
+            android:drawableEnd="@drawable/ic_time"
+
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -168,51 +184,51 @@
             android:background="@android:drawable/editbox_background"
             app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/btn_chat"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="end">
+                android:backgroundTint="@color/orange_logo"
+                android:textSize="12sp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:layout_gravity="end"
+                android:text="@string/button_chat"/>
 
-                <Button
-                    android:id="@+id/btn_chat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange_logo"
-                    android:textSize="12sp"
-                    android:paddingStart="40dp"
-                    android:paddingEnd="40dp"
-                    android:layout_gravity="end"
-                    android:text="@string/button_chat"/>
+            <Button
+                android:id="@+id/btn_save"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange_logo"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:textSize="12sp"
+                android:layout_gravity="end"
+                android:text="@string/button_save"/>
 
-                <Button
-                    android:id="@+id/btn_save"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange_logo"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:textSize="12sp"
-                    android:layout_gravity="end"
-                    android:text="@string/button_save"/>
+            <Button
+                android:id="@+id/btn_participate"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange_logo"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:textSize="12sp"
+                android:layout_gravity="end"
+                android:text="@string/button_save"/>
 
-                <Button
-                    android:id="@+id/btn_participate"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange_logo"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:textSize="12sp"
-                    android:layout_gravity="end"
-                    android:text="@string/button_save"/>
-
-            </LinearLayout>
+        </LinearLayout>
 
         </LinearLayout>
 

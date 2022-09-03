@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "654016870650-f0si6ec4lgpd3bu2f4cljpibpqv2932t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.usj.mastertsa.onunez.eventplannerapp",
+            "certificate_hash": "130e78d004f449331edf751a0b619c31d912fa61"
+          }
+        },
+        {
           "client_id": "654016870650-hrrde8vc8m9e28t2thvfvnlr6plq9dh1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
