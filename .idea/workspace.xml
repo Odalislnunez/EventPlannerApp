@@ -14,7 +14,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Adding dates.">
+    <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Adding dates and times.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,13 +373,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00015" summary="Design Changes.">
-      <created>1658847703493</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1658847703493</updated>
-    </task>
     <task id="LOCAL-00016" summary="Design menu header Changes.">
       <created>1658849204196</created>
       <option name="number" value="00016" />
@@ -715,7 +709,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662217267734</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Adding dates and times.">
+      <created>1662218123760</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1662218123760</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -732,7 +733,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adapting Changes." />
     <MESSAGE value="Adding New Event fragment." />
     <MESSAGE value="Adding models." />
     <MESSAGE value="Refactoring, adding and reorganizing the project." />
@@ -757,6 +757,7 @@
     <MESSAGE value="Changes." />
     <MESSAGE value="Addings." />
     <MESSAGE value="Adding dates." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding dates." />
+    <MESSAGE value="Adding dates and times." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding dates and times." />
   </component>
 </project>
