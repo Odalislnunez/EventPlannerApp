@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "654016870650-ngn1kdpdvdi93p7v6t6erf1mefhrbpbt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.usj.mastertsa.onunez.eventplannerapp",
+            "certificate_hash": "c18a004ac2621b6f854af88fa4442696c0602171"
+          }
+        },
+        {
           "client_id": "654016870650-oo4hs5ciupu2brsba1leiu2hg5pdlm3m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
