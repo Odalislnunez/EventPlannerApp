@@ -1,6 +1,5 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentDashboardBinding
-import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.DashboardViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {

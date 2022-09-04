@@ -184,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
                 showAlert(this.getString(R.string.login_error_wrong_password))
             }
             else -> {
-                showAlert(this.getString(R.string.error) + " " + exception.message)
+                showAlert(this.getString(R.string.error) + " " + exception)
             }
         }
     }
