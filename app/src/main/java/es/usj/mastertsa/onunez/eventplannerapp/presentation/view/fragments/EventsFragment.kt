@@ -98,8 +98,7 @@ class EventsFragment : Fragment() {
 
     private fun initListeners() {
         binding.btnAddEvent.setOnClickListener {
-//            findNavController().navigate(R.id.action_bichosListFragment_to_addEditBichoFragment)
-            // HAVE TO SHOW DIALOG FRAGMENT TO CREATE NEW EVENT
+            findNavController().navigate(R.id.action_nav_events_to_nav_new_event)
         }
 
         eventsAdapterUncoming.setItemClickListener {
