@@ -9,7 +9,11 @@
         android:id="@+id/nav_dashboard"
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.DashboardFragment"
         android:label="@string/menu_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_new_event"
+            app:destination="@id/nav_new_event" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_profile"
@@ -21,13 +25,24 @@
         android:id="@+id/nav_events"
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.EventsFragment"
         android:label="@string/menu_events"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_nav_events_to_nav_edit_event"
+            app:destination="@id/nav_edit_event" />
+        <action
+            android:id="@+id/action_nav_events_to_nav_new_event"
+            app:destination="@id/nav_new_event" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_contacts"
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ContactsFragment"
         android:label="@string/menu_contacts"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_nav_contacts_to_nav_profile"
+            app:destination="@id/nav_profile" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_invitations"
@@ -46,4 +61,17 @@
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_new_event"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.NewEventFragment"
+        android:label="@string/new_event"
+        tools:layout="@layout/fragment_new_event" />
+
+    <fragment
+        android:id="@+id/nav_edit_event"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.EditEventFragment"
+        android:label="@string/edit_event"
+        tools:layout="@layout/fragment_edit_event" />
+
 </navigation>

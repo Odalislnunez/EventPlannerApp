@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="396" />
-                            <option name="y" value="-51" />
+                            <option name="x" value="558" />
+                            <option name="y" value="-55" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -32,6 +32,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="nav_edit_event">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="395" />
+                            <option name="y" value="263" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_events">
                     <value>
                       <LayoutPositions>
@@ -40,6 +52,15 @@
                             <option name="x" value="217" />
                             <option name="y" value="-51" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_events_to_nav_edit_event">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -56,13 +77,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_log_out">
+                  <entry key="nav_new_event">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="393" />
-                            <option name="y" value="250" />
+                            <option name="x" value="213" />
+                            <option name="y" value="258" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -97,8 +118,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="217" />
-                            <option name="y" value="253" />
+                            <option name="x" value="560" />
+                            <option name="y" value="262" />
                           </Point>
                         </option>
                       </LayoutPositions>

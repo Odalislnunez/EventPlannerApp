@@ -55,14 +55,9 @@ abstract class EventBaseAdapter (
     }
 
     protected var onItemClickListener : ((Event) -> Unit)? = null
-    protected var onDeleteClickListener : ((Event) -> Unit)? = null
 
     fun setItemClickListener(listener: (Event) -> Unit){
         onItemClickListener = listener
-    }
-
-    fun setDeleteClickListener(listener: (Event) -> Unit){
-        onDeleteClickListener = listener
     }
 
     override fun getItemCount(): Int {

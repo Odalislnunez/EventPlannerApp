@@ -9,7 +9,7 @@ import java.util.*
 @Parcelize
 data class Event(
     val eventId: String = UUID.randomUUID().toString(),
-    val title: String = INFO_NOT_SET,
+    val title: String = "",
     val description: String = INFO_NOT_SET,
     val place: String = INFO_NOT_SET,
     val datetime: Timestamp = Timestamp.valueOf("2022-09-14 00:00:00.123456789"),

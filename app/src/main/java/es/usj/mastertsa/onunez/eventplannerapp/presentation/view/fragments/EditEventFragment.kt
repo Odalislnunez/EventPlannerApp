@@ -57,11 +57,10 @@ class EditEventFragment : Fragment() {
         initObservers()
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun initView(){
         if (mEvent.title.isNotEmpty()){
             val mDate = Date(mEvent.datetime.time)
-//            val datetime = mEvent.datetime.toString().split(" ").toTypedArray()
             date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
             time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
 
@@ -74,24 +73,37 @@ class EditEventFragment : Fragment() {
             binding.etDate.setText(dateEt)
             binding.etTime.setText(timeEt)
             binding.spEventType.setSelection(mEvent.type)
-            binding.spOwners.text = mEvent.creators.toString()
-            binding.spParticipants.text = mEvent.participants.toString()
-
-            binding.btnSave.visibility = View.VISIBLE
-
+            binding.spOwners.text = ""
+            mEvent.creators.forEach {
+                if(it == mEvent.creators.first()){
+                    binding.spOwners.text = it
+                }
+                else{
+                    binding.spOwners.text = binding.spOwners.text.toString() + ", \n" + it
+                }
+            }
+            binding.spParticipants.text = ""
+            mEvent.participants?.forEach {
+                if(it == mEvent.participants?.first()) {
+                    binding.spParticipants.text = it
+                }
+                else {
+                    binding.spParticipants.text = binding.spParticipants.text.toString() + ", \n" + it
+                }
+            }
 //            val creators: List<String> = binding.spOwners.text.toString().split(",").toList()
-//            if(creators.contains(USER_LOGGED_IN_ID)) {
-//                binding.btnSave.visibility = View.VISIBLE
-//            }
-//            else {
-//                binding.btnParticipate.visibility = View.VISIBLE
-//                binding.etDescription.isEnabled = false
-//                binding.etPlace.isEnabled = false
-//                binding.etDate.isEnabled = false
-//                binding.spEventType.isEnabled = false
-//                binding.spOwners.isEnabled = false
-//                binding.spParticipants.isEnabled = false
-//            }
+            if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
+                binding.btnSave.visibility = View.VISIBLE
+            }
+            else {
+                binding.btnParticipate.visibility = View.VISIBLE
+                binding.etDescription.isEnabled = false
+                binding.etPlace.isEnabled = false
+                binding.etDate.isEnabled = false
+                binding.spEventType.isEnabled = false
+                binding.spOwners.isEnabled = false
+                binding.spParticipants.isEnabled = false
+            }
         }
     }
 
