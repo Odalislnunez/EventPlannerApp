@@ -81,5 +81,7 @@
     <string name="event_place_hint">Place of event</string>
     <string name="event_date_hint">Select the event date</string>
     <string name="event_time_hint">Select the event time</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

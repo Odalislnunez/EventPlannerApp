@@ -86,7 +86,7 @@ class EventsFragment : Fragment() {
         })
     }
 
-    private fun initRecyclerUncomingView() = binding.rvEvents.apply {
+    private fun initRecyclerUncomingView() = binding.rvUncomingEvents.apply {
         adapter = eventsAdapterUncoming
         layoutManager = LinearLayoutManager(requireContext())
     }

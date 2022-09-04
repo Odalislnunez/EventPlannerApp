@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
+import java.sql.Timestamp
 import javax.inject.Inject
 
 class EventRepository @Inject constructor (
@@ -22,7 +23,7 @@ class EventRepository @Inject constructor (
     override suspend fun getAllUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection
+            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
                 .get()
                 .await()
                 .toObjects(Event::class.java)
@@ -37,7 +38,8 @@ class EventRepository @Inject constructor (
     override suspend fun getUncomingUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection
+            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
+                .whereGreaterThanOrEqualTo("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
@@ -52,7 +54,8 @@ class EventRepository @Inject constructor (
     override suspend fun getPastUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection
+            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
+                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)

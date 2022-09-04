@@ -22,6 +22,7 @@ abstract class ContactBaseAdapter (
         fun render(contact: User) {
             binding.ivUser.load(contact.profileImage)
             binding.tvName.text = contact.name + " " + contact.lastname
+            binding.tvEmail.text = contact.email
             binding.tvPhone.text = contact.phoneNumber
         }
     }

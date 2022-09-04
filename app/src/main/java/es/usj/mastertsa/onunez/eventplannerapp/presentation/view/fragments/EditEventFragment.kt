@@ -24,6 +24,8 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
@@ -94,6 +96,9 @@ class EditEventFragment : Fragment() {
 //            val creators: List<String> = binding.spOwners.text.toString().split(",").toList()
             if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
                 binding.btnSave.visibility = View.VISIBLE
+                if(mEvent.datetime < Timestamp(System.currentTimeMillis())) {
+                    binding.btnSave.isEnabled = false
+                }
             }
             else {
                 binding.btnParticipate.visibility = View.VISIBLE
