@@ -1,13 +1,11 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
-import android.app.Activity
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
-import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -20,7 +18,7 @@ class EventRepository @Inject constructor (
     @FirebaseModule.EventsCollection private val eventsCollection: CollectionReference
 ): IEventRepository {
 
-    override suspend fun getAllUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
+    override suspend fun getAllEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
             val publicEvents = eventsCollection.whereIn("creators", userId.toList())
@@ -35,7 +33,7 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun getUncomingUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
+    override suspend fun getUncomingEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
             val publicEvents = eventsCollection.whereIn("creators", userId.toList())
@@ -51,7 +49,7 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun getPastUserEvents(userId: String): Flow<DataState<List<Event>>> = flow {
+    override suspend fun getPastEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
             val publicEvents = eventsCollection.whereIn("creators", userId.toList())
@@ -98,26 +96,12 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun cancelEvent(eventId: String): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-
-            val event = Event(eventId = eventId, state = 3)
-            var isSuccessfull: Boolean = false
-
-            eventsCollection.document(eventId).set(event, SetOptions.merge())
-                .addOnSuccessListener {
-                    isSuccessfull = true
-                }
-                .addOnFailureListener {
-                    isSuccessfull = false
-                }.await()
-
-            emit(DataState.Success(isSuccessfull))
-            emit(DataState.Finished)
-
-        }catch (e:Exception){
-            emit(DataState.Error(e))
-        }
+    override suspend fun getEventCreators(creators: List<String>): Flow<DataState<List<User>>> {
+        TODO("Not yet implemented")
     }
+
+    override suspend fun getEventParticipants(participants: List<String>): Flow<DataState<List<User>>> {
+        TODO("Not yet implemented")
+    }
+
 }

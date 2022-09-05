@@ -145,7 +145,7 @@ class NewEventFragment : DialogFragment() {
                             type = binding.spEventType.selectedItemPosition,
                             creators = getAllCreators(),
                             participants = getAllParticipants(),
-                            state = 0
+                            status =  0
                         )
                     )
                 }
@@ -158,7 +158,7 @@ class NewEventFragment : DialogFragment() {
                             datetime = date,
                             type = binding.spEventType.selectedItemPosition,
                             creators = getAllCreators(),
-                            state = 0
+                            status = 0
                         )
                     )
                 }

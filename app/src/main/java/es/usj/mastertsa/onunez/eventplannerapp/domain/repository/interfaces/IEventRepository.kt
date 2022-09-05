@@ -7,15 +7,18 @@ import kotlinx.coroutines.flow.Flow
 
 interface IEventRepository {
 
-    suspend fun getAllUserEvents(userId: String): Flow<DataState<List<Event>>>
+    suspend fun getAllEvents(userId: String): Flow<DataState<List<Event>>>
 
-    suspend fun getUncomingUserEvents(userId: String): Flow<DataState<List<Event>>>
+    suspend fun getUncomingEvents(userId: String): Flow<DataState<List<Event>>>
 
-    suspend fun getPastUserEvents(userId: String): Flow<DataState<List<Event>>>
+    suspend fun getPastEvents(userId: String): Flow<DataState<List<Event>>>
 
     suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>>
 
     suspend fun saveEvent(event: Event): Flow<DataState<Boolean>>
 
-    suspend fun cancelEvent(eventId: String): Flow<DataState<Boolean>>
+    suspend fun getEventCreators(creators: List<String>): Flow<DataState<List<User>>>
+
+    suspend fun getEventParticipants(participants: List<String>): Flow<DataState<List<User>>>
+
 }

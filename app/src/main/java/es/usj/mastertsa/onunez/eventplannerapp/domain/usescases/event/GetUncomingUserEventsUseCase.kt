@@ -10,5 +10,5 @@ class GetUncomingUserEventsUseCase @Inject constructor(
     private val eventRepository: IEventRepository
 ) {
     suspend operator fun invoke(userId: String): Flow<DataState<List<Event>>> =
-        eventRepository.getUncomingUserEvents(userId)
+        eventRepository.getUncomingEvents(userId)
 }

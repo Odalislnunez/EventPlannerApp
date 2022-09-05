@@ -5,7 +5,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
@@ -15,9 +14,6 @@ import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.Profi
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -63,7 +59,21 @@ class UserRepository @Inject constructor(
             }
     }
 
-    override suspend fun getUserContact(userId: String): Flow<DataState<List<String>>> {
+    override suspend fun getAllUsers(): Flow<DataState<List<User>>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getUserContact(userId: String): Flow<DataState<List<User>>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addUserContact(userId: String): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteUserContact(userId: String): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+
 }

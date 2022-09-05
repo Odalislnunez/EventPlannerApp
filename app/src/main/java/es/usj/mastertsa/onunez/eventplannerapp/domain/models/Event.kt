@@ -16,5 +16,5 @@ data class Event(
     val type: Int = 0, // 0 = Private, 1 = Public
     val creators: List<String> = mutableListOf(),
     val participants: List<String>? = mutableListOf(),
-    val state: Int = 0 // 0 = Pendiente, 1 = Pasado, 2 = Pospuesto, 3 = Cancelado
+    val status: Int = 0 // 0 = Pendiente, 1 = Pasado, 2 = Pospuesto, 3 = Cancelado
 ) : Parcelable

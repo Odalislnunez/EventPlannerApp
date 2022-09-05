@@ -204,7 +204,8 @@ class EditEventFragment : Fragment() {
                             datetime = date,
                             type = binding.spEventType.selectedItemPosition,
                             creators = getAllCreators(),
-                            participants = getAllParticipants()
+                            participants = getAllParticipants(),
+                            status =  0
                         )
                     )
                 }
@@ -217,7 +218,8 @@ class EditEventFragment : Fragment() {
                             place = binding.etPlace.text.toString(),
                             datetime = date,
                             type = binding.spEventType.selectedItemPosition,
-                            creators = getAllCreators()
+                            creators = getAllCreators(),
+                            status =  0
                         )
                     )
                 }
