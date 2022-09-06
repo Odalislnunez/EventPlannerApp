@@ -1,6 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.domain.models
 
 import android.os.Parcelable
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.DEFAULT_PROFILE_IMAGE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
 import kotlinx.android.parcel.Parcelize
 
@@ -11,7 +12,7 @@ data class User(
     val name: String = INFO_NOT_SET,
     val lastname: String = INFO_NOT_SET,
     val phoneNumber: String = INFO_NOT_SET,
-    val profileImage: String = INFO_NOT_SET,
+    val profileImage: String = DEFAULT_PROFILE_IMAGE,
     val contacts: List<String> = mutableListOf(),
     val userType: Boolean = false // 0 = PERSONA, 1 = EMPRESA
 ): Parcelable
