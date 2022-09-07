@@ -62,8 +62,8 @@ class ProfileFragment : Fragment() {
 
         contact = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
 
-        initListeners()
         initObservers()
+        initListeners()
         initView()
     }
 
@@ -78,6 +78,10 @@ class ProfileFragment : Fragment() {
             comesFromExtras = true
             binding.ivProfilePicture.load(contact.profileImage)
             binding.btnEdit.visibility = View.GONE
+            binding.etName.isEnabled = false
+            binding.etLastname.isEnabled = false
+            binding.etPhone.isEnabled = false
+            binding.ivProfilePicture.isEnabled = false
         }
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
