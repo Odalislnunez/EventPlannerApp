@@ -15,17 +15,18 @@ import java.sql.Timestamp
 import javax.inject.Inject
 
 class EventRepository @Inject constructor (
-    @FirebaseModule.EventsCollection private val eventsCollection: CollectionReference
+    @FirebaseModule.EventsCollection private val eventsCollection: CollectionReference,
+    @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
 ): IEventRepository {
 
     override suspend fun getAllEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
+            val allEvents = eventsCollection.whereIn("creators", userId.toList())
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            emit(DataState.Success(publicEvents))
+            emit(DataState.Success(allEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
@@ -36,12 +37,18 @@ class EventRepository @Inject constructor (
     override suspend fun getUncomingEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
+            val uCreatorsEvents = eventsCollection.whereIn("creators", userId.toList())
                 .whereGreaterThanOrEqualTo("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            emit(DataState.Success(publicEvents))
+            val uParticipantsEvents = eventsCollection.whereIn("participants", userId.toList())
+                .whereGreaterThanOrEqualTo("datetime", Timestamp(System.currentTimeMillis()))
+                .get()
+                .await()
+                .toObjects(Event::class.java)
+
+            emit(DataState.Success(uCreatorsEvents + uParticipantsEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
@@ -52,12 +59,17 @@ class EventRepository @Inject constructor (
     override suspend fun getPastEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection.whereIn("creators", userId.toList())
+            val pCreatorsEvents = eventsCollection.whereIn("creators", userId.toList())
                 .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            emit(DataState.Success(publicEvents))
+            val pParticipantsEvents = eventsCollection.whereIn("participants", userId.toList())
+                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
+                .get()
+                .await()
+                .toObjects(Event::class.java)
+            emit(DataState.Success(pCreatorsEvents + pParticipantsEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
@@ -68,7 +80,7 @@ class EventRepository @Inject constructor (
     override suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection
+            val publicEvents = eventsCollection.whereEqualTo("type", "Public")
                 .get()
                 .await()
                 .toObjects(Event::class.java)
@@ -96,12 +108,42 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun getEventCreators(creators: List<String>): Flow<DataState<List<User>>> {
-        TODO("Not yet implemented")
+    override suspend fun getEventCreators(creators: List<String>) = flow {
+        emit(DataState.Loading)
+        try {
+            val creatorsList: MutableList<User> = ArrayList()
+            creators.forEach {
+                val user = usersCollection.whereEqualTo("userId", it)
+                    .get()
+                    .await()
+                    .toObjects(User::class.java)
+                creatorsList.addAll(user)
+            }
+            emit(DataState.Success(creatorsList))
+            emit(DataState.Finished)
+        }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
-    override suspend fun getEventParticipants(participants: List<String>): Flow<DataState<List<User>>> {
-        TODO("Not yet implemented")
+    override suspend fun getEventParticipants(participants: List<String>) = flow {
+        emit(DataState.Loading)
+        try {
+            val participantsList: MutableList<User> = ArrayList()
+            participants.forEach {
+                val user = usersCollection.whereEqualTo("userId", it)
+                    .get()
+                    .await()
+                    .toObjects(User::class.java)
+                participantsList.addAll(user)
+            }
+            emit(DataState.Success(participantsList))
+            emit(DataState.Finished)
+        }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
 }

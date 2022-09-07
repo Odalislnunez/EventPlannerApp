@@ -146,8 +146,11 @@ class LoginActivity : AppCompatActivity() {
             if(isUserDataOk()) {
                 showProgressBar()
 
-                val email = _binding.etUserlog.text.toString().trim()
-                val password = _binding.etPasswordlog.text.toString().trim()
+//                val email = _binding.etUserlog.text.toString().trim()
+//                val password = _binding.etPasswordlog.text.toString().trim()
+
+                val email = "odalislnunez@hotmail.com"
+                val password = "1234567"
 
                 viewModel.login(email, password, type)
             }

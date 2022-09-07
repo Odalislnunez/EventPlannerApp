@@ -40,6 +40,7 @@ class ProfileFragment : Fragment() {
     private var isImageSelected: Boolean = false
     private var comesFromExtras: Boolean = false
 
+    private var contact: User = User()
     private var mUser: User = User()
 
     private val viewModel: ProfileViewModel by viewModels()
@@ -56,7 +57,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mUser = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
+        contact = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
 
         initView()
         initListeners()
@@ -64,15 +65,29 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initView(){
-        if (mUser.name.isNotEmpty()){
-            binding.tvEmail.text = mUser.email
-            binding.etName.setText(mUser.name)
-            binding.etLastname.setText(mUser.lastname)
-            binding.etPhone.setText(mUser.phoneNumber)
-            mProfileImageURL = mUser.profileImage
+        if (contact.name.isNotEmpty()){
+            binding.tvEmail.text = contact.email
+            binding.etName.setText(contact.name)
+            binding.etLastname.setText(contact.lastname)
+            binding.etPhone.setText(contact.phoneNumber)
+            mProfileImageURL = contact.profileImage
             isImageSelected = true
             comesFromExtras = true
-            binding.ivProfilePicture.load(mUser.profileImage)
+            binding.ivProfilePicture.load(contact.profileImage)
+        }
+        else {
+            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+
+            if (mUser.name.isNotEmpty()) {
+                binding.tvEmail.text = mUser.email
+                binding.etName.setText(mUser.name)
+                binding.etLastname.setText(mUser.lastname)
+                binding.etPhone.setText(contact.phoneNumber)
+                mProfileImageURL = contact.profileImage
+                isImageSelected = true
+                comesFromExtras = true
+                binding.ivProfilePicture.load(contact.profileImage)
+            }
         }
     }
 
@@ -83,6 +98,20 @@ class ProfileFragment : Fragment() {
                     hideProgressDialog()
                     activity?.onBackPressed()
                     activity?.showToast(getString(R.string.everything_correctly_saved))
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+                else -> Unit
+            }
+        })
+
+        viewModel.getUserDataInObjectState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    mUser = dataState.data
                 }
                 is DataState.Error -> {
                     hideProgressDialog()

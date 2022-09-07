@@ -11,6 +11,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.SaveEventUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.login.GetUserDataUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.GetUserDataInObjectUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.SaveProfileImageUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
@@ -22,18 +24,32 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val saveUserToFirestoreUseCase: SaveUserToFirestoreUseCase,
-    private val saveProfileImageUseCase: SaveProfileImageUseCase
+    private val saveProfileImageUseCase: SaveProfileImageUseCase,
+    private val getUserDataInObjectUseCase: GetUserDataInObjectUseCase
 ): ViewModel() {
 
     private val _saveUserState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val saveUserState : LiveData<DataState<Boolean>>
         get() =_saveUserState
 
+    private val _getUserDataInObjectState: MutableLiveData<DataState<User>> = MutableLiveData()
+    val getUserDataInObjectState : LiveData<DataState<User>>
+        get() =_getUserDataInObjectState
+
     fun saveUser(user: User){
         viewModelScope.launch {
             saveUserToFirestoreUseCase(user)
                 .onEach { dataState ->
                     _saveUserState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getUserInObjectData(userId: String){
+        viewModelScope.launch {
+             getUserDataInObjectUseCase(userId)
+                .onEach { dataState ->
+                    _getUserDataInObjectState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

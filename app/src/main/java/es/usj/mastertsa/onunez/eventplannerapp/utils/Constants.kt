@@ -6,7 +6,6 @@ object Constants {
 
     const val USERS_COLLECTION = "user"
     const val EVENTS_COLLECTION = "event"
-    const val CONTACTS_COLLECTION = "contact"
     const val INVITATIONS_COLLECTION = "invitation"
 
     var USER_LOGGED_IN_ID = USER_NOT_LOGGED

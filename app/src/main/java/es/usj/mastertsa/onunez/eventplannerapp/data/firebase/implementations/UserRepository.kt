@@ -11,14 +11,37 @@ import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUserRepository
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ProfileFragment
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
 ): IUserRepository {
+
+    override suspend fun getUserDataInObject(userId: String): Flow<DataState<User>> = flow {
+        emit(DataState.Loading)
+        try {
+            var user = User()
+            usersCollection.document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    user = document.toObject(User::class.java)!!
+                }
+                .addOnFailureListener { user = User() }
+                .await()
+            emit(DataState.Success(user))
+            emit(DataState.Finished)
+        }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
 
     override fun saveProfileImage(
         activity: Activity,

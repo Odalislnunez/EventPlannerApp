@@ -1,6 +1,8 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
 import android.app.Activity
+import android.content.Context
+import android.util.Log
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -28,7 +30,7 @@ class LoginRepository @Inject constructor(
     private val activity: Activity,
     private val auth: FirebaseAuth,
     @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
-        ): ILoginRepository {
+    ): ILoginRepository {
 
     private val callbackManager = CallbackManager.Factory.create()
 
@@ -63,11 +65,10 @@ class LoginRepository @Inject constructor(
                     })
             }
             emit(DataState.Success(isSuccesful))
-            emit(DataState.Finished)
         } catch (exc: Exception) {
             emit(DataState.Error(exc))
-            emit(DataState.Finished)
         }
+        emit(DataState.Finished)
     }
 
     override suspend fun signUp(user: User, password: String): Flow<DataState<User>> = flow {

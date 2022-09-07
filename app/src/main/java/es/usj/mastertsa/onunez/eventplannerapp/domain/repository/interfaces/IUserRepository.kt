@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface IUserRepository {
 
+    suspend fun getUserDataInObject(userId: String): Flow<DataState<User>>
+
     fun saveProfileImage(activity: Activity, imageFileURI: Uri?, imageType: String, fragment: Fragment)
 
     suspend fun getAllUsers(): Flow<DataState<List<User>>>

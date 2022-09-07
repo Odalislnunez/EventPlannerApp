@@ -6,7 +6,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations.EventRepository
+import es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations.UserRepository
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
+import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUserRepository
 import javax.inject.Singleton
 
 @Module
@@ -15,10 +17,12 @@ object EventModule {
     @Provides
     @Singleton
     fun provideEventRepository(
-        @FirebaseModule.EventsCollection eventsCollection: CollectionReference
+        @FirebaseModule.EventsCollection eventsCollection: CollectionReference,
+        @FirebaseModule.UsersCollection usersCollection: CollectionReference
     ): IEventRepository {
         return EventRepository(
-            eventsCollection
+            eventsCollection,
+            usersCollection
         )
     }
 }
