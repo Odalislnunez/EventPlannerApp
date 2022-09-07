@@ -152,11 +152,11 @@ class LoginActivity : AppCompatActivity() {
                 val email = "odalislnunez@hotmail.com"
                 val password = "1234567"
 
-                viewModel.login(email, password, type)
+                viewModel.login(email, password, type, this)
             }
         }
         else {
-            viewModel.login("", "", type)
+            viewModel.login("", "", type, this)
         }
     }
 

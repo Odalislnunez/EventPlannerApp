@@ -20,12 +20,11 @@ object LoginModule {
     @Provides
     @Singleton
     fun provideLoginRepository(
-        @ActivityContext activity: Activity,
         auth: FirebaseAuth,
         @FirebaseModule.UsersCollection usersCollection: CollectionReference
     ): ILoginRepository {
         return LoginRepository(
-            activity, auth, usersCollection
+            auth, usersCollection
         )
     }
 }

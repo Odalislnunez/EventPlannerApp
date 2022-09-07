@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         initObserves()
 
         if (isUserSaved()){
-            viewModel.login(getSavedEmail()!!, getSavedPassword()!!, getLoginType()!!.toInt())
+            viewModel.login(getSavedEmail()!!, getSavedPassword()!!, getLoginType()!!.toInt(), this)
         } else {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()

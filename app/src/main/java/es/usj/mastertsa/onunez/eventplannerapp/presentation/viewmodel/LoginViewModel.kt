@@ -1,5 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel
 
+import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,9 +33,9 @@ class LoginViewModel @Inject constructor(
     val logOutState: LiveData<DataState<Boolean>>
         get() = _logOutState
 
-    fun login(email: String, password: String, loginType: Int){
+    fun login(email: String, password: String, loginType: Int, activity: Activity){
         viewModelScope.launch {
-            loginUseCase(email, password, loginType)
+            loginUseCase(email, password, loginType, activity)
                 .onEach { dataState ->
                     _loginState.value = dataState
                 }.launchIn(viewModelScope)

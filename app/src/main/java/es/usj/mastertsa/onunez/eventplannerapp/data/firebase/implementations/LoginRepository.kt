@@ -27,14 +27,13 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
-    private val activity: Activity,
     private val auth: FirebaseAuth,
     @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
     ): ILoginRepository {
 
     private val callbackManager = CallbackManager.Factory.create()
 
-    override suspend fun login(email: String, password: String, loginType: Int): Flow<DataState<Boolean>> = flow {
+    override suspend fun login(email: String, password: String, loginType: Int, activity: Activity): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var isSuccesful = false
