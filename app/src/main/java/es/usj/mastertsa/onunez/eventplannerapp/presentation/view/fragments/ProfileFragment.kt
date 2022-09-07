@@ -24,6 +24,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.ProfileVie
 import es.usj.mastertsa.onunez.eventplannerapp.utils.*
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.DEFAULT_PROFILE_IMAGE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_USER
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils.USER_IMAGE
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -65,7 +66,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initView(){
-        if (contact.name.isNotEmpty()){
+        if (contact.name != INFO_NOT_SET){
             binding.tvEmail.text = contact.email
             binding.etName.setText(contact.name)
             binding.etLastname.setText(contact.lastname)
@@ -78,7 +79,7 @@ class ProfileFragment : Fragment() {
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
-            if (mUser.name.isNotEmpty()) {
+            if (mUser.name != INFO_NOT_SET) {
                 binding.tvEmail.text = mUser.email
                 binding.etName.setText(mUser.name)
                 binding.etLastname.setText(mUser.lastname)
