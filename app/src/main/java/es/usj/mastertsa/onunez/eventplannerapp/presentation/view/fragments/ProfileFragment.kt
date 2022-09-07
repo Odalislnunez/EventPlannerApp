@@ -62,9 +62,9 @@ class ProfileFragment : Fragment() {
 
         contact = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
 
-        initView()
         initListeners()
         initObservers()
+        initView()
     }
 
     private fun initView(){
