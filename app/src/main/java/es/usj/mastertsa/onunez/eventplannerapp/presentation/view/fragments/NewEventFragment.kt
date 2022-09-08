@@ -17,7 +17,6 @@ import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.NewEventViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
