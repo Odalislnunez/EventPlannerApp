@@ -124,7 +124,7 @@ class ProfileFragment : Fragment() {
                 is DataState.Success -> {
                     hideProgressDialog()
                     mUser = dataState.data
-//                    activity?.showToast("User: " + mUser.name)
+                    activity?.showToast("User Observer: " + mUser.name)
 //                    Log.d(TAG, "User Fragment: " + mUser.name)
                 }
                 is DataState.Error -> {
