@@ -80,8 +80,8 @@ class NewEventFragment : DialogFragment() {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
-                    val dat = "$dayOfMonth/$monthOfYear/$year"
-                    date = "$year-$monthOfYear-$dayOfMonth"
+                    val dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
                     binding.etDate.setText(dat)
                 },
                 year,
