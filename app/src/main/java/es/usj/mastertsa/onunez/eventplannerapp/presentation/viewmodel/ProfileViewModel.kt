@@ -16,7 +16,6 @@ import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.GetUserD
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.SaveProfileImageUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -54,8 +53,6 @@ class ProfileViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
         }
     }
-
-    fun testGetData(userId: String) : User = getUserDataInObjectUseCase.test(userId)
 
     fun saveProfileImage(activity: Activity, imageFileURI: Uri?, imageType: String, fragment: Fragment){
         saveProfileImageUseCase(activity, imageFileURI, imageType, fragment)

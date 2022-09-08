@@ -18,7 +18,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/ProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,13 +389,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00049" summary="Adding Uses Cases, view models events and logout method.">
-      <created>1661727735065</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1661727735065</updated>
-    </task>
     <task id="LOCAL-00050" summary="Adding view models events.">
       <created>1661738657703</created>
       <option name="number" value="00050" />
@@ -732,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662644316310</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Changes.">
+      <created>1662654998105</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1662654998105</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

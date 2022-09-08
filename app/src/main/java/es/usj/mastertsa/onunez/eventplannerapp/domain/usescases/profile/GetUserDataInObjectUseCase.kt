@@ -11,7 +11,4 @@ class GetUserDataInObjectUseCase @Inject constructor(
 ){
     suspend operator fun invoke(userId: String): Flow<DataState<User>> =
         userRepository.getUserDataInObject(userId)
-
-    fun test(userId: String): User =
-        userRepository.test(userId)
 }

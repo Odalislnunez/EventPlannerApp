@@ -33,26 +33,13 @@ class UserRepository @Inject constructor(
                 .addOnSuccessListener { document ->
                     user = document.toObject(User::class.java)!!
                 }
+                .addOnFailureListener { user = User() }
                 .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
         }catch (e: Exception){
             emit(DataState.Error(e))
             emit(DataState.Finished)
-        }
-    }
-
-    override fun test(userId: String): User {
-        return try {
-            var user = User()
-            usersCollection.document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    user = document.toObject(User::class.java)!!
-                }
-            user
-        }catch (e: Exception){
-            User()
         }
     }
 
