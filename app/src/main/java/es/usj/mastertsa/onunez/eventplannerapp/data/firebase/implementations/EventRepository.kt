@@ -93,12 +93,10 @@ class EventRepository @Inject constructor (
 //                .addOnFailureListener { exception ->
 //                    Log.w(TAG, "Error getting documents: ", exception)
 //                }
-
             val publicEvents = eventsCollection.whereEqualTo("type", 1)
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            Log.d(TAG, publicEvents[0].title.toString())
             emit(DataState.Success(publicEvents))
             emit(DataState.Finished)
         }catch (e: Exception){
