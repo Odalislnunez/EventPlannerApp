@@ -85,7 +85,7 @@ class ProfileFragment : Fragment() {
             binding.ivProfilePicture.isEnabled = false
         }
         else {
-            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+//            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
             Log.d(TAG, "User Fragment: " + mUser.name)
             activity?.showToast("User: " + mUser.name)
@@ -134,8 +134,6 @@ class ProfileFragment : Fragment() {
                 else -> Unit
             }
         })
-
-        initView()
     }
 
     private fun initListeners(){
