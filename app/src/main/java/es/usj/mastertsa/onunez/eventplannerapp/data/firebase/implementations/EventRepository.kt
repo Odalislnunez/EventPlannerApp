@@ -94,7 +94,7 @@ class EventRepository @Inject constructor (
 //                    Log.w(TAG, "Error getting documents: ", exception)
 //                }
 
-            val publicEvents = eventsCollection.whereEqualTo("type", "Public")
+            val publicEvents = eventsCollection.whereEqualTo("type", 1)
                 .get()
                 .await()
                 .toObjects(Event::class.java)
