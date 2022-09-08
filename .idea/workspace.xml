@@ -17,7 +17,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes.">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/ProfileFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,69 +389,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00056" summary="Changes.">
-      <created>1661920238675</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1661920238675</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Adding work PC to local properties.">
-      <created>1661954929016</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1661954929017</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Changes">
-      <created>1661957002604</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1661957002604</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Changes.">
-      <created>1661958291668</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1661958291668</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Changes.">
-      <created>1661960118654</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1661960118654</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Changes.">
-      <created>1661960749918</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1661960749918</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Addings.">
-      <created>1662000427396</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1662000427396</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Adding dates.">
-      <created>1662217267734</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1662217267734</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Adding dates and times.">
-      <created>1662218123760</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1662218123760</updated>
-    </task>
     <task id="LOCAL-00065" summary="Changes in dates and times.">
       <created>1662219132393</created>
       <option name="number" value="00065" />
@@ -731,7 +669,70 @@
       <option name="project" value="LOCAL" />
       <updated>1662657959253</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Changes.">
+      <created>1662658183002</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658183002</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Changes.">
+      <created>1662658357935</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658357935</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Changes.">
+      <created>1662658481712</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658481712</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Changes.">
+      <created>1662658554646</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658554646</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Changes.">
+      <created>1662658702634</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658702634</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Changes.">
+      <created>1662658777088</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658777088</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Changes.">
+      <created>1662658867087</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658867087</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Changes.">
+      <created>1662658938181</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1662658938181</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Changes.">
+      <created>1662659210983</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1662659210983</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

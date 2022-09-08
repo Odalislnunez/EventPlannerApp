@@ -16,6 +16,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.GetUserD
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.SaveProfileImageUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -50,6 +51,7 @@ class ProfileViewModel @Inject constructor(
              getUserDataInObjectUseCase(userId)
                 .onEach { dataState ->
                     _getUserDataInObjectState.value = dataState
+                    delay(300)
                 }.launchIn(viewModelScope)
         }
     }

@@ -32,6 +32,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils.USER_IMAGE
 import kotlinx.android.synthetic.main.fragment_profile.*
 import java.io.IOException
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -87,23 +88,6 @@ class ProfileFragment : Fragment() {
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
-            Log.d(TAG, "User Fragment: " + mUser.name)
-            activity?.showToast("User: " + mUser.name)
-
-            if (mUser.name != INFO_NOT_SET) {
-                binding.tvEmail.text = mUser.email
-                binding.etName.setText(mUser.name)
-                binding.etLastname.setText(mUser.lastname)
-                binding.etPhone.setText(contact.phoneNumber)
-                mProfileImageURL = contact.profileImage
-                isImageSelected = true
-                comesFromExtras = true
-                binding.ivProfilePicture.load(contact.profileImage)
-            }
-
-            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
-
-            Log.d(TAG, "User Fragment: " + mUser.name)
             activity?.showToast("User: " + mUser.name)
 
             if (mUser.name != INFO_NOT_SET) {
