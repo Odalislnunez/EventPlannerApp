@@ -37,7 +37,7 @@ class UserRepository @Inject constructor(
                 .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
-            Log.d(TAG, user.name)
+            Log.d(TAG, "User: " + user.name)
         }catch (e: Exception){
             emit(DataState.Error(e))
             emit(DataState.Finished)

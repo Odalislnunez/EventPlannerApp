@@ -2,6 +2,7 @@ package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -86,7 +87,7 @@ class ProfileFragment : Fragment() {
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
-            activity?.showToast("User: " + mUser.name)
+//            activity?.showToast("User: " + mUser.name)
 
             if (mUser.name != INFO_NOT_SET) {
                 binding.tvEmail.text = mUser.email
@@ -122,7 +123,8 @@ class ProfileFragment : Fragment() {
                 is DataState.Success -> {
                     hideProgressDialog()
                     mUser = dataState.data
-//                    activity?.showToast("User: " + mUser.name)
+                    activity?.showToast("User: " + mUser.name)
+                    Log.d(TAG, "User Fragment: " + mUser.name)
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
