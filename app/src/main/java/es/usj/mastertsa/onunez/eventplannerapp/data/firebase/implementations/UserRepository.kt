@@ -33,14 +33,6 @@ class UserRepository @Inject constructor(
                 .addOnSuccessListener { document ->
                     user = document.toObject(User::class.java)!!
                 }
-                .addOnFailureListener { user = User() }
-                .addOnCompleteListener {
-                    if(it.isSuccessful){
-                         it.addOnSuccessListener { document ->
-                            user =document.toObject(User::class.java)!!
-                        }
-                    }
-                }
                 .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
