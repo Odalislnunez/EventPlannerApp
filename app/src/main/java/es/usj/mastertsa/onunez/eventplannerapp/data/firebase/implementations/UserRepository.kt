@@ -1,6 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -36,6 +37,7 @@ class UserRepository @Inject constructor(
                 .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
+            Log.d(TAG, user.name)
         }catch (e: Exception){
             emit(DataState.Error(e))
             emit(DataState.Finished)
