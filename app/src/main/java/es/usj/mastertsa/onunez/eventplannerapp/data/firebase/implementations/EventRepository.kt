@@ -97,8 +97,7 @@ class EventRepository @Inject constructor (
             val publicEvents = eventsCollection.whereEqualTo("type", 1)
                 .get()
                 .await()
-                .toObjects(Event::class.java)
-            emit(DataState.Success(publicEvents))
+            emit(DataState.Success(publicEvents.toObjects(Event::class.java)))
             emit(DataState.Finished)
         }catch (e: Exception){
             emit(DataState.Error(e))
