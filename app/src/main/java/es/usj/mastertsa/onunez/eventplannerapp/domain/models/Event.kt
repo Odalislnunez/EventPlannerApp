@@ -12,7 +12,7 @@ data class Event(
     val title: String = "",
     val description: String = INFO_NOT_SET,
     val place: String = INFO_NOT_SET,
-    val datetime: Timestamp = Timestamp.valueOf("2022-09-14 00:00:00.123456789"),
+    val datetime: String = INFO_NOT_SET,//Timestamp.valueOf("2022-09-14 00:00:00.123456789"),
     val type: Int = 0, // 0 = Private, 1 = Public
     val creators: List<String> = mutableListOf(),
     val participants: List<String>? = mutableListOf(),

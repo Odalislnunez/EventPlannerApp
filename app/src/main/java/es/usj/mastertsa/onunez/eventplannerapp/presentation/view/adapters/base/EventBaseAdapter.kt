@@ -21,10 +21,10 @@ abstract class EventBaseAdapter (
 
         @SuppressLint("SimpleDateFormat")
         fun render(event: Event) {
-            val mDate = Date(event.datetime.time)
+//            val mDate = Date(event.datetime.time)
             binding.tvTitle.text = event.title
             binding.tvPlace.text = event.place
-            binding.tvDate.text = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
+            binding.tvDate.text = event.datetime //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
     }
 

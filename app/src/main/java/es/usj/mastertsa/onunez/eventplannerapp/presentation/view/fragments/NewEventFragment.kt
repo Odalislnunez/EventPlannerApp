@@ -133,7 +133,8 @@ class NewEventFragment : DialogFragment() {
             if (isAllDataSet()){
                 showProgressBar()
 
-                val date = Timestamp.valueOf("$date $time")
+//                val date = Timestamp.valueOf("$date $time")
+                val date = "$date $time"
 
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(

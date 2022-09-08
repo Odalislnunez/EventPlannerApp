@@ -60,18 +60,22 @@ class EditEventFragment : Fragment() {
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun initView(){
         if (mEvent.title.isNotEmpty()){
-            val mDate = Date(mEvent.datetime.time)
-            date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
-            time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
+//            val mDate = Date(mEvent.datetime.time)
+            val mDate: List<String> = mEvent.datetime.split(" ").toList()
+//            date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
+//            time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
 
-            val dateEt = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
-            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+            date = mDate[0]
+            time = mDate[1]
+
+//            val dateEt = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
+//            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
 
             binding.tvTitle.text = mEvent.title
             binding.etDescription.setText(mEvent.description)
             binding.etPlace.setText(mEvent.place)
-            binding.etDate.setText(dateEt)
-            binding.etTime.setText(timeEt)
+            binding.etDate.setText(date)
+            binding.etTime.setText(time)
             binding.spEventType.setSelection(mEvent.type)
             binding.spOwners.text = ""
             mEvent.creators.forEach {
@@ -94,7 +98,8 @@ class EditEventFragment : Fragment() {
 //            val creators: List<String> = binding.spOwners.text.toString().split(",").toList()
             if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
                 binding.btnSave.visibility = View.VISIBLE
-                if(mEvent.datetime < Timestamp(System.currentTimeMillis())) {
+                val datet = Timestamp.valueOf(mEvent.datetime)
+                if(datet < Timestamp(System.currentTimeMillis())) {
                     binding.btnSave.isEnabled = false
                 }
             }
@@ -190,7 +195,8 @@ class EditEventFragment : Fragment() {
             if (isAllDataSet()){
                 showProgressBar()
 
-                val date = Timestamp.valueOf("$date $time")
+//                val date = Timestamp.valueOf("$date $time")
+                val date = "$date $time"
 
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
                     viewModel.saveEvent(
