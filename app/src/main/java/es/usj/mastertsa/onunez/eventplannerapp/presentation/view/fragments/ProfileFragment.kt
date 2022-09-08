@@ -84,7 +84,9 @@ class ProfileFragment : Fragment() {
             binding.ivProfilePicture.isEnabled = false
         }
         else {
-            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+//            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+
+            mUser = viewModel.testGetData(USER_LOGGED_IN_ID)
 
             if (mUser.name != INFO_NOT_SET) {
                 binding.tvEmail.text = mUser.email

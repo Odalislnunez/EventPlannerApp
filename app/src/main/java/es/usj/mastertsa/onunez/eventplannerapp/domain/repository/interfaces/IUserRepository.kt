@@ -21,4 +21,6 @@ interface IUserRepository {
 
     suspend fun deleteUserContact(userId: String): Flow<DataState<Boolean>>
 
+    fun test(userId: String): User
+
 }

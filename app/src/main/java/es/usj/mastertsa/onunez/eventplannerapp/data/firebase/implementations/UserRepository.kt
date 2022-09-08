@@ -42,6 +42,20 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override fun test(userId: String): User {
+        return try {
+            var user = User()
+            usersCollection.document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    user = document.toObject(User::class.java)!!
+                }
+            user
+        }catch (e: Exception){
+            User()
+        }
+    }
+
     override fun saveProfileImage(
         activity: Activity,
         imageFileURI: Uri?,
