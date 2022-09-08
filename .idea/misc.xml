@@ -11,13 +11,15 @@
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_events.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_invitations.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_new_event.xml" value="0.25" />
-        <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/fragment_public_events.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/item_contact.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp/app/src/main/res/layout/item_event.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp2/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android Studio Projects/EventPlannerApp2/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_edit_event.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_events.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_new_event.xml" value="0.23055555555555557" />
+        <entry key="..\:/Users/onunez/Documents/Projects Android/EventPlannerApp/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

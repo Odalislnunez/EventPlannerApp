@@ -195,39 +195,39 @@
             android:background="@android:drawable/editbox_background"
             app:drawableEndCompat="@android:drawable/arrow_down_float" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="end">
-
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange_logo"
-                android:textSize="12sp"
-                android:paddingStart="50dp"
-                android:paddingEnd="50dp"
-                android:layout_gravity="end"
-                android:text="@string/button_CANCEL"/>
-
-            <Button
-                android:id="@+id/btnCreate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange_logo"
-                android:paddingStart="50dp"
-                android:paddingEnd="50dp"
-                android:textSize="12sp"
-                android:layout_gravity="end"
-                android:text="@string/button_create"/>
-        </LinearLayout>
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_logo"
+            android:textSize="12sp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:layout_gravity="end"
+            android:text="@string/button_CANCEL"/>
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_logo"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:text="@string/button_create"/>
+    </LinearLayout>
 
 </RelativeLayout>
