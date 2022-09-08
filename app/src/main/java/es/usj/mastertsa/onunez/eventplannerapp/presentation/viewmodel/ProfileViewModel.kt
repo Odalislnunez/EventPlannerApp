@@ -51,7 +51,7 @@ class ProfileViewModel @Inject constructor(
              getUserDataInObjectUseCase(userId)
                 .onEach { dataState ->
                     _getUserDataInObjectState.value = dataState
-                    delay(300)
+                    delay(3000)
                 }.launchIn(viewModelScope)
         }
     }
