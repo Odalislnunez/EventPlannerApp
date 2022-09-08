@@ -115,7 +115,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun isPasswordInsecure(): Boolean{
 
-        return if (_binding.etPassword.text.toString().length <= 7){
+        return if (_binding.etPassword.text.toString().length <= 5){
             showAlert(this.getString(R.string.signup_password_insecure))
             true
         } else {
