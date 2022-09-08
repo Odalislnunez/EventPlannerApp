@@ -64,6 +64,7 @@ class ProfileFragment : Fragment() {
         contact = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
 
         initObservers()
+        viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
         initListeners()
         initView()
     }
@@ -85,8 +86,6 @@ class ProfileFragment : Fragment() {
             binding.ivProfilePicture.isEnabled = false
         }
         else {
-            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
-
             Log.d(TAG, "User Fragment: " + mUser.name)
             activity?.showToast("User: " + mUser.name)
 
