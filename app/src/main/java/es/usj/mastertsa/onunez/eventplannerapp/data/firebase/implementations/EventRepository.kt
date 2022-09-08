@@ -80,7 +80,7 @@ class EventRepository @Inject constructor (
     override suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-            val publicEvents = eventsCollection.whereEqualTo("type", "Public")
+            val publicEvents = eventsCollection//.whereEqualTo("type", "Public")
                 .get()
                 .await()
                 .toObjects(Event::class.java)
@@ -108,7 +108,7 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun getEventCreators(creators: List<String>) = flow {
+    override suspend fun getEventCreators(creators: List<String>): Flow<DataState<List<User>>> = flow {
         emit(DataState.Loading)
         try {
             val creatorsList: MutableList<User> = ArrayList()
@@ -127,7 +127,7 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun getEventParticipants(participants: List<String>) = flow {
+    override suspend fun getEventParticipants(participants: List<String>): Flow<DataState<List<User>>> = flow {
         emit(DataState.Loading)
         try {
             val participantsList: MutableList<User> = ArrayList()
