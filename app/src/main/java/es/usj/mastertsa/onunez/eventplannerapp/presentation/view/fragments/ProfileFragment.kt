@@ -56,6 +56,10 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        initObservers()
+        viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+
         return binding.root
     }
 
@@ -64,7 +68,7 @@ class ProfileFragment : Fragment() {
 
         contact = arguments?.getParcelable<User>(EXTRAS_USER)?: User()
 
-        initObservers()
+//        initObservers()
         initListeners()
         initView()
     }
@@ -86,20 +90,20 @@ class ProfileFragment : Fragment() {
             binding.ivProfilePicture.isEnabled = false
         }
         else {
-            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
+//            viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
             activity?.showToast("User: " + mUser.name)
 
-//            if (mUser.name != INFO_NOT_SET) {
-//                binding.tvEmail.text = mUser.email
-//                binding.etName.setText(mUser.name)
-//                binding.etLastname.setText(mUser.lastname)
-//                binding.etPhone.setText(contact.phoneNumber)
-//                mProfileImageURL = contact.profileImage
-//                isImageSelected = true
-//                comesFromExtras = true
-//                binding.ivProfilePicture.load(contact.profileImage)
-//            }
+            if (mUser.name != INFO_NOT_SET) {
+                binding.tvEmail.text = mUser.email
+                binding.etName.setText(mUser.name)
+                binding.etLastname.setText(mUser.lastname)
+                binding.etPhone.setText(mUser.phoneNumber)
+                mProfileImageURL = mUser.profileImage
+                isImageSelected = true
+                comesFromExtras = true
+                binding.ivProfilePicture.load(mUser.profileImage)
+            }
         }
     }
 
@@ -125,15 +129,15 @@ class ProfileFragment : Fragment() {
                     hideProgressDialog()
                     mUser = dataState.data
 
-                    if (mUser.name != INFO_NOT_SET) {
-                        binding.tvEmail.text = mUser.email
-                        binding.etName.setText(mUser.name)
-                        binding.etLastname.setText(mUser.lastname)
-                        binding.etPhone.setText(contact.phoneNumber)
-                        mProfileImageURL = contact.profileImage
-                        isImageSelected = true
-                        binding.ivProfilePicture.load(contact.profileImage)
-                    }
+//                    if (mUser.name != INFO_NOT_SET) {
+//                        binding.tvEmail.text = mUser.email
+//                        binding.etName.setText(mUser.name)
+//                        binding.etLastname.setText(mUser.lastname)
+//                        binding.etPhone.setText(mUser.phoneNumber)
+//                        mProfileImageURL = mUser.profileImage
+//                        isImageSelected = true
+//                        binding.ivProfilePicture.load(mUser.profileImage)
+//                    }
                     activity?.showToast("User Observer: " + mUser.name)
 //                    Log.d(TAG, "User Fragment: " + mUser.name)
                 }
