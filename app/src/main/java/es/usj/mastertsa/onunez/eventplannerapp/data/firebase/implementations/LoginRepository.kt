@@ -124,7 +124,7 @@ class LoginRepository @Inject constructor(
                     .addOnSuccessListener { document ->
                         val user = document.toObject(User::class.java)!!
                         request = true
-                        USER_LOGGED_IN_ID = user.userId
+                        USER_LOGGED_IN_ID = it
                         USER_LOGGED_IN_NAME = user.name + " " + user.lastname
                         USER_LOGGED_IN_EMAIL = user.email
                     }
