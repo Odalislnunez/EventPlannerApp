@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentEditEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EditEventViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
@@ -24,8 +24,6 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
@@ -36,7 +34,7 @@ class EditEventFragment : Fragment() {
 
     private var mEvent: Event = Event()
 
-    private val viewModel: EditEventViewModel by viewModels()
+    private val viewModel: EventsViewModel by viewModels()
 
     private var date: String = ""
     private var time: String = ""

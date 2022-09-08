@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.NewEventViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
@@ -29,7 +30,7 @@ class NewEventFragment : DialogFragment() {
     private var _binding: FragmentNewEventBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: NewEventViewModel by viewModels()
+    private val viewModel: EventsViewModel by viewModels()
 
     private var date: String = ""
     private var time: String = ""

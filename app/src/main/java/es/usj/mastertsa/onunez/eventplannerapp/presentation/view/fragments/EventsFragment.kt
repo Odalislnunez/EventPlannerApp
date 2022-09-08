@@ -32,6 +32,7 @@ class EventsFragment : Fragment() {
 
     @Inject
     lateinit var eventsAdapterUncoming: EventAdapter
+    @Inject
     lateinit var eventsAdapterPast: EventAdapter
 
     override fun onCreateView(
