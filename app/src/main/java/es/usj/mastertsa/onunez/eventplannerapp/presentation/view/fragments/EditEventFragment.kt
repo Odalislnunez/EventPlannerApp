@@ -143,8 +143,9 @@ class EditEventFragment : Fragment() {
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
                     val dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
-                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
-                    binding.etDate.setText(dat)
+//                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
+                    date = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                    binding.etDate.setText(date)
                 },
                 year,
                 month,
@@ -162,9 +163,10 @@ class EditEventFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-                    val tim = "$hourOfDay:$minute"
-                    time = "$hourOfDay:$minute:00.123456789"
-                    binding.etTime.setText(tim)
+//                    val tim = "$hourOfDay:$minute"
+//                    time = "$hourOfDay:$minute:00.123456789"
+                    time = "$hourOfDay:$minute"
+                    binding.etTime.setText(time)
                 },
                 hour,
                 minute,
@@ -185,7 +187,7 @@ class EditEventFragment : Fragment() {
             }
         }
 
-//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+        binding.spOwners.text = Constants.USER_LOGGED_IN_NAME
 
         binding.btnChat.setOnClickListener {
 

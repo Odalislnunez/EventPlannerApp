@@ -79,9 +79,10 @@ class NewEventFragment : DialogFragment() {
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
-                    val dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
-                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
-                    binding.etDate.setText(dat)
+//                    val dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+//                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
+                    date = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                    binding.etDate.setText(date)
                 },
                 year,
                 month,
@@ -99,9 +100,10 @@ class NewEventFragment : DialogFragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-                    val tim = "$hourOfDay:$minute"
-                    time = "$hourOfDay:$minute:00.123456789"
-                    binding.etTime.setText(tim)
+//                    val tim = "$hourOfDay:$minute"
+//                    time = "$hourOfDay:$minute:00.123456789"
+                    time = "$hourOfDay:$minute"
+                    binding.etTime.setText(time)
                 },
                 hour,
                 minute,

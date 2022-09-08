@@ -19,7 +19,7 @@ abstract class EventBaseAdapter (
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val binding = ItemEventBinding.bind(itemView)
 
-        @SuppressLint("SimpleDateFormat")
+//        @SuppressLint("SimpleDateFormat")
         fun render(event: Event) {
 //            val mDate = Date(event.datetime.time)
             binding.tvTitle.text = event.title
