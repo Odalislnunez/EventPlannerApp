@@ -9,6 +9,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUserRepository
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ProfileFragment
@@ -28,13 +29,17 @@ class UserRepository @Inject constructor(
     override suspend fun getUserDataInObject(userId: String): Flow<DataState<User>> = flow {
         emit(DataState.Loading)
         try {
-            var user = User()
-            usersCollection.document(userId)
+//            var user = User()
+            val user = usersCollection.whereEqualTo("userId", userId)
                 .get()
-                .addOnSuccessListener { document ->
-                    user = document.toObject(User::class.java)!!
-                }
                 .await()
+                .toObjects(User::class.java)[0]
+//            usersCollection.document(userId)
+//                .get()
+//                .addOnSuccessListener { document ->
+//                    user = document.toObject(User::class.java)!!
+//                }
+//                .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
             Log.d(TAG, "User: " + user.name)

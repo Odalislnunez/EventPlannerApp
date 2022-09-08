@@ -17,7 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e63c84e-39ac-43c8-9283-16919fc1cb32" name="Changes" comment="Changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,41 +388,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00051" summary="Adding logic for new and edit events, and for user profile page.">
-      <created>1661837693702</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1661837693702</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Fixing User Model Changes.">
-      <created>1661837902873</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1661837902873</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Fixing User Model Changes.">
-      <created>1661838372293</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1661838372293</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Changes.">
-      <created>1661919286607</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1661919286607</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Changes.">
-      <created>1661920032509</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1661920032509</updated>
-    </task>
     <task id="LOCAL-00056" summary="Changes.">
       <created>1661920238675</created>
       <option name="number" value="00056" />
@@ -731,7 +696,42 @@
       <option name="project" value="LOCAL" />
       <updated>1662656270909</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Changes.">
+      <created>1662657195586</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1662657195586</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Changes.">
+      <created>1662657387442</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1662657387442</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Changes.">
+      <created>1662657516344</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1662657516344</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Changes.">
+      <created>1662657686270</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1662657686270</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Changes.">
+      <created>1662657959253</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1662657959253</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
