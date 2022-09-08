@@ -86,6 +86,8 @@ class ProfileFragment : Fragment() {
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
 
+            activity?.showToast("User: " + mUser.name)
+
             if (mUser.name != INFO_NOT_SET) {
                 binding.tvEmail.text = mUser.email
                 binding.etName.setText(mUser.name)
@@ -120,7 +122,7 @@ class ProfileFragment : Fragment() {
                 is DataState.Success -> {
                     hideProgressDialog()
                     mUser = dataState.data
-                    activity?.showToast("User: " + mUser.name)
+//                    activity?.showToast("User: " + mUser.name)
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
