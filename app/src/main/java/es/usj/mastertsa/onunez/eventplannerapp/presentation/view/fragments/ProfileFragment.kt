@@ -95,7 +95,6 @@ class ProfileFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    activity?.onBackPressed()
                     activity?.showToast(getString(R.string.everything_correctly_saved))
                 }
                 is DataState.Error -> {
@@ -166,7 +165,6 @@ class ProfileFragment : Fragment() {
     }
 
     fun uploadImageSuccess(imageURL: String){
-        hideProgressDialog()
         mProfileImageURL = imageURL
 
         viewModel.saveUser(User(
@@ -179,7 +177,7 @@ class ProfileFragment : Fragment() {
             userType = false
         ))
         hideKeyboard()
-//        activity?.onBackPressed()
+        hideProgressDialog()
     }
 
     private fun hideProgressDialog() {
