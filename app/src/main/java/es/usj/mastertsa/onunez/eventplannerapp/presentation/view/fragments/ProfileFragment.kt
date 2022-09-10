@@ -144,16 +144,17 @@ class ProfileFragment : Fragment() {
                 if (isImageSelected){
                     viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
                 }
-
-                viewModel.saveUser(User(
-                    userId = USER_LOGGED_IN_ID,
-                    email = binding.tvEmail.text.toString(),
-                    name = binding.etName.text.toString(),
-                    lastname = binding.etLastname.text.toString(),
-                    phoneNumber = binding.etPhone.text.toString(),
-                    profileImage = mProfileImageURL,
-                    userType = false
-                ))
+                else {
+                    viewModel.saveUser(User(
+                        userId = USER_LOGGED_IN_ID,
+                        email = binding.tvEmail.text.toString(),
+                        name = binding.etName.text.toString(),
+                        lastname = binding.etLastname.text.toString(),
+                        phoneNumber = binding.etPhone.text.toString(),
+                        profileImage = mProfileImageURL,
+                        userType = false
+                    ))
+                }
                 hideKeyboard()
             } else {
                 activity?.showToast("Debe llenar mínimo los datos de Nombre y Teléfono para continuar")
