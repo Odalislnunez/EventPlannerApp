@@ -67,7 +67,7 @@ class PublicEventsFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     list = dataState.data
-                    publicEventsAdapter.submitList(list)
+                    publicEventsAdapter.submitList(dataState.data)
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
