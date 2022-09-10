@@ -132,23 +132,22 @@ class UserRepository @Inject constructor(
     override suspend fun getUserNoContact(userId: String): Flow<DataState<List<User>>> = flow {
         emit(DataState.Loading)
         try {
-            val noContacts: List<User>
             val user = usersCollection.whereEqualTo("userId", userId)
                 .get()
                 .await()
                 .toObjects(User::class.java)[0]
 
-            noContacts = if (user.contacts.isEmpty()){
-                usersCollection
+//            noContacts = if (user.contacts.isEmpty()){
+//                usersCollection
+//                    .get()
+//                    .await()
+//                    .toObjects(User::class.java)
+//            } else {
+                val noContacts = usersCollection.whereNotIn("userId", user.contacts + user.userId)
                     .get()
                     .await()
                     .toObjects(User::class.java)
-            } else {
-                usersCollection.whereNotIn("userId", user.contacts)
-                    .get()
-                    .await()
-                    .toObjects(User::class.java)
-            }
+//            }
             
             emit(DataState.Success(noContacts))
             emit(DataState.Finished)
