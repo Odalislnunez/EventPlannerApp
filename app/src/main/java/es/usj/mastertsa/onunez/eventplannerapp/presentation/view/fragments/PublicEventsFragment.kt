@@ -84,6 +84,7 @@ class PublicEventsFragment : Fragment() {
     }
 
     private fun initListeners() {
+        viewModel.getPublicEvents()
         publicEventsAdapter.setItemClickListener {
             val bundle = bundleOf(Constants.EXTRAS_EVENT to it)
             findNavController().navigate(R.id.action_nav_events_to_nav_edit_event, bundle )
