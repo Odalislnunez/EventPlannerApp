@@ -82,17 +82,6 @@ class EventRepository @Inject constructor (
     override suspend fun getAllPublicEvents(): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
-//            var publicEvents: List<Event> = mutableListOf()
-//            eventsCollection.whereEqualTo("type", "Public")
-//                .get()
-//                .addOnSuccessListener { documents ->
-//                    for (document in documents) {
-//                        Log.d(TAG, "${document.id} => ${document.data}")
-//                    }
-//                }
-//                .addOnFailureListener { exception ->
-//                    Log.w(TAG, "Error getting documents: ", exception)
-//                }
             val publicEvents = eventsCollection.whereEqualTo("type", 1)
                 .get()
                 .await()

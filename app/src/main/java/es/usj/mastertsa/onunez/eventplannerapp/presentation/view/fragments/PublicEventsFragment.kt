@@ -45,8 +45,8 @@ class PublicEventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initObservers()
         init()
+        initObservers()
 //        initRecyclerView()
         initListeners()
     }
