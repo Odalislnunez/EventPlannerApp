@@ -1,6 +1,8 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,6 +65,7 @@ class PublicEventsFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     list = dataState.data
+                    Log.e(TAG, list[0].title)
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
