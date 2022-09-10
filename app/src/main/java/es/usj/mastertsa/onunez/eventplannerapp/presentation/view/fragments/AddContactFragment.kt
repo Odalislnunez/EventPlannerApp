@@ -10,15 +10,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentAddContactBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters.ContactAdapter
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.UsersViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddContactFragment : DialogFragment() {
     private var _binding: FragmentAddContactBinding? = null
     private val binding get() = _binding!!
@@ -47,7 +50,7 @@ class AddContactFragment : DialogFragment() {
     }
 
     private fun init() {
-        viewModel.getUserNoContact(Constants.USER_LOGGED_IN_ID)
+        viewModel.getUserNoContact(USER_LOGGED_IN_ID)
     }
 
     private fun initObservers(){
