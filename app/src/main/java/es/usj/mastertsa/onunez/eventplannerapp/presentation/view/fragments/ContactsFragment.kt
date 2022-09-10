@@ -83,6 +83,7 @@ class ContactsFragment : Fragment() {
         binding.btnAddContact.setOnClickListener {
             val showAddContact = AddContactFragment()
             showAddContact.show((activity as AppCompatActivity).supportFragmentManager, "showAddContact")
+            viewModel.getUserContact(USER_LOGGED_IN_ID)
         }
     }
 

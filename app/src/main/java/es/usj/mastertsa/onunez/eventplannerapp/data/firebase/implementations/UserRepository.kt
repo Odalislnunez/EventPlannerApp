@@ -137,17 +137,10 @@ class UserRepository @Inject constructor(
                 .await()
                 .toObjects(User::class.java)[0]
 
-//            noContacts = if (user.contacts.isEmpty()){
-//                usersCollection
-//                    .get()
-//                    .await()
-//                    .toObjects(User::class.java)
-//            } else {
-                val noContacts = usersCollection.whereNotIn("userId", user.contacts + user.userId)
-                    .get()
-                    .await()
-                    .toObjects(User::class.java)
-//            }
+            val noContacts = usersCollection.whereNotIn("userId", user.contacts + user.userId)
+                .get()
+                .await()
+                .toObjects(User::class.java)
             
             emit(DataState.Success(noContacts))
             emit(DataState.Finished)

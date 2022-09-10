@@ -16,7 +16,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes." />
+    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes.">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/UserRepository.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -386,13 +388,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00101" summary="Changes.">
-      <created>1662657387442</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1662657387442</updated>
-    </task>
     <task id="LOCAL-00102" summary="Changes.">
       <created>1662657516344</created>
       <option name="number" value="00102" />
@@ -729,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662850681311</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Changes.">
+      <created>1662850853712</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1662850853712</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
