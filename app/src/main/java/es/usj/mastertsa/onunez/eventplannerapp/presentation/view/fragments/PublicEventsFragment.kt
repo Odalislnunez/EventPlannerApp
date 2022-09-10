@@ -47,7 +47,7 @@ class PublicEventsFragment : Fragment() {
 
         init()
         initObservers()
-        initRecyclerView()
+//        initRecyclerView()
         initListeners()
     }
 
@@ -60,6 +60,10 @@ class PublicEventsFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     publicEventsAdapter.submitList(dataState.data)
+                    binding.rvPublicEvents.apply {
+                        adapter = publicEventsAdapter
+                        layoutManager = LinearLayoutManager(requireContext())
+                    }
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
