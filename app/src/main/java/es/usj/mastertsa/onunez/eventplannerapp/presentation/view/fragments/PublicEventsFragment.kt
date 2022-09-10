@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentPublicEventsBinding
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters.EventAdapter
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.PublicEventsViewModel
@@ -29,6 +30,8 @@ class PublicEventsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: EventsViewModel by viewModels()
+
+    var list: List<Event> = mutableListOf()
 
     @Inject
     lateinit var publicEventsAdapter: EventAdapter
@@ -47,7 +50,7 @@ class PublicEventsFragment : Fragment() {
 
         init()
         initObservers()
-//        initRecyclerView()
+        initRecyclerView()
         initListeners()
     }
 
@@ -59,11 +62,7 @@ class PublicEventsFragment : Fragment() {
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success -> {
-                    publicEventsAdapter.submitList(dataState.data)
-                    binding.rvPublicEvents.apply {
-                        adapter = publicEventsAdapter
-                        layoutManager = LinearLayoutManager(requireContext())
-                    }
+                    list = dataState.data
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
@@ -74,9 +73,12 @@ class PublicEventsFragment : Fragment() {
         })
     }
 
-    private fun initRecyclerView() = binding.rvPublicEvents.apply {
-        adapter = publicEventsAdapter
-        layoutManager = LinearLayoutManager(requireContext())
+    private fun initRecyclerView() {
+        publicEventsAdapter.submitList(list)
+        binding.rvPublicEvents.apply {
+            adapter = publicEventsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     private fun initListeners() {
