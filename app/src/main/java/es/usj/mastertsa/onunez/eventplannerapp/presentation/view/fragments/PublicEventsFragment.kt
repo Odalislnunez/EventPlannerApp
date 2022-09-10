@@ -64,15 +64,10 @@ class PublicEventsFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
-            activity?.showToast(dataState.toString())
             when(dataState){
-                is DataState.Loading -> {
-                    activity?.showToast("Loading")
-                }
                 is DataState.Success -> {
                     list = dataState.data
-                    Log.e(TAG, list[0].title)
-                    activity?.showToast(list[0].title)
+                    publicEventsAdapter.submitList(list)
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
@@ -83,17 +78,12 @@ class PublicEventsFragment : Fragment() {
         })
     }
 
-    private fun initRecyclerView() {
-        viewModel.getPublicEvents()
-        publicEventsAdapter.submitList(list)
-        binding.rvPublicEvents.apply {
-            adapter = publicEventsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+    private fun initRecyclerView() = binding.rvPublicEvents.apply {
+        adapter = publicEventsAdapter
+        layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun initListeners() {
-        viewModel.getPublicEvents()
         publicEventsAdapter.setItemClickListener {
             val bundle = bundleOf(Constants.EXTRAS_EVENT to it)
             findNavController().navigate(R.id.action_nav_events_to_nav_edit_event, bundle )
