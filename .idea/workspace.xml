@@ -17,7 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/PublicEventsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/PublicEventsFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,13 +388,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00087" summary="Changes.">
-      <created>1662609456144</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1662609456144</updated>
-    </task>
     <task id="LOCAL-00088" summary="Changes.">
       <created>1662609585634</created>
       <option name="number" value="00088" />
@@ -731,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662835406743</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Changes.">
+      <created>1662836921525</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1662836921525</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

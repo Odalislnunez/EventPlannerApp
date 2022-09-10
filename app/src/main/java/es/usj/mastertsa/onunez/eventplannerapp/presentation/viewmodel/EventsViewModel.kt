@@ -43,7 +43,7 @@ class EventsViewModel @Inject constructor(
 
     private val _publicEventState: MutableLiveData<DataState<List<Event>>> = MutableLiveData()
     val publicEventState: LiveData<DataState<List<Event>>>
-        get() = _allUserEventState
+        get() = _publicEventState
 
     fun saveEvent(event: Event){
         viewModelScope.launch {

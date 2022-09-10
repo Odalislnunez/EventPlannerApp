@@ -62,7 +62,6 @@ class PublicEventsFragment : Fragment() {
         viewModel.getPublicEvents()
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     private fun initObservers(){
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
             activity?.showToast(dataState.toString())
