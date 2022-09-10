@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -80,8 +81,8 @@ class ContactsFragment : Fragment() {
         }
 
         binding.btnAddContact.setOnClickListener {
-            val dialog = AddContactFragment()
-            dialog.show(parentFragmentManager, "AddContact")
+            val showAddContact = AddContactFragment()
+            showAddContact.show((activity as AppCompatActivity).supportFragmentManager, "showAddContact")
         }
     }
 

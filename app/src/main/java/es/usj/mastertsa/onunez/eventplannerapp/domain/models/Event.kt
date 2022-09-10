@@ -14,7 +14,7 @@ data class Event(
     val place: String = INFO_NOT_SET,
     val datetime: String = INFO_NOT_SET,//Timestamp.valueOf("2022-09-14 00:00:00.123456789"),
     val type: Int = 0, // 0 = Private, 1 = Public
-    val creators: List<String> = mutableListOf(),
-    val participants: List<String>? = mutableListOf(),
+    var creators: List<String> = mutableListOf(),
+    var participants: List<String>? = mutableListOf(),
     val status: Int = 0 // 0 = Pendiente, 1 = Pasado, 2 = Pospuesto, 3 = Cancelado
 ) : Parcelable

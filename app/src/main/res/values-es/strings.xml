@@ -33,6 +33,7 @@
     <string name="signup_email_already_registered">Ya existe una cuenta registrada con este correo electrónico</string>
     <string name="error">Se ha producido un error, intente de nuevo más tarde…</string>
     <string name="message_close">¿Desea salir de la aplicación?</string>
+    <string name="message_add_contact">¿Desea agregrar este contacto?</string>
 
     <string name="menu_profile">Mi Perfil</string>
     <string name="menu_events">Mis Eventos</string>
