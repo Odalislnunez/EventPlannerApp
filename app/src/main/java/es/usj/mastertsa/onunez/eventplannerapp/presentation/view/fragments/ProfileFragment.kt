@@ -87,17 +87,6 @@ class ProfileFragment : Fragment() {
         }
         else {
             viewModel.getUserInObjectData(USER_LOGGED_IN_ID)
-
-//            if (mUser.name != INFO_NOT_SET) {
-//                binding.tvEmail.text = mUser.email
-//                binding.etName.setText(mUser.name)
-//                binding.etLastname.setText(mUser.lastname)
-//                binding.etPhone.setText(mUser.phoneNumber)
-//                mProfileImageURL = mUser.profileImage
-//                isImageSelected = true
-//                comesFromExtras = true
-//                binding.ivProfilePicture.load(mUser.profileImage)
-//            }
         }
     }
 
@@ -177,19 +166,19 @@ class ProfileFragment : Fragment() {
     }
 
     fun uploadImageSuccess(imageURL: String){
-//        hideProgressDialog()
+        hideProgressDialog()
         mProfileImageURL = imageURL
 
-//        viewModel.saveUser(User(
-//            userId = USER_LOGGED_IN_ID,
-//            email = binding.tvEmail.text.toString(),
-//            name = binding.etName.text.toString(),
-//            lastname = binding.etLastname.text.toString(),
-//            phoneNumber = binding.etPhone.text.toString(),
-//            profileImage = mProfileImageURL,
-//            userType = false
-//        ))
-//        hideKeyboard()
+        viewModel.saveUser(User(
+            userId = USER_LOGGED_IN_ID,
+            email = binding.tvEmail.text.toString(),
+            name = binding.etName.text.toString(),
+            lastname = binding.etLastname.text.toString(),
+            phoneNumber = binding.etPhone.text.toString(),
+            profileImage = mProfileImageURL,
+            userType = false
+        ))
+        hideKeyboard()
 //        activity?.onBackPressed()
     }
 
