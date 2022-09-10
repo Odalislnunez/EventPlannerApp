@@ -21,6 +21,9 @@ import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsView
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -58,19 +61,22 @@ class PublicEventsFragment : Fragment() {
         viewModel.getPublicEvents()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun initObservers(){
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
-            when(dataState){
-                is DataState.Success -> {
-                    list = dataState.data
-                    Log.e(TAG, list[0].title)
-                    activity?.showToast(list[0].title)
-                }
-                is DataState.Error -> {
-                    activity?.showToast(getString(R.string.error_something_went_wrong))
-                }
+            GlobalScope.launch {
+                when(dataState){
+                    is DataState.Success -> {
+                        list = dataState.data
+                        Log.e(TAG, list[0].title)
+                        activity?.showToast(list[0].title)
+                    }
+                    is DataState.Error -> {
+                        activity?.showToast(getString(R.string.error_something_went_wrong))
+                    }
 
-                else -> Unit
+                    else -> Unit
+                }
             }
         })
     }
