@@ -1,4 +1,4 @@
-package es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile
+package es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user
 
 import android.app.Activity
 import android.net.Uri

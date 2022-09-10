@@ -15,6 +15,7 @@ import com.google.firebase.firestore.SetOptions
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.ILoginRepository
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
@@ -119,38 +120,34 @@ class LoginRepository @Inject constructor(
         emit(DataState.Loading)
         try {
             currentUser?.uid?.let {
-                usersCollection.document(it)
+                val user = usersCollection.whereEqualTo("userId", it)
                     .get()
-                    .addOnSuccessListener { document ->
-                        val user = document.toObject(User::class.java)!!
-                        request = true
-                        USER_LOGGED_IN_ID = user.userId
-                        USER_LOGGED_IN_NAME = user.name + " " + user.lastname
-                        USER_LOGGED_IN_EMAIL = user.email
-                    }
-                    .addOnFailureListener { request = false }
                     .await()
+                    .toObjects(User::class.java)[0]
+
+                request = true
+
+                USER_LOGGED_IN_ID = user.userId
+                USER_LOGGED_IN_NAME = user.name + " " + user.lastname
+                USER_LOGGED_IN_EMAIL = user.email
+
+//                currentUser?.uid?.let {
+//                usersCollection.document(it)
+//                    .get()
+//                    .addOnSuccessListener { document ->
+//                        val user = document.toObject(User::class.java)!!
+//                        request = true
+//                        USER_LOGGED_IN_ID = user.userId
+//                        USER_LOGGED_IN_NAME = user.name + " " + user.lastname
+//                        USER_LOGGED_IN_EMAIL = user.email
+//                    }
+//                    .addOnFailureListener { request = false }
+//                    .await()
             }
             emit(DataState.Success(request))
             emit(DataState.Finished)
 
         }catch (e: Exception){
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }
-
-    override suspend fun saveUserToFirestore(user: User): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-            var isSuccessful = false
-            usersCollection.document(user.userId).set(user, SetOptions.merge())
-                .addOnSuccessListener { isSuccessful = true }
-                .addOnFailureListener { isSuccessful = false }
-                .await()
-            emit(DataState.Success(isSuccessful))
-            emit(DataState.Finished)
-        } catch (e: Exception){
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }

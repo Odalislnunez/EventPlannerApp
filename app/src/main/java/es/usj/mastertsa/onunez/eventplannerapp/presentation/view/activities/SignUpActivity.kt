@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
         viewModel.signUpState.observe(this, Observer { dataState ->
             when(dataState){
                 is DataState.Success<User> -> {
-                    viewModel.saveUserToFirestore(user = dataState.data)
+                    viewModel.saveUser(user = dataState.data)
                 }
                 is DataState.Error -> {
                     hideProgressDialog()

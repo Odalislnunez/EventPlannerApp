@@ -8,15 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.SaveEventUseCase
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.login.GetUserDataUseCase
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.GetUserDataInObjectUseCase
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.profile.SaveProfileImageUseCase
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.GetUserDataInObjectUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.SaveProfileImageUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.SaveUserUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -24,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val saveUserToFirestoreUseCase: SaveUserToFirestoreUseCase,
+    private val saveUserUseCase: SaveUserUseCase,
     private val saveProfileImageUseCase: SaveProfileImageUseCase,
     private val getUserDataInObjectUseCase: GetUserDataInObjectUseCase
 ): ViewModel() {
@@ -39,7 +35,7 @@ class ProfileViewModel @Inject constructor(
 
     fun saveUser(user: User){
         viewModelScope.launch {
-            saveUserToFirestoreUseCase(user)
+            saveUserUseCase(user)
                 .onEach { dataState ->
                     _saveUserState.value = dataState
                 }.launchIn(viewModelScope)
@@ -51,7 +47,6 @@ class ProfileViewModel @Inject constructor(
              getUserDataInObjectUseCase(userId)
                 .onEach { dataState ->
                     _getUserDataInObjectState.value = dataState
-                    delay(3000)
                 }.launchIn(viewModelScope)
         }
     }

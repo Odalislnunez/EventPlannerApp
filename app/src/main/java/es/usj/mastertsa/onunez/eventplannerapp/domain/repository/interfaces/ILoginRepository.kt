@@ -15,5 +15,4 @@ interface ILoginRepository {
 
     suspend fun getUserData(): Flow<DataState<Boolean>>
 
-    suspend fun saveUserToFirestore(user: User): Flow<DataState<Boolean>>
 }

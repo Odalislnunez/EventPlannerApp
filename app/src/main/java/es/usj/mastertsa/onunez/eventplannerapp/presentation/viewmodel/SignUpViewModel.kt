@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SaveUserToFirestoreUseCase
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.SaveUserUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.signup.SignUpUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.launchIn
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val saveUserToFirestoreUseCase: SaveUserToFirestoreUseCase
+    private val saveUserUseCase: SaveUserUseCase
 ): ViewModel() {
     private val _signUpState: MutableLiveData<DataState<User>> = MutableLiveData()
     val signUpState : LiveData<DataState<User>>
@@ -36,9 +36,9 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    fun saveUserToFirestore(user: User){
+    fun saveUser(user: User){
         viewModelScope.launch {
-            saveUserToFirestoreUseCase(user)
+            saveUserUseCase(user)
                 .onEach { dataState ->
                     _saveUserState.value = dataState
                 }.launchIn(viewModelScope)

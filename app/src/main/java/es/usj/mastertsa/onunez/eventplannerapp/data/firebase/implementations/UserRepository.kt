@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
@@ -88,21 +89,80 @@ class UserRepository @Inject constructor(
             }
     }
 
-    override suspend fun getAllUsers(): Flow<DataState<List<User>>> {
-        TODO("Not yet implemented")
+    override suspend fun getAllUsers(): Flow<DataState<List<User>>> = flow {
+        emit(DataState.Loading)
+        try {
+            val allUsers = usersCollection
+                .get()
+                .await()
+                .toObjects(User::class.java)
+            emit(DataState.Success(allUsers))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
-    override suspend fun getUserContact(userId: String): Flow<DataState<List<User>>> {
-        TODO("Not yet implemented")
+    override suspend fun getUserContact(userId: String): Flow<DataState<List<User>>> = flow {
+        emit(DataState.Loading)
+        try {
+            var contacts: List<User> = mutableListOf()
+            val user = usersCollection.whereEqualTo("userId", userId)
+                .get()
+                .await()
+                .toObjects(User::class.java)[0]
+
+            user.contacts.forEach {
+                val userContact = usersCollection.whereEqualTo("userId", it)
+                    .get()
+                    .await()
+                    .toObjects(User::class.java)[0]
+
+                contacts = contacts + userContact
+            }
+            emit(DataState.Success(contacts))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
-    override suspend fun addUserContact(userId: String): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
+    override suspend fun getUserNoContact(userId: String): Flow<DataState<List<User>>> = flow {
+        emit(DataState.Loading)
+        try {
+            val user = usersCollection.whereEqualTo("userId", userId)
+                .get()
+                .await()
+                .toObjects(User::class.java)[0]
+
+            val noContacts = usersCollection.whereNotIn("userId", user.contacts)
+                .get()
+                .await()
+                .toObjects(User::class.java)
+
+            emit(DataState.Success(noContacts))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
-    override suspend fun deleteUserContact(userId: String): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
+    override suspend fun saveUser(user: User): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var isSuccessful = false
+            usersCollection.document(user.userId).set(user, SetOptions.merge())
+                .addOnSuccessListener { isSuccessful = true }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
+            emit(DataState.Success(isSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
-
-
 }
