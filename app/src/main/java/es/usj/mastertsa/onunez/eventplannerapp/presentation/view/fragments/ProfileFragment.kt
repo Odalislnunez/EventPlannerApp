@@ -28,6 +28,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.*
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.DEFAULT_PROFILE_IMAGE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_USER
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils.USER_IMAGE
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -151,32 +152,21 @@ class ProfileFragment : Fragment() {
 
         binding.btnEdit.setOnClickListener {
             if (isAllDataSet()){
-//                if (!isImageSelected){
-//                    showProgressBar()
-//                    viewModel.saveUser(User(
-//                        userId = USER_LOGGED_IN_ID,
-//                        name = binding.etName.text.toString(),
-//                        lastname = binding.etLastname.text.toString(),
-//                        phoneNumber = binding.etPhone.text.toString(),
-//                        userType = false
-//                    ))
-//                    hideKeyboard()
-//                }else{
-                    showProgressBar()
-//                    if (!comesFromExtras){
-                        viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
+                showProgressBar()
+                if (isImageSelected){
+                    viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
+                }
 
-                        viewModel.saveUser(User(
-                            userId = USER_LOGGED_IN_ID,
-                            email = binding.tvEmail.text.toString(),
-                            name = binding.etName.text.toString(),
-                            lastname = binding.etLastname.text.toString(),
-                            phoneNumber = binding.etPhone.text.toString(),
-                            profileImage = mProfileImageURL,
-                            userType = false
-                        ))
-//                    }
-//                }
+                viewModel.saveUser(User(
+                    userId = USER_LOGGED_IN_ID,
+                    email = binding.tvEmail.text.toString(),
+                    name = binding.etName.text.toString(),
+                    lastname = binding.etLastname.text.toString(),
+                    phoneNumber = binding.etPhone.text.toString(),
+                    profileImage = mProfileImageURL,
+                    userType = false
+                ))
+                hideKeyboard()
             } else {
                 activity?.showToast("Debe llenar mínimo los datos de Nombre y Teléfono para continuar")
             }
@@ -187,20 +177,20 @@ class ProfileFragment : Fragment() {
     }
 
     fun uploadImageSuccess(imageURL: String){
-        hideProgressDialog()
+//        hideProgressDialog()
         mProfileImageURL = imageURL
 
-        viewModel.saveUser(User(
-            userId = USER_LOGGED_IN_ID,
-            email = binding.tvEmail.text.toString(),
-            name = binding.etName.text.toString(),
-            lastname = binding.etLastname.text.toString(),
-            phoneNumber = binding.etPhone.text.toString(),
-            profileImage = mProfileImageURL,
-            userType = false
-        ))
-        hideKeyboard()
-        activity?.onBackPressed()
+//        viewModel.saveUser(User(
+//            userId = USER_LOGGED_IN_ID,
+//            email = binding.tvEmail.text.toString(),
+//            name = binding.etName.text.toString(),
+//            lastname = binding.etLastname.text.toString(),
+//            phoneNumber = binding.etPhone.text.toString(),
+//            profileImage = mProfileImageURL,
+//            userType = false
+//        ))
+//        hideKeyboard()
+//        activity?.onBackPressed()
     }
 
     private fun hideProgressDialog() {
