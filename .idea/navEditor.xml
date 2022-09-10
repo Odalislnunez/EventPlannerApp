@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="nav_add_contact">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="762" />
+                            <option name="y" value="-53" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_contacts">
                     <value>
                       <LayoutPositions>
@@ -16,6 +28,20 @@
                             <option name="x" value="558" />
                             <option name="y" value="-55" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_contacts_to_nav_add_contact">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_contacts_to_nav_profile">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -28,6 +54,15 @@
                             <option name="x" value="-145" />
                             <option name="y" value="-49" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_dashboard_to_nav_new_event">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -56,6 +91,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_nav_events_to_nav_edit_event">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_events_to_nav_new_event">
                               <value>
                                 <LayoutPositions />
                               </value>

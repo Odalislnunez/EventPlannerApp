@@ -1,9 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,15 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentPublicEventsBinding
-import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters.EventAdapter
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,8 +27,6 @@ class PublicEventsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: EventsViewModel by viewModels()
-
-    var list: List<Event> = mutableListOf()
 
     @Inject
     lateinit var publicEventsAdapter: EventAdapter
@@ -66,7 +57,6 @@ class PublicEventsFragment : Fragment() {
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success -> {
-                    list = dataState.data
                     publicEventsAdapter.submitList(dataState.data)
                 }
                 is DataState.Error -> {

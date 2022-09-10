@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_nav_contacts_to_nav_profile"
             app:destination="@id/nav_profile" />
+        <action
+            android:id="@+id/action_nav_contacts_to_nav_add_contact"
+            app:destination="@id/nav_add_contact" />
     </fragment>
 
     <fragment
@@ -73,5 +76,10 @@
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.EditEventFragment"
         android:label="@string/edit_event"
         tools:layout="@layout/fragment_edit_event" />
+
+    <dialog
+        android:id="@+id/nav_add_contact"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.AddContactFragment"
+        tools:layout="@layout/fragment_add_contact" />
 
 </navigation>
