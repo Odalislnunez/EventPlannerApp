@@ -1,20 +1,32 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentAddContactBinding
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.ContactsViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters.ContactAdapter
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.UsersViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
+import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
+import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
+import javax.inject.Inject
 
 class AddContactFragment : DialogFragment() {
     private var _binding: FragmentAddContactBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ContactsViewModel by viewModels()
+    private val viewModel: UsersViewModel by viewModels()
+
+    @Inject
+    lateinit var contactsAdapter: ContactAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,5 +40,39 @@ class AddContactFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
+        initObservers()
+        initRecyclerView()
+        initListeners()
     }
+
+    private fun init() {
+        viewModel.getUserNoContact(Constants.USER_LOGGED_IN_ID)
+    }
+
+    private fun initObservers(){
+        viewModel.getUserNoContactState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    contactsAdapter.submitList(dataState.data)
+                }
+                is DataState.Error -> {
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+                else -> Unit
+            }
+        })
+    }
+
+    private fun initRecyclerView() = binding.rvNewContacts.apply {
+        adapter = contactsAdapter
+        layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun initListeners() {
+        contactsAdapter.setItemClickListener {
+
+        }
+    }
+
 }

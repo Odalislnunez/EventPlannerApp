@@ -2,7 +2,6 @@ package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -13,8 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,13 +19,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentProfileBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.ProfileViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.UsersViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.*
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.DEFAULT_PROFILE_IMAGE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_USER
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
-import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.StorageUtils.USER_IMAGE
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -49,7 +44,7 @@ class ProfileFragment : Fragment() {
     private var contact: User = User()
     private var mUser: User = User()
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: UsersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
