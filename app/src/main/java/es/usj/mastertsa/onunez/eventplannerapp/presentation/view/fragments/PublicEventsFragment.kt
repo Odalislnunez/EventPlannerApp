@@ -2,6 +2,7 @@ package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -66,6 +67,9 @@ class PublicEventsFragment : Fragment() {
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
             GlobalScope.launch {
                 when(dataState){
+                    is DataState.Loading -> {
+                        activity?.showToast("Loading")
+                    }
                     is DataState.Success -> {
                         list = dataState.data
                         Log.e(TAG, list[0].title)
