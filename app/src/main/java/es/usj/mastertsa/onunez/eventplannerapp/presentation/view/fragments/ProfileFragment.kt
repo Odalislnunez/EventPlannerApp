@@ -76,7 +76,6 @@ class ProfileFragment : Fragment() {
             binding.etLastname.setText(contact.lastname)
             binding.etPhone.setText(contact.phoneNumber)
             mProfileImageURL = contact.profileImage
-            isImageSelected = true
             comesFromExtras = true
             binding.ivProfilePicture.load(contact.profileImage)
             binding.btnEdit.visibility = View.GONE
@@ -129,7 +128,6 @@ class ProfileFragment : Fragment() {
                         binding.etLastname.setText(mUser.lastname)
                         binding.etPhone.setText(mUser.phoneNumber)
                         mProfileImageURL = mUser.profileImage
-                        isImageSelected = true
                         binding.ivProfilePicture.load(mUser.profileImage)
                     }
                 }
@@ -165,7 +163,9 @@ class ProfileFragment : Fragment() {
                     hideKeyboard()
                 }else{
                     showProgressBar()
-                    if (comesFromExtras){
+//                    if (!comesFromExtras){
+                        viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
+
                         viewModel.saveUser(User(
                             userId = USER_LOGGED_IN_ID,
                             name = binding.etName.text.toString(),
@@ -174,9 +174,7 @@ class ProfileFragment : Fragment() {
                             profileImage = mProfileImageURL,
                             userType = false
                         ))
-                    } else {
-                        viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
-                    }
+//                    }
                 }
             } else {
                 activity?.showToast("Debe llenar mínimo los datos de Nombre y Teléfono para continuar")
@@ -191,14 +189,14 @@ class ProfileFragment : Fragment() {
         hideProgressDialog()
         mProfileImageURL = imageURL
 
-        viewModel.saveUser(User(
-            userId = USER_LOGGED_IN_ID,
-            name = binding.etName.text.toString(),
-            lastname = binding.etLastname.text.toString(),
-            phoneNumber = binding.etPhone.text.toString(),
-            profileImage = mProfileImageURL,
-            userType = false
-        ))
+//        viewModel.saveUser(User(
+//            userId = USER_LOGGED_IN_ID,
+//            name = binding.etName.text.toString(),
+//            lastname = binding.etLastname.text.toString(),
+//            phoneNumber = binding.etPhone.text.toString(),
+//            profileImage = mProfileImageURL,
+//            userType = false
+//        ))
         hideKeyboard()
         activity?.onBackPressed()
     }
