@@ -65,6 +65,7 @@ class PublicEventsFragment : Fragment() {
     @OptIn(DelicateCoroutinesApi::class)
     private fun initObservers(){
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
+            activity?.showToast(dataState.toString())
             when(dataState){
                 is DataState.Loading -> {
                     activity?.showToast("Loading")
