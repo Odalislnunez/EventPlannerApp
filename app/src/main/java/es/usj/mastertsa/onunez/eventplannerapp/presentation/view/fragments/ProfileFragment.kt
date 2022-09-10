@@ -151,23 +151,24 @@ class ProfileFragment : Fragment() {
 
         binding.btnEdit.setOnClickListener {
             if (isAllDataSet()){
-                if (!isImageSelected){
-                    showProgressBar()
-                    viewModel.saveUser(User(
-                        userId = USER_LOGGED_IN_ID,
-                        name = binding.etName.text.toString(),
-                        lastname = binding.etLastname.text.toString(),
-                        phoneNumber = binding.etPhone.text.toString(),
-                        userType = false
-                    ))
-                    hideKeyboard()
-                }else{
+//                if (!isImageSelected){
+//                    showProgressBar()
+//                    viewModel.saveUser(User(
+//                        userId = USER_LOGGED_IN_ID,
+//                        name = binding.etName.text.toString(),
+//                        lastname = binding.etLastname.text.toString(),
+//                        phoneNumber = binding.etPhone.text.toString(),
+//                        userType = false
+//                    ))
+//                    hideKeyboard()
+//                }else{
                     showProgressBar()
 //                    if (!comesFromExtras){
                         viewModel.saveProfileImage(requireActivity(), mSelectedImageURI, USER_IMAGE, this)
 
                         viewModel.saveUser(User(
                             userId = USER_LOGGED_IN_ID,
+                            email = binding.tvEmail.text.toString(),
                             name = binding.etName.text.toString(),
                             lastname = binding.etLastname.text.toString(),
                             phoneNumber = binding.etPhone.text.toString(),
@@ -175,7 +176,7 @@ class ProfileFragment : Fragment() {
                             userType = false
                         ))
 //                    }
-                }
+//                }
             } else {
                 activity?.showToast("Debe llenar mínimo los datos de Nombre y Teléfono para continuar")
             }
@@ -189,14 +190,15 @@ class ProfileFragment : Fragment() {
         hideProgressDialog()
         mProfileImageURL = imageURL
 
-//        viewModel.saveUser(User(
-//            userId = USER_LOGGED_IN_ID,
-//            name = binding.etName.text.toString(),
-//            lastname = binding.etLastname.text.toString(),
-//            phoneNumber = binding.etPhone.text.toString(),
-//            profileImage = mProfileImageURL,
-//            userType = false
-//        ))
+        viewModel.saveUser(User(
+            userId = USER_LOGGED_IN_ID,
+            email = binding.tvEmail.text.toString(),
+            name = binding.etName.text.toString(),
+            lastname = binding.etLastname.text.toString(),
+            phoneNumber = binding.etPhone.text.toString(),
+            profileImage = mProfileImageURL,
+            userType = false
+        ))
         hideKeyboard()
         activity?.onBackPressed()
     }
