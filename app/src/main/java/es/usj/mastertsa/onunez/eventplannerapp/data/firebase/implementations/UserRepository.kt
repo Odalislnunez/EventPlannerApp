@@ -137,7 +137,7 @@ class UserRepository @Inject constructor(
                 .await()
                 .toObjects(User::class.java)[0]
 
-            val noContacts = usersCollection.whereNotIn("userId", user.contacts)
+            val noContacts = usersCollection.whereNotIn("contacts", user.contacts)
                 .get()
                 .await()
                 .toObjects(User::class.java)
