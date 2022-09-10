@@ -80,7 +80,8 @@ class ContactsFragment : Fragment() {
         }
 
         binding.btnAddContact.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_contacts_to_nav_add_contact)
+            val dialog = AddContactFragment()
+            dialog.show(parentFragmentManager, "AddContact")
         }
     }
 
