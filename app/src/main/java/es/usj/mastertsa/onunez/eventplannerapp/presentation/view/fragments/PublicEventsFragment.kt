@@ -65,22 +65,20 @@ class PublicEventsFragment : Fragment() {
     @OptIn(DelicateCoroutinesApi::class)
     private fun initObservers(){
         viewModel.publicEventState.observe(viewLifecycleOwner, Observer { dataState ->
-            GlobalScope.launch {
-                when(dataState){
-                    is DataState.Loading -> {
-                        activity?.showToast("Loading")
-                    }
-                    is DataState.Success -> {
-                        list = dataState.data
-                        Log.e(TAG, list[0].title)
-                        activity?.showToast(list[0].title)
-                    }
-                    is DataState.Error -> {
-                        activity?.showToast(getString(R.string.error_something_went_wrong))
-                    }
-
-                    else -> Unit
+            when(dataState){
+                is DataState.Loading -> {
+                    activity?.showToast("Loading")
                 }
+                is DataState.Success -> {
+                    list = dataState.data
+                    Log.e(TAG, list[0].title)
+                    activity?.showToast(list[0].title)
+                }
+                is DataState.Error -> {
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+
+                else -> Unit
             }
         })
     }
