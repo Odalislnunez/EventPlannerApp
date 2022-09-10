@@ -20,6 +20,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.INFO_NOT_SET
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_PICTURE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -130,6 +131,7 @@ class LoginRepository @Inject constructor(
                 USER_LOGGED_IN_ID = user.userId
                 USER_LOGGED_IN_NAME = user.name + " " + user.lastname
                 USER_LOGGED_IN_EMAIL = user.email
+                USER_LOGGED_IN_PICTURE = user.profileImage
 
 //                currentUser?.uid?.let {
 //                usersCollection.document(it)

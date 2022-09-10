@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -20,12 +21,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ActivityMainBinding
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.LoginViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_LOGIN_TYPE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.SHARED_PASSWORD
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_EMAIL
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_PICTURE
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
+import es.usj.mastertsa.onunez.eventplannerapp.utils.load
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showAlert
 import javax.inject.Inject
 
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: LoginViewModel by viewModels()
+
+    private var mProfileImageURL: String = Constants.DEFAULT_PROFILE_IMAGE
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -86,9 +92,11 @@ class MainActivity : AppCompatActivity() {
 
         val headerName: TextView = header.findViewById(R.id.tv_userName)
         val headerEmail: TextView = header.findViewById(R.id.tv_email)
+        val headerPicture: ImageView = header.findViewById(R.id.iv_profile_picture)
 
         headerName.text = USER_LOGGED_IN_NAME
         headerEmail.text = USER_LOGGED_IN_EMAIL
+        headerPicture.load(USER_LOGGED_IN_PICTURE)
 
         val navMenu: Menu = navView.menu
         navMenu.findItem(R.id.nav_log_out)
@@ -96,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                 showAlertWithNegative(getString(R.string.message_close))
                 false
             }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
