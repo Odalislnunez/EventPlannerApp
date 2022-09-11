@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.sql.Timestamp
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class EventRepository @Inject constructor (
@@ -51,8 +54,12 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Event::class.java)
 
+            val currentDate = LocalDate.now()
+                //.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
             (uCreatorsEvents + uParticipantsEvents).forEach {
-                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
+                val eventDate = LocalDate.parse(it.datetime, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                if (eventDate >= currentDate) {
                     uncomingEvents = uncomingEvents + it
                 }
             }
@@ -85,18 +92,6 @@ class EventRepository @Inject constructor (
                     pastEvents = pastEvents + it
                 }
             }
-//            val userArray: MutableList<String> = mutableListOf()
-//            userArray.add(userId)
-//            val pCreatorsEvents = eventsCollection.whereIn("creators", userArray)
-//                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
-//                .get()
-//                .await()
-//                .toObjects(Event::class.java)
-//            val pParticipantsEvents = eventsCollection.whereIn("participants", userArray)
-//                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
-//                .get()
-//                .await()
-//                .toObjects(Event::class.java)
             emit(DataState.Success(pastEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
