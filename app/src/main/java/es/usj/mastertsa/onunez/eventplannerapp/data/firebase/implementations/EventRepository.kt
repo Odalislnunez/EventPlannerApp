@@ -39,18 +39,23 @@ class EventRepository @Inject constructor (
     override suspend fun getUncomingEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
+            var uncomingEvents: List<Event> = mutableListOf()
             val uCreatorsEvents = eventsCollection.whereIn("creators", userId.toList())
-                .whereGreaterThanOrEqualTo("datetime", Timestamp(System.currentTimeMillis()).toString())
                 .get()
                 .await()
                 .toObjects(Event::class.java)
             val uParticipantsEvents = eventsCollection.whereIn("participants", userId.toList())
-                .whereGreaterThanOrEqualTo("datetime", Timestamp(System.currentTimeMillis()).toString())
                 .get()
                 .await()
                 .toObjects(Event::class.java)
 
-            emit(DataState.Success(uCreatorsEvents + uParticipantsEvents))
+            (uCreatorsEvents + uParticipantsEvents).forEach {
+                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
+                    uncomingEvents = uncomingEvents + it
+                }
+            }
+
+            emit(DataState.Success(uncomingEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
