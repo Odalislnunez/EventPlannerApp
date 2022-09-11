@@ -59,7 +59,7 @@ class EventRepository @Inject constructor (
 //                if (eventDate >= currentDate) {
 //                    uncomingEvents = uncomingEvents + it
 //                }
-                if (Timestamp.valueOf(it.datetime) < Timestamp(System.currentTimeMillis())) {
+                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
                     uncomingEvents = uncomingEvents + it
                 }
             }
