@@ -73,7 +73,7 @@
 
     <string name="read_storage_permission_denied">Oops, it looks like you haven\'t accepted the request permissions. You can do it from phone configurations.</string>
     <string name="error_something_went_wrong">Oops, it looks like something went wrong.</string>
-    <string name="add_fields_new_event">You have to complete title, description, place and date fields.</string>
+    <string name="add_fields_new_event">You have to complete title, description, place, date and time fields.</string>
     <string name="add_fields_edit_event">You have to complete description, place and date fields.</string>
     <string name="everything_correctly_saved">Done! Everything correctly saved.</string>
 

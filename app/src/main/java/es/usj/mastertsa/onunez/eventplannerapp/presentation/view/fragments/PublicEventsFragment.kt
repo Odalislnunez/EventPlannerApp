@@ -16,6 +16,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentPublicEventsB
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters.EventAdapter
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import javax.inject.Inject
@@ -75,8 +76,8 @@ class PublicEventsFragment : Fragment() {
 
     private fun initListeners() {
         publicEventsAdapter.setItemClickListener {
-            val bundle = bundleOf(Constants.EXTRAS_EVENT to it)
-            findNavController().navigate(R.id.action_nav_events_to_nav_edit_event, bundle )
+            val bundle = bundleOf(EXTRAS_EVENT to it)
+            findNavController().navigate(R.id.action_nav_public_events_to_nav_edit_event, bundle )
         }
     }
 }

@@ -74,7 +74,7 @@
 
     <string name="read_storage_permission_denied">Oops, parece que no aceptaste los permisos necesarios. Puedes hacerlo desde configuración.</string>
     <string name="error_something_went_wrong">Oops, parece que algo salió mal.</string>
-    <string name="add_fields_new_event">Debe llenar los campos de título, descripción, Lugar y Fecha.</string>
+    <string name="add_fields_new_event">Debe llenar los campos de título, descripción, lugar, fecha y hora.</string>
     <string name="add_fields_edit_event">Debe llenar los campos descripción, Lugar y Fecha.</string>
     <string name="everything_correctly_saved">Listo! Todo guardado correctamente.</string>
 

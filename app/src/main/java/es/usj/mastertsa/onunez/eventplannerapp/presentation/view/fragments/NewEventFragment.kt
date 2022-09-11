@@ -167,32 +167,22 @@ class NewEventFragment : DialogFragment() {
                 val date = "$date $time"
 
                 if (binding.spParticipants.text.toString().isNotEmpty()) {
-                    viewModel.saveEvent(
-                        Event(
-                            title = binding.etTitle.text.toString(),
-                            description = binding.etDescription.text.toString(),
-                            place = binding.etPlace.text.toString(),
-                            datetime = date,
-                            type = binding.spEventType.selectedItemPosition,
-                            creators = getAllCreators(),
-                            participants = getAllParticipants(),
-                            status =  0
-                        )
-                    )
+
                 }
                 else {
-                    viewModel.saveEvent(
-                        Event(
-                            title = binding.etTitle.text.toString(),
-                            description = binding.etDescription.text.toString(),
-                            place = binding.etPlace.text.toString(),
-                            datetime = date,
-                            type = binding.spEventType.selectedItemPosition,
-                            creators = getAllCreators(),
-                            status = 0
-                        )
-                    )
+
                 }
+                viewModel.saveEvent(
+                    Event(
+                        title = binding.etTitle.text.toString(),
+                        description = binding.etDescription.text.toString(),
+                        place = binding.etPlace.text.toString(),
+                        datetime = date,
+                        type = binding.spEventType.selectedItemPosition,
+                        creators = listOf(USER_LOGGED_IN_ID),
+                        status = 0
+                    )
+                )
             } else {
                 activity?.showToast(getString(R.string.add_fields_new_event))
             }
