@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.ItemEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 abstract class EventBaseAdapter (
     private val layoutId : Int
@@ -26,7 +27,7 @@ abstract class EventBaseAdapter (
             binding.tvPlace.text = event.place
             val mDate: List<String> = event.datetime.split(" ").toList()
 
-            val date = SimpleDateFormat("dd/MM/yyyy").parse(mDate[0])?.toString() ?: ""
+            val date = LocalDate.parse(mDate[0]).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             val time = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
             binding.tvDate.text = "$date $time" //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
