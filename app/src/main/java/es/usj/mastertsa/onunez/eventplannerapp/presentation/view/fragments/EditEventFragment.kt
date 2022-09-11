@@ -68,14 +68,14 @@ class EditEventFragment : Fragment() {
             date = mDate[0]
             time = mDate[1]
 
-//            val dateEt = SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
-//            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+            val dateEt = SimpleDateFormat("dd/MM/yyyy").parse(mDate.toString())?.toString() ?: ""
+            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
 
             binding.tvTitle.text = mEvent.title
             binding.etDescription.setText(mEvent.description)
             binding.etPlace.setText(mEvent.place)
-            binding.etDate.setText(date)
-            binding.etTime.setText(time)
+            binding.etDate.setText(dateEt)
+            binding.etTime.setText(timeEt)
             binding.spEventType.setSelection(mEvent.type)
             binding.spOwners.text = ""
             mEvent.creators.forEach {
@@ -143,9 +143,8 @@ class EditEventFragment : Fragment() {
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
                     val dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
-//                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
-                    date = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
-                    binding.etDate.setText(date)
+                    date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
+                    binding.etDate.setText(dat)
                 },
                 year,
                 month,
@@ -163,10 +162,9 @@ class EditEventFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-//                    val tim = "$hourOfDay:$minute"
-//                    time = "$hourOfDay:$minute:00.123456789"
-                    time = "$hourOfDay:$minute"
-                    binding.etTime.setText(time)
+                    val tim = "$hourOfDay:$minute"
+                    time = "$hourOfDay:$minute:00.123456789"
+                    binding.etTime.setText(tim)
                 },
                 hour,
                 minute,

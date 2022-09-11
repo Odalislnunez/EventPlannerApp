@@ -19,12 +19,16 @@ abstract class EventBaseAdapter (
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val binding = ItemEventBinding.bind(itemView)
 
-//        @SuppressLint("SimpleDateFormat")
+        @SuppressLint("SimpleDateFormat")
         fun render(event: Event) {
 //            val mDate = Date(event.datetime.time)
             binding.tvTitle.text = event.title
             binding.tvPlace.text = event.place
-            binding.tvDate.text = event.datetime //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
+            val mDate: List<String> = event.datetime.split(" ").toList()
+
+            val date = SimpleDateFormat("dd/MM/yyyy").parse(mDate.toString())?.toString() ?: ""
+            val time = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+            binding.tvDate.text = "$date $time" //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
     }
 

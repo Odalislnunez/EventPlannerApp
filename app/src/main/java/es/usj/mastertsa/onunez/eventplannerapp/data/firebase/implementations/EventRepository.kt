@@ -52,13 +52,7 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Event::class.java)
 
-            val currentDate = LocalDate.now()
-
             (uCreatorsEvents + uParticipantsEvents).forEach {
-//                val eventDate = LocalDate.parse(it.datetime, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-//                if (eventDate >= currentDate) {
-//                    uncomingEvents = uncomingEvents + it
-//                }
                 if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
                     uncomingEvents = uncomingEvents + it
                 }
