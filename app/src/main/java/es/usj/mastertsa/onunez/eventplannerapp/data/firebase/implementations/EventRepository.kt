@@ -43,19 +43,19 @@ class EventRepository @Inject constructor (
         emit(DataState.Loading)
         try {
             var uncomingEvents: List<Event> = mutableListOf()
-            val userArray: MutableList<String> = mutableListOf()
-            userArray.add(userId)
-            val uCreatorsEvents = eventsCollection.whereIn("creators", userArray)
+//            val userArray: MutableList<String> = mutableListOf()
+//            userArray.add(userId)
+            val uCreatorsEvents = eventsCollection.whereArrayContainsAny("creators", listOf(userId))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            val uParticipantsEvents = eventsCollection.whereIn("participants", userArray)
+            val uParticipantsEvents = eventsCollection.whereArrayContainsAny("participants", listOf(userId))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
 
-            val currentDate = LocalDate.now()
-                //.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val currentDateS = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val currentDate = LocalDate.parse(currentDateS, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
             (uCreatorsEvents + uParticipantsEvents).forEach {
                 val eventDate = LocalDate.parse(it.datetime, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
