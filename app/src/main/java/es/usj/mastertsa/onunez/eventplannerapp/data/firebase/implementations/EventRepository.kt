@@ -64,7 +64,7 @@ class EventRepository @Inject constructor (
                 }
             }
 
-            emit(DataState.Success(uCreatorsEvents + uParticipantsEvents))
+            emit(DataState.Success(uncomingEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
