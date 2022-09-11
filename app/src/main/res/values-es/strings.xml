@@ -61,6 +61,8 @@
     <string name="event_past">Eventos Pasados</string>
     <string name="button_create">Crear</string>
     <string name="button_save">Guardar</string>
+    <string name="button_participate">Participar</string>
+    <string name="button_participating">Participando</string>
     <string name="button_chat">Chat</string>
     <string name="select_participants">Seleccione participantes</string>
     <string-array name="event_type_array">

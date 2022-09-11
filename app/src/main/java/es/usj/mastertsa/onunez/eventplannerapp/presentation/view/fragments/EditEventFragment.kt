@@ -64,11 +64,7 @@ class EditEventFragment : Fragment() {
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun initView(){
         if (mEvent.title.isNotEmpty()){
-//            val mDate = Date(mEvent.datetime.time)
             val mDate: List<String> = mEvent.datetime.split(" ").toList()
-//            date = SimpleDateFormat("yyyy-MM-dd").parse(mDate.toString())?.toString() ?: ""
-//            time = (SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: "") + ":00.123456789"
-
             date = mDate[0]
             time = mDate[1]
 
@@ -99,7 +95,6 @@ class EditEventFragment : Fragment() {
                     binding.spParticipants.text = binding.spParticipants.text.toString() + ", \n" + it
                 }
             }
-//            val creators: List<String> = binding.spOwners.text.toString().split(",").toList()
             if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
                 binding.btnSave.visibility = View.VISIBLE
                 val datet = Timestamp.valueOf(mEvent.datetime)

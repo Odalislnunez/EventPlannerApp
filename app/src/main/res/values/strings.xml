@@ -60,6 +60,8 @@
     <string name="event_past">Past Events</string>
     <string name="button_create">Create</string>
     <string name="button_save">Save</string>
+    <string name="button_participate">Participate</string>
+    <string name="button_participating">Participating</string>
     <string name="button_chat">Chat</string>
     <string name="select_participants">Select participants</string>
     <string-array name="event_type_array">
