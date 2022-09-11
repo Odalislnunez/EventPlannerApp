@@ -24,6 +24,8 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
@@ -68,8 +70,8 @@ class EditEventFragment : Fragment() {
             date = mDate[0]
             time = mDate[1]
 
-            val dateEt = SimpleDateFormat("dd/MM/yyyy").parse(mDate.toString())?.toString() ?: ""
-            val timeEt = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+            val dateEt = LocalDate.parse(mDate[0]).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+            val timeEt = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
 
             binding.tvTitle.text = mEvent.title
             binding.etDescription.setText(mEvent.description)

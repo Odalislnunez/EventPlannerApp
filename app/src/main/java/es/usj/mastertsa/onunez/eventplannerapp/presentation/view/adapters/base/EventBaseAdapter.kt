@@ -11,6 +11,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.databinding.ItemEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 abstract class EventBaseAdapter (
@@ -20,7 +21,7 @@ abstract class EventBaseAdapter (
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val binding = ItemEventBinding.bind(itemView)
 
-        @SuppressLint("SimpleDateFormat")
+        @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun render(event: Event) {
 //            val mDate = Date(event.datetime.time)
             binding.tvTitle.text = event.title
@@ -28,7 +29,8 @@ abstract class EventBaseAdapter (
             val mDate: List<String> = event.datetime.split(" ").toList()
 
             val date = LocalDate.parse(mDate[0]).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            val time = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
+            val time = LocalTime.parse(mDate[1]).format(DateTimeFormatter.ofPattern("HH:mm"))
+//            val time = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
             binding.tvDate.text = "$date $time" //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
     }
