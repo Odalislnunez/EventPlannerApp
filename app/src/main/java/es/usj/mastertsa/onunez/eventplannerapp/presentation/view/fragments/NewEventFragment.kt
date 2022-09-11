@@ -120,12 +120,12 @@ class NewEventFragment : DialogFragment() {
                         time = "$hourOfDay:$minute:00.123456789"
                     }
                     else if (minute > 9 && hourOfDay <= 9) {
-                        tim = "$hourOfDay:0$minute"
-                        time = "$hourOfDay:0$minute:00.123456789"
-                    }
-                    else if (minute <= 9 && hourOfDay > 9) {
                         tim = "0$hourOfDay:$minute"
                         time = "0$hourOfDay:$minute:00.123456789"
+                    }
+                    else if (minute <= 9 && hourOfDay > 9) {
+                        tim = "$hourOfDay:0$minute"
+                        time = "$hourOfDay:0$minute:00.123456789"
                     }
                     else {
                         tim = "0$hourOfDay:0$minute"
@@ -135,7 +135,7 @@ class NewEventFragment : DialogFragment() {
                 },
                 hour,
                 minute,
-                false
+                true
             )
             timePickerDialog.show()
         }

@@ -201,7 +201,7 @@ class EditEventFragment : Fragment() {
                 },
                 hour,
                 minute,
-                false
+                true
             )
             timePickerDialog.show()
         }
