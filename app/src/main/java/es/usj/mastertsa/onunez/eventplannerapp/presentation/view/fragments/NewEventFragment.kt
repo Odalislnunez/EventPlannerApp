@@ -156,7 +156,7 @@ class NewEventFragment : DialogFragment() {
 
 
         binding.btnCancel.setOnClickListener {
-            dismiss()
+            activity?.onBackPressed()
         }
 
         binding.btnCreate.setOnClickListener {
