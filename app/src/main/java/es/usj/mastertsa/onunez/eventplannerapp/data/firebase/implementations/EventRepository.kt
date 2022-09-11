@@ -51,13 +51,13 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Event::class.java)
 
-            (uCreatorsEvents + uParticipantsEvents).forEach {
-                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
-                    uncomingEvents = uncomingEvents + it
-                }
-            }
+//            (uCreatorsEvents + uParticipantsEvents).forEach {
+//                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
+//                    uncomingEvents = uncomingEvents + it
+//                }
+//            }
 
-            emit(DataState.Success(uncomingEvents))
+            emit(DataState.Success(uCreatorsEvents + uParticipantsEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))

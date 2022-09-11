@@ -67,6 +67,7 @@ class EventsFragment : Fragment() {
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
+                    activity?.showToast("uncoming")
                 }
 
                 else -> Unit
@@ -80,6 +81,7 @@ class EventsFragment : Fragment() {
                 }
                 is DataState.Error -> {
                     activity?.showToast(getString(R.string.error_something_went_wrong))
+                    activity?.showToast("past")
                 }
 
                 else -> Unit
