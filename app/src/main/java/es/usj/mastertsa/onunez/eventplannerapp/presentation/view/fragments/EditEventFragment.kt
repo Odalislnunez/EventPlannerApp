@@ -25,6 +25,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -71,7 +72,7 @@ class EditEventFragment : Fragment() {
             time = mDate[1]
 
             val dateEt = LocalDate.parse(mDate[0]).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            val timeEt = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
+            val timeEt = LocalTime.parse(mDate[1]).format(DateTimeFormatter.ofPattern("HH:mm"))
 
             binding.tvTitle.text = mEvent.title
             binding.etDescription.setText(mEvent.description)
@@ -171,8 +172,15 @@ class EditEventFragment : Fragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-                    val tim = "$hourOfDay:$minute"
-                    time = "$hourOfDay:$minute:00.123456789"
+                    var tim = ""
+                    if (minute > 9) {
+                        tim = "$hourOfDay:$minute"
+                        time = "$hourOfDay:$minute:00.123456789"
+                    }
+                    else {
+                        tim = "$hourOfDay:0$minute"
+                        time = "$hourOfDay:0$minute:00.123456789"
+                    }
                     binding.etTime.setText(tim)
                 },
                 hour,

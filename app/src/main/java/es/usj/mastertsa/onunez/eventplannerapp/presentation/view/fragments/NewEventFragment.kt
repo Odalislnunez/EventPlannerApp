@@ -106,8 +106,15 @@ class NewEventFragment : DialogFragment() {
             val timePickerDialog = TimePickerDialog(
                 requireContext(),
                 { view, hourOfDay, minute ->
-                    val tim = "$hourOfDay:$minute"
-                    time = "$hourOfDay:$minute:00.123456789"
+                    var tim = ""
+                    if (minute > 9) {
+                        tim = "$hourOfDay:$minute"
+                        time = "$hourOfDay:$minute:00.123456789"
+                    }
+                    else {
+                        tim = "$hourOfDay:0$minute"
+                        time = "$hourOfDay:0$minute:00.123456789"
+                    }
                     binding.etTime.setText(tim)
                 },
                 hour,

@@ -30,7 +30,6 @@ abstract class EventBaseAdapter (
 
             val date = LocalDate.parse(mDate[0]).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             val time = LocalTime.parse(mDate[1]).format(DateTimeFormatter.ofPattern("HH:mm"))
-//            val time = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
             binding.tvDate.text = "$date $time" //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
     }
