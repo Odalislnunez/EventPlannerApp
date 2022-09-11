@@ -146,13 +146,21 @@ class EditEventFragment : Fragment() {
                 requireContext(),
                 { view, year, monthOfYear, dayOfMonth ->
                     var dat = ""
-                    if(monthOfYear + 1 > 9) {
+                    if (monthOfYear + 1 > 9 && dayOfMonth > 9) {
                         dat = dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
                         date = year.toString() + "-" + (monthOfYear + 1) + "-" + dayOfMonth
                     }
-                    else {
+                    else if (monthOfYear + 1 > 9 && dayOfMonth <= 9) {
+                        dat = "0" + dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year
+                        date = year.toString() + "-" + (monthOfYear + 1) + "-0" + dayOfMonth
+                    }
+                    else if (monthOfYear + 1 <= 9 && dayOfMonth > 9) {
                         dat = dayOfMonth.toString() + "/0" + (monthOfYear + 1) + "/" + year
-                        date = year.toString() + "-0" +(monthOfYear + 1) + "-" + dayOfMonth
+                        date = year.toString() + "-0" + (monthOfYear + 1) + "-" + dayOfMonth
+                    }
+                    else {
+                        dat = "0" + dayOfMonth.toString() + "/0" + (monthOfYear + 1) + "/" + year
+                        date = year.toString() + "-0" +(monthOfYear + 1) + "-0" + dayOfMonth
                     }
                     binding.etDate.setText(dat)
                 },
@@ -173,13 +181,21 @@ class EditEventFragment : Fragment() {
                 requireContext(),
                 { view, hourOfDay, minute ->
                     var tim = ""
-                    if (minute > 9) {
+                    if (minute > 9 && hourOfDay > 9) {
                         tim = "$hourOfDay:$minute"
                         time = "$hourOfDay:$minute:00.123456789"
                     }
-                    else {
+                    else if (minute > 9 && hourOfDay <= 9) {
                         tim = "$hourOfDay:0$minute"
                         time = "$hourOfDay:0$minute:00.123456789"
+                    }
+                    else if (minute <= 9 && hourOfDay > 9) {
+                        tim = "0$hourOfDay:$minute"
+                        time = "0$hourOfDay:$minute:00.123456789"
+                    }
+                    else {
+                        tim = "0$hourOfDay:0$minute"
+                        time = "0$hourOfDay:0$minute:00.123456789"
                     }
                     binding.etTime.setText(tim)
                 },
