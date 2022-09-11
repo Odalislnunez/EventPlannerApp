@@ -26,8 +26,8 @@ abstract class EventBaseAdapter (
             binding.tvPlace.text = event.place
             val mDate: List<String> = event.datetime.split(" ").toList()
 
-            val date = SimpleDateFormat("dd/MM/yyyy").parse(mDate.toString())?.toString() ?: ""
-            val time = SimpleDateFormat("HH:mm").parse(mDate.toString())?.toString() ?: ""
+            val date = SimpleDateFormat("dd/MM/yyyy").parse(mDate[0])?.toString() ?: ""
+            val time = SimpleDateFormat("HH:mm").parse(mDate[1])?.toString() ?: ""
             binding.tvDate.text = "$date $time" //SimpleDateFormat("dd-MM-yyyy").parse(mDate.toString())?.toString() ?: ""
         }
     }
