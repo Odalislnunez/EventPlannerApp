@@ -51,11 +51,11 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Event::class.java)
 
-//            (uCreatorsEvents + uParticipantsEvents).forEach {
-//                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
-//                    uncomingEvents = uncomingEvents + it
-//                }
-//            }
+            (uCreatorsEvents + uParticipantsEvents).forEach {
+                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
+                    uncomingEvents = uncomingEvents + it
+                }
+            }
 
             emit(DataState.Success(uCreatorsEvents + uParticipantsEvents))
             emit(DataState.Finished)
@@ -68,19 +68,36 @@ class EventRepository @Inject constructor (
     override suspend fun getPastEvents(userId: String): Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
         try {
+            var pastEvents: List<Event> = mutableListOf()
             val userArray: MutableList<String> = mutableListOf()
             userArray.add(userId)
             val pCreatorsEvents = eventsCollection.whereIn("creators", userArray)
-                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
             val pParticipantsEvents = eventsCollection.whereIn("participants", userArray)
-                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
                 .get()
                 .await()
                 .toObjects(Event::class.java)
-            emit(DataState.Success(pCreatorsEvents + pParticipantsEvents))
+
+            (pCreatorsEvents + pParticipantsEvents).forEach {
+                if (Timestamp.valueOf(it.datetime) < Timestamp(System.currentTimeMillis())) {
+                    pastEvents = pastEvents + it
+                }
+            }
+//            val userArray: MutableList<String> = mutableListOf()
+//            userArray.add(userId)
+//            val pCreatorsEvents = eventsCollection.whereIn("creators", userArray)
+//                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
+//                .get()
+//                .await()
+//                .toObjects(Event::class.java)
+//            val pParticipantsEvents = eventsCollection.whereIn("participants", userArray)
+//                .whereLessThan("datetime", Timestamp(System.currentTimeMillis()))
+//                .get()
+//                .await()
+//                .toObjects(Event::class.java)
+            emit(DataState.Success(pastEvents))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))
