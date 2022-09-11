@@ -20,6 +20,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsView
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
@@ -111,6 +112,7 @@ class EditEventFragment : Fragment() {
                 binding.etDescription.isEnabled = false
                 binding.etPlace.isEnabled = false
                 binding.etDate.isEnabled = false
+                binding.etTime.isEnabled = false
                 binding.spEventType.isEnabled = false
                 binding.spOwners.isEnabled = false
                 binding.spParticipants.isEnabled = false
@@ -218,7 +220,7 @@ class EditEventFragment : Fragment() {
             }
         }
 
-        binding.spOwners.text = Constants.USER_LOGGED_IN_NAME
+//        binding.spOwners.text = USER_LOGGED_IN_NAME
 
         binding.btnChat.setOnClickListener {
 
