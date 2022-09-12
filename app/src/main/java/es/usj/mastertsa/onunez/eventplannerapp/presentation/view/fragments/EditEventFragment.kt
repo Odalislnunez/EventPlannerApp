@@ -61,8 +61,8 @@ class EditEventFragment : Fragment() {
 
         mEvent = arguments?.getParcelable<Event>(EXTRAS_EVENT)?: Event()
 
-        initView()
         initObservers()
+        initView()
         initListeners()
     }
 
@@ -87,7 +87,7 @@ class EditEventFragment : Fragment() {
             viewModel.getEventCreators(mEvent.creators)
 
             creators.forEach {
-                if(it.userId == mEvent.creators.first()){
+                if(it.userId == creators.first().userId){
                     binding.spOwners.text = it.name + " " + it.lastname
                 }
                 else{
@@ -105,7 +105,7 @@ class EditEventFragment : Fragment() {
                     viewModel.getEventParticipants(mEvent.participants!!)
 
                     participants.forEach {
-                        if(it.userId == mEvent.participants?.first()){
+                        if(it.userId == participants.first().userId){
                             binding.spParticipants.text = it.name + " " + it.lastname
                         }
                         else{
