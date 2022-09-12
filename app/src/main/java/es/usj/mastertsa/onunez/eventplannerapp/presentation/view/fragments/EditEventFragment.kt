@@ -45,9 +45,6 @@ class EditEventFragment : Fragment() {
     private var date: String = ""
     private var time: String = ""
 
-    private var creators: List<User> = mutableListOf()
-    private var participants: List<User> = mutableListOf()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,8 +58,8 @@ class EditEventFragment : Fragment() {
 
         mEvent = arguments?.getParcelable<Event>(EXTRAS_EVENT)?: Event()
 
-        initObservers()
         initView()
+        initObservers()
         initListeners()
     }
 
@@ -86,15 +83,6 @@ class EditEventFragment : Fragment() {
             binding.spOwners.text = ""
             viewModel.getEventCreators(mEvent.creators)
 
-            creators.forEach {
-                if(it.userId == creators.first().userId){
-                    binding.spOwners.text = it.name + " " + it.lastname
-                }
-                else{
-                    binding.spOwners.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
-                }
-            }
-
             if (mEvent.type == 1) {
                 binding.tvParticipants.isVisible = false
                 binding.spParticipants.isVisible = false
@@ -103,15 +91,6 @@ class EditEventFragment : Fragment() {
                 if(mEvent.participants?.isNotEmpty() == true) {
                     binding.spParticipants.text = ""
                     viewModel.getEventParticipants(mEvent.participants!!)
-
-                    participants.forEach {
-                        if(it.userId == participants.first().userId){
-                            binding.spParticipants.text = it.name + " " + it.lastname
-                        }
-                        else{
-                            binding.spParticipants.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
-                        }
-                    }
                 }
             }
 
@@ -135,6 +114,7 @@ class EditEventFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObservers(){
         viewModel.saveEventState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -154,7 +134,14 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    creators = dataState.data
+                    dataState.data.forEach {
+                        if(it.userId == creators.first().userId){
+                            binding.spOwners.text = it.name + " " + it.lastname
+                        }
+                        else{
+                            binding.spOwners.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
+                        }
+                    }
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
@@ -168,7 +155,14 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    participants = dataState.data
+                    dataState.data.forEach {
+                        if(it.userId == participants.first().userId){
+                            binding.spParticipants.text = it.name + " " + it.lastname
+                        }
+                        else{
+                            binding.spParticipants.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
+                        }
+                    }
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
