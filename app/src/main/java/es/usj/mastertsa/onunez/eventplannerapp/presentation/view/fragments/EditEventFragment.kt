@@ -45,6 +45,9 @@ class EditEventFragment : Fragment() {
     private var date: String = ""
     private var time: String = ""
 
+    private var creators: List<User> = mutableListOf()
+    private var participants: List<User> = mutableListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -134,8 +137,9 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    dataState.data.forEach {
-                        if(it.userId == dataState.data.first().userId){
+                    creators = dataState.data
+                    creators.forEach {
+                        if(it.userId == creators.first().userId){
                             binding.spOwners.text = it.name + " " + it.lastname
                         }
                         else{
@@ -155,8 +159,9 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    dataState.data.forEach {
-                        if(it.userId == dataState.data.first().userId){
+                    participants = dataState.data
+                    participants.forEach {
+                        if(it.userId == participants.first().userId){
                             binding.spParticipants.text = it.name + " " + it.lastname
                         }
                         else{
