@@ -26,7 +26,8 @@ class EventsViewModel @Inject constructor(
     private val getEventCreatorsUseCase: GetEventCreatorsUseCase,
     private val getEventParticipantsUseCase: GetEventParticipantsUseCase,
     private val participateEventUseCase: ParticipateEventUseCase,
-    private val unparticipateEventUseCase: UnparticipateEventUseCase
+    private val unparticipateEventUseCase: UnparticipateEventUseCase,
+    private val getInvitationsUseCase: GetInvitationsUseCase
 ): ViewModel() {
 
     private val _saveEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -64,6 +65,10 @@ class EventsViewModel @Inject constructor(
     private val _unparticipateEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val unparticipateEventState: LiveData<DataState<Boolean>>
         get() = _unparticipateEventState
+
+    private val _getInvitationsEventState: MutableLiveData<DataState<List<Event>>> = MutableLiveData()
+    val getInvitationsEventState: LiveData<DataState<List<Event>>>
+        get() = _getInvitationsEventState
 
     fun saveEvent(event: Event){
         viewModelScope.launch {
@@ -142,6 +147,15 @@ class EventsViewModel @Inject constructor(
             unparticipateEventUseCase(userId, eventId)
                 .onEach { dataState ->
                     _unparticipateEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getInvitationsEvent(userId: String){
+        viewModelScope.launch {
+            getInvitationsUseCase(userId)
+                .onEach { dataState ->
+                    _getInvitationsEventState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

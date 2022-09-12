@@ -25,4 +25,6 @@ interface IEventRepository {
 
     suspend fun unparticipateEvent(userId: String, eventId: String): Flow<DataState<Boolean>>
 
+    suspend fun getInvitations(userId: String): Flow<DataState<List<Event>>>
+
 }

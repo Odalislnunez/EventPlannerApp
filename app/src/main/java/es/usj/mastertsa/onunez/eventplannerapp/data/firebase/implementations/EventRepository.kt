@@ -2,6 +2,7 @@ package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.toObjects
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Invitation
@@ -225,6 +226,45 @@ class EventRepository @Inject constructor (
             emit(DataState.Success(isSuccessful))
             emit(DataState.Finished)
         }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
+    override suspend fun getInvitations(userId: String): Flow<DataState<List<Event>>> = flow {
+        emit(DataState.Loading)
+        try {
+            var invitations: List<Event> = mutableListOf()
+            val iPending = invitationsCollection.whereEqualTo("userId", userId)
+                .whereEqualTo("answer", 0)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)
+            val iRejected = invitationsCollection.whereEqualTo("userId", userId)
+                .whereEqualTo("answer", 2)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)
+
+            val eventIds: MutableList<String> = mutableListOf()
+            (iPending + iRejected).forEach {
+                eventIds.add(it.eventId)
+            }
+
+            val events = eventsCollection.whereIn("eventId", eventIds)
+                .get()
+                .await()
+                .toObjects(Event::class.java)
+
+            events.forEach {
+                if (Timestamp.valueOf(it.datetime) >= Timestamp(System.currentTimeMillis())) {
+                    invitations = invitations + it
+                }
+            }
+
+            emit(DataState.Success(invitations))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
