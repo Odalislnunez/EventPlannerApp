@@ -16,20 +16,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/ChatFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/viewmodel/ChatViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_send_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rect_round_primary_color.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_text_message.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/InvitationsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/InvitationsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/viewmodel/InvitationsViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-    </list>
+    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -399,20 +386,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00139" summary="Changes.">
-      <created>1662838037246</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1662838037246</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Contacts Changes.">
-      <created>1662842712963</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1662842712963</updated>
-    </task>
     <task id="LOCAL-00141" summary="Contacts Changes.">
       <created>1662842982374</created>
       <option name="number" value="00141" />
@@ -742,7 +715,21 @@
       <option name="project" value="LOCAL" />
       <updated>1662954322407</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="Adding chat views Changes.">
+      <created>1662957679904</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1662957679904</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Changes.">
+      <created>1662957825020</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1662957825020</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -759,7 +746,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Logo changes." />
     <MESSAGE value="floating button adding to fragment views." />
     <MESSAGE value="Adding edit event fragment." />
     <MESSAGE value="Adding all login and sign up code to repositories." />
@@ -783,6 +769,7 @@
     <MESSAGE value="Adding public events list and others Changes." />
     <MESSAGE value="Profile picture Changes." />
     <MESSAGE value="Contacts Changes." />
+    <MESSAGE value="Adding chat views Changes." />
     <MESSAGE value="Changes." />
     <option name="LAST_COMMIT_MESSAGE" value="Changes." />
   </component>
