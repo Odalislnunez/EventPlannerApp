@@ -10,9 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentEditEventBinding
@@ -263,7 +265,8 @@ class EditEventFragment : Fragment() {
         }
 
         binding.btnChat.setOnClickListener {
-
+//            val bundle = bundleOf(EXTRAS_EVENT to it)
+            findNavController().navigate(R.id.action_nav_edit_event_to_nav_chat)
         }
 
         binding.btnSave.setOnClickListener {

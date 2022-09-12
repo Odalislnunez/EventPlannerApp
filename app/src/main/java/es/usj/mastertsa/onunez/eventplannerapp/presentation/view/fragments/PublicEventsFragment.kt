@@ -77,7 +77,7 @@ class PublicEventsFragment : Fragment() {
     private fun initListeners() {
         publicEventsAdapter.setItemClickListener {
             val bundle = bundleOf(EXTRAS_EVENT to it)
-            findNavController().navigate(R.id.action_nav_public_events_to_nav_edit_event, bundle )
+            findNavController().navigate(R.id.action_nav_public_events_to_nav_edit_event, bundle)
         }
     }
 }
