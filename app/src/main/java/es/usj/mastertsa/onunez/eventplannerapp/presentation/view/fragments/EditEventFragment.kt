@@ -135,7 +135,7 @@ class EditEventFragment : Fragment() {
                 is DataState.Success -> {
                     hideProgressDialog()
                     dataState.data.forEach {
-                        if(it.userId == creators.first().userId){
+                        if(it.userId == dataState.data.first().userId){
                             binding.spOwners.text = it.name + " " + it.lastname
                         }
                         else{
@@ -156,7 +156,7 @@ class EditEventFragment : Fragment() {
                 is DataState.Success -> {
                     hideProgressDialog()
                     dataState.data.forEach {
-                        if(it.userId == participants.first().userId){
+                        if(it.userId == dataState.data.first().userId){
                             binding.spParticipants.text = it.name + " " + it.lastname
                         }
                         else{
