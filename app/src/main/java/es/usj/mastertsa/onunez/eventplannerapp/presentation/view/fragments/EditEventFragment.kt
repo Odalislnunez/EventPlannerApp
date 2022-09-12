@@ -45,8 +45,8 @@ class EditEventFragment : Fragment() {
     private var date: String = ""
     private var time: String = ""
 
-    private lateinit var creators: List<User>
-    private lateinit var participants: List<User>
+    private var creators: List<User> = mutableListOf()
+    private var participants: List<User> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
