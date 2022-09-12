@@ -10,12 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentEditEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
@@ -42,6 +44,9 @@ class EditEventFragment : Fragment() {
 
     private var date: String = ""
     private var time: String = ""
+
+    private lateinit var creators: List<User>
+    private lateinit var participants: List<User>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,24 +82,39 @@ class EditEventFragment : Fragment() {
             binding.etDate.setText(dateEt)
             binding.etTime.setText(timeEt)
             binding.spEventType.setSelection(mEvent.type)
+
             binding.spOwners.text = ""
-            mEvent.creators.forEach {
-                if(it == mEvent.creators.first()){
-                    binding.spOwners.text = it
+            viewModel.getEventCreators(mEvent.creators)
+
+            creators.forEach {
+                if(it.userId == mEvent.creators.first()){
+                    binding.spOwners.text = it.name + " " + it.lastname
                 }
                 else{
-                    binding.spOwners.text = binding.spOwners.text.toString() + ", \n" + it
+                    binding.spOwners.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
                 }
             }
-            binding.spParticipants.text = ""
-            mEvent.participants?.forEach {
-                if(it == mEvent.participants?.first()) {
-                    binding.spParticipants.text = it
-                }
-                else {
-                    binding.spParticipants.text = binding.spParticipants.text.toString() + ", \n" + it
+
+            if (mEvent.type == 1) {
+                binding.tvParticipants.isVisible = false
+                binding.spParticipants.isVisible = false
+            }
+            else {
+                if(mEvent.participants?.isNotEmpty() == true) {
+                    binding.spParticipants.text = ""
+                    viewModel.getEventParticipants(mEvent.participants!!)
+
+                    participants.forEach {
+                        if(it.userId == mEvent.participants?.first()){
+                            binding.spParticipants.text = it.name + " " + it.lastname
+                        }
+                        else{
+                            binding.spParticipants.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
+                        }
+                    }
                 }
             }
+
             if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
                 binding.btnSave.visibility = View.VISIBLE
                 val datet = Timestamp.valueOf(mEvent.datetime)
@@ -124,7 +144,35 @@ class EditEventFragment : Fragment() {
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
-                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Save")
+                }
+                else -> Unit
+            }
+        })
+
+        viewModel.eventCreatorsState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    creators = dataState.data
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Creators")
+                }
+                else -> Unit
+            }
+        })
+
+        viewModel.eventParticipantsState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    participants = dataState.data
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Participants")
                 }
                 else -> Unit
             }
@@ -215,8 +263,6 @@ class EditEventFragment : Fragment() {
             }
         }
 
-//        binding.spOwners.text = USER_LOGGED_IN_NAME
-
         binding.btnChat.setOnClickListener {
 
         }
@@ -225,7 +271,6 @@ class EditEventFragment : Fragment() {
             if (isAllDataSet()){
                 showProgressBar()
 
-//                val date = Timestamp.valueOf("$date $time")
                 val date = "$date $time"
 
                 if (binding.spParticipants.text.toString().isNotEmpty()) {

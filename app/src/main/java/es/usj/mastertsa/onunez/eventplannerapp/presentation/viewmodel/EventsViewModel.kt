@@ -22,7 +22,11 @@ class EventsViewModel @Inject constructor(
     private val getUncomingUserEventsUseCase: GetUncomingUserEventsUseCase,
     private val getPastUserEventsUseCase: GetPastUserEventsUseCase,
     private val getAllUserEventsUseCase: GetAllUserEventsUseCase,
-    private val getAllPublicEventsUseCase: GetAllPublicEventsUseCase
+    private val getAllPublicEventsUseCase: GetAllPublicEventsUseCase,
+    private val getEventCreatorsUseCase: GetEventCreatorsUseCase,
+    private val getEventParticipantsUseCase: GetEventParticipantsUseCase,
+    private val participateEventUseCase: ParticipateEventUseCase,
+    private val unparticipateEventUseCase: UnparticipateEventUseCase
 ): ViewModel() {
 
     private val _saveEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -44,6 +48,22 @@ class EventsViewModel @Inject constructor(
     private val _publicEventState: MutableLiveData<DataState<List<Event>>> = MutableLiveData()
     val publicEventState: LiveData<DataState<List<Event>>>
         get() = _publicEventState
+
+    private val _eventCreatorsState: MutableLiveData<DataState<List<User>>> = MutableLiveData()
+    val eventCreatorsState: LiveData<DataState<List<User>>>
+        get() = _eventCreatorsState
+
+    private val _eventParticipantsState: MutableLiveData<DataState<List<User>>> = MutableLiveData()
+    val eventParticipantsState: LiveData<DataState<List<User>>>
+        get() = _eventParticipantsState
+
+    private val _participateEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val participateEventState: LiveData<DataState<Boolean>>
+        get() = _participateEventState
+
+    private val _unparticipateEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val unparticipateEventState: LiveData<DataState<Boolean>>
+        get() = _unparticipateEventState
 
     fun saveEvent(event: Event){
         viewModelScope.launch {
@@ -86,6 +106,42 @@ class EventsViewModel @Inject constructor(
             getAllPublicEventsUseCase()
                 .onEach { dataState ->
                     _publicEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getEventCreators(users: List<String>){
+        viewModelScope.launch {
+            getEventCreatorsUseCase(users)
+                .onEach { dataState ->
+                    _eventCreatorsState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getEventParticipants(users: List<String>){
+        viewModelScope.launch {
+            getEventParticipantsUseCase(users)
+                .onEach { dataState ->
+                    _eventParticipantsState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun participateEvent(userId: String, eventId: String){
+        viewModelScope.launch {
+            participateEventUseCase(userId, eventId)
+                .onEach { dataState ->
+                    _participateEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun unparticipateEvent(userId: String, eventId: String){
+        viewModelScope.launch {
+            unparticipateEventUseCase(userId, eventId)
+                .onEach { dataState ->
+                    _unparticipateEventState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

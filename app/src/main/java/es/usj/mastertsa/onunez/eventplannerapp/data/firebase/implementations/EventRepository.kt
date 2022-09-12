@@ -1,11 +1,10 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import es.usj.mastertsa.onunez.eventplannerapp.di.FirebaseModule
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Invitation
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
@@ -14,14 +13,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import java.sql.Timestamp
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class EventRepository @Inject constructor (
     @FirebaseModule.EventsCollection private val eventsCollection: CollectionReference,
-    @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
+    @FirebaseModule.UsersCollection private val usersCollection: CollectionReference,
+    @FirebaseModule.InvitationsCollection private val invitationsCollection: CollectionReference
 ): IEventRepository {
 
     override suspend fun getAllEvents(userId: String): Flow<DataState<List<Event>>> = flow {
@@ -110,6 +107,7 @@ class EventRepository @Inject constructor (
         emit(DataState.Loading)
         try {
             var isSuccessful = false
+
             eventsCollection.document(event.eventId).set(event, SetOptions.merge())
                 .addOnSuccessListener { isSuccessful = true }
                 .addOnFailureListener { isSuccessful = false }
@@ -153,6 +151,78 @@ class EventRepository @Inject constructor (
                 participantsList.addAll(user)
             }
             emit(DataState.Success(participantsList))
+            emit(DataState.Finished)
+        }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
+    override suspend fun participateEvent(userId: String, eventId: String): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var isSuccessful = false
+            val event = eventsCollection.whereEqualTo("eventId", eventId)
+                .get()
+                .await()
+                .toObjects(Event::class.java)[0]
+
+            event.participants = event.participants?.plus(userId)
+
+            eventsCollection.document(event.eventId).set(event, SetOptions.merge())
+                .addOnSuccessListener { isSuccessful = true }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
+
+            val invitation = invitationsCollection.whereEqualTo("eventId", event.eventId).whereEqualTo("userId", userId)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)[0]
+
+            invitation.answer = 1
+
+            invitationsCollection.document(invitation.InvitationId).set(invitation, SetOptions.merge())
+                .addOnSuccessListener { isSuccessful = true }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
+
+            emit(DataState.Success(isSuccessful))
+            emit(DataState.Finished)
+        }catch (e: Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
+    override suspend fun unparticipateEvent(userId: String, eventId: String): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var isSuccessful = false
+            val event = eventsCollection.whereEqualTo("eventId", eventId)
+                .get()
+                .await()
+                .toObjects(Event::class.java)[0]
+
+            event.participants = event.participants?.minus(userId)
+
+            eventsCollection.document(event.eventId).set(event, SetOptions.merge())
+                .addOnSuccessListener { isSuccessful = true }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
+
+            val invitation = invitationsCollection.whereEqualTo("eventId", event.eventId).whereEqualTo("userId", userId)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)[0]
+
+            invitation.answer = 2
+
+            invitationsCollection.document(invitation.InvitationId).set(invitation, SetOptions.merge())
+                .addOnSuccessListener { isSuccessful = true }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
+
+            emit(DataState.Success(isSuccessful))
             emit(DataState.Finished)
         }catch (e: Exception){
             emit(DataState.Error(e))

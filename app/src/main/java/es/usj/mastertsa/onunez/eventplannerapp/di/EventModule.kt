@@ -18,11 +18,13 @@ object EventModule {
     @Singleton
     fun provideEventRepository(
         @FirebaseModule.EventsCollection eventsCollection: CollectionReference,
-        @FirebaseModule.UsersCollection usersCollection: CollectionReference
+        @FirebaseModule.UsersCollection usersCollection: CollectionReference,
+        @FirebaseModule.InvitationsCollection invitationsCollection: CollectionReference
     ): IEventRepository {
         return EventRepository(
             eventsCollection,
-            usersCollection
+            usersCollection,
+            invitationsCollection
         )
     }
 }
