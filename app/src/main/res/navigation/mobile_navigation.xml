@@ -80,6 +80,16 @@
         android:id="@+id/nav_edit_event"
         android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.EditEventFragment"
         android:label="@string/edit_event"
-        tools:layout="@layout/fragment_edit_event" />
+        tools:layout="@layout/fragment_edit_event" >
+        <action
+            android:id="@+id/action_nav_edit_event_to_nav_chat"
+            app:destination="@id/nav_chat" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
 
 </navigation>

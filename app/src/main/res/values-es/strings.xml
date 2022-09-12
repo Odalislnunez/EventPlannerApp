@@ -85,5 +85,6 @@
     <string name="event_place_hint">Lugar del evento</string>
     <string name="event_date_hint">Selecciona la fecha del evento</string>
     <string name="event_time_hint">Selecciona la hora del evento</string>
+    <string name="send_a_message">Envía un mensaje</string>
 
 </resources>
