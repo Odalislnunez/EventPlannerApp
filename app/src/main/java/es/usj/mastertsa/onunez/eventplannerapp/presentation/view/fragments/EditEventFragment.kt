@@ -62,16 +62,13 @@ class EditEventFragment : Fragment() {
         mEvent = arguments?.getParcelable<Event>(EXTRAS_EVENT)?: Event()
 
         initView()
-        initListeners()
         initObservers()
+        initListeners()
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun initView(){
         if (mEvent.title.isNotEmpty()){
-            viewModel.getEventCreators(mEvent.creators)
-            viewModel.getEventParticipants(mEvent.participants!!)
-
             val mDate: List<String> = mEvent.datetime.split(" ").toList()
             date = mDate[0]
             time = mDate[1]
@@ -87,6 +84,7 @@ class EditEventFragment : Fragment() {
             binding.spEventType.setSelection(mEvent.type)
 
             binding.spOwners.text = ""
+            viewModel.getEventCreators(mEvent.creators)
 
             creators.forEach {
                 if(it.userId == mEvent.creators.first()){
@@ -102,14 +100,17 @@ class EditEventFragment : Fragment() {
                 binding.spParticipants.isVisible = false
             }
             else {
-                binding.spParticipants.text = ""
+                if(mEvent.participants?.isNotEmpty() == true) {
+                    binding.spParticipants.text = ""
+                    viewModel.getEventParticipants(mEvent.participants!!)
 
-                participants.forEach {
-                    if(it.userId == mEvent.participants?.first()){
-                        binding.spParticipants.text = it.name + " " + it.lastname
-                    }
-                    else{
-                        binding.spParticipants.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
+                    participants.forEach {
+                        if(it.userId == mEvent.participants?.first()){
+                            binding.spParticipants.text = it.name + " " + it.lastname
+                        }
+                        else{
+                            binding.spParticipants.text = binding.spOwners.text.toString() + ", \n" + it.name + " " + it.lastname
+                        }
                     }
                 }
             }
