@@ -104,6 +104,9 @@ class NewEventFragment : DialogFragment() {
                                 participantsList = mutableListOf()
                                 participantsList.add(contacts[i].userId)
                             }
+                            else {
+                                participantsList.remove(contacts[i].userId)
+                            }
                         }
                     }
                     val dialog = builder.create()
