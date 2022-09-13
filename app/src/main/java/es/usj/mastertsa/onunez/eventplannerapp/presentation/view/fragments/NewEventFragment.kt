@@ -42,7 +42,7 @@ class NewEventFragment : DialogFragment() {
 
     private var contacts: List<User> = mutableListOf()
     private lateinit var participantsList: MutableList<String>
-    private lateinit var contactsArray: Array<String>
+    private var contactsArray: Array<String> = arrayOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
