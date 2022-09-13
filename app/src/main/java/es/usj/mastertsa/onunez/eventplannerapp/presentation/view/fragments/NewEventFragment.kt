@@ -59,6 +59,7 @@ class NewEventFragment : DialogFragment() {
         initObservers()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObservers(){
         viewModel.saveEventState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -84,6 +85,32 @@ class NewEventFragment : DialogFragment() {
                     contacts.forEach {
                         contactsArray[a] = it.name + " " + it.lastname
                         a += 1
+                    }
+
+                    binding.spParticipants.setOnClickListener {
+                        val builder = AlertDialog.Builder(requireActivity())
+
+                        viewModel.getUserContact(USER_LOGGED_IN_ID)
+
+                        val checkContact = BooleanArray(contacts.size)
+
+                        builder.setTitle("Select participants")
+                        builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
+                            checkContact[which] = isChecked
+                        }
+                        builder.setPositiveButton("OK") { dialog, which ->
+                            for (i in checkContact.indices) {
+                                val checked = checkContact[i]
+                                binding.spParticipants.text = ""
+                                if (checked) {
+                                    binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
+                                    participantsList = mutableListOf()
+                                    participantsList.add(contacts[i].userId)
+                                }
+                            }
+                        }
+                        val dialog = builder.create()
+                        dialog.show()
                     }
                 }
                 is DataState.Error -> {
@@ -181,32 +208,6 @@ class NewEventFragment : DialogFragment() {
         }
 
         binding.spOwners.text = USER_LOGGED_IN_NAME
-
-        binding.spParticipants.setOnClickListener {
-            val builder = AlertDialog.Builder(requireActivity())
-
-            viewModel.getUserContact(USER_LOGGED_IN_ID)
-
-            val checkContact = BooleanArray(contacts.size)
-
-            builder.setTitle("Select participants")
-            builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
-                checkContact[which] = isChecked
-            }
-            builder.setPositiveButton("OK") { dialog, which ->
-                for (i in checkContact.indices) {
-                    val checked = checkContact[i]
-                    binding.spParticipants.text = ""
-                    if (checked) {
-                        binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
-                        participantsList = mutableListOf()
-                        participantsList.add(contacts[i].userId)
-                    }
-                }
-            }
-            val dialog = builder.create()
-            dialog.show()
-        }
 
         binding.btnCancel.setOnClickListener {
             activity?.onBackPressed()
