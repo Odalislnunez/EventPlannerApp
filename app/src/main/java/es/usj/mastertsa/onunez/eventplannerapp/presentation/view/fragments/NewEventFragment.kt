@@ -55,8 +55,8 @@ class NewEventFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initListeners()
         initObservers()
+        initListeners()
     }
 
     @SuppressLint("SetTextI18n")
