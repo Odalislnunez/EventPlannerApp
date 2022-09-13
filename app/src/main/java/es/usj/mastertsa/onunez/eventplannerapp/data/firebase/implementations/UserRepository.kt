@@ -117,8 +117,8 @@ class UserRepository @Inject constructor(
             emit(DataState.Success(contacts))
             emit(DataState.Finished)
         }catch (e: Exception) {
-//            emit(DataState.Error(e))
-//            emit(DataState.Finished)
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
         }
     }
 
