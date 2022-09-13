@@ -74,9 +74,9 @@
         <option value="valueResourceFile" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -387,13 +387,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Changes.">
-      <created>1662850681311</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1662850681311</updated>
     </task>
     <task id="LOCAL-00150" summary="Changes.">
       <created>1662850853712</created>
@@ -731,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663042196574</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="Changes.">
+      <created>1663042848112</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1663042848112</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -7,11 +7,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
-import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.*
-import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.GetUserContactUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
