@@ -113,7 +113,7 @@ class EventRepository @Inject constructor (
             val originalEvent = eventsCollection.whereEqualTo("eventId", event.eventId)
                 .get()
                 .await()
-                .toObjects(Event::class.java)[0]
+                .toObjects(Event::class.java)
 
             if (event.type == 0) {
                 val invitations = invitationsCollection.whereEqualTo("eventId", event.eventId)
@@ -125,13 +125,13 @@ class EventRepository @Inject constructor (
 
                 invitations.forEach {
                     invitationUsers.add(it.userId)
-                    if (originalEvent.participants?.contains(it.userId) == true && !participants.contains(it.userId)) {
+                    if (originalEvent[0].participants?.contains(it.userId) == true && !participants.contains(it.userId)) {
                         saveInvitation(it.invitationId, it.userId, event.eventId, 3)
                     }
                 }
 
                 participants.forEach {
-                    if (originalEvent.participants?.contains(it) == false && !invitationUsers.contains(it)){
+                    if (event.participants?.contains(it) == false && !invitationUsers.contains(it)){
                         saveInvitation("", it, event.eventId, 0)
                     }
                 }
