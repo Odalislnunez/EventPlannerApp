@@ -17,13 +17,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
+import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.UsersViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
 import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class NewEventFragment : DialogFragment() {
@@ -32,9 +35,14 @@ class NewEventFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel: EventsViewModel by viewModels()
+    private val viewModelUser: UsersViewModel by viewModels()
 
     private var date: String = ""
     private var time: String = ""
+
+    private var contacts: List<User> = mutableListOf()
+    private lateinit var participantsList: MutableList<String>
+    private lateinit var contactsArray: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,9 +75,28 @@ class NewEventFragment : DialogFragment() {
                 else -> Unit
             }
         })
+
+        viewModelUser.getUserContactState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    contacts = dataState.data
+                    var a = 0
+                    contacts.forEach {
+                        contactsArray[a] = it.name + " " + it.lastname
+                        a += 1
+                    }
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+                else -> Unit
+            }
+        })
     }
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun initListeners(){
         binding.etDate.setOnClickListener {
             val c = Calendar.getInstance()
@@ -158,47 +185,28 @@ class NewEventFragment : DialogFragment() {
 
         binding.spParticipants.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
-            // String array for alert dialog multi choice items
-            val contactUsers = arrayOf("Black", "Orange", "Green", "Yellow", "White", "Purple")
-            // Boolean array for initial selected items
-            val checkedColorsArray = booleanArrayOf(true, // Black checked
-                false, // Orange
-                false, // Green
-                true, // Yellow checked
-                false, // White
-                false  //Purple
-            )
-            // Convert the color array to list
-//            val colorsList = Arrays.asList(*colorsArray)
-//            //setTitle
-//            builder.setTitle("Select colors")
-//            //set multichoice
-//            builder.setMultiChoiceItems(colorsArray, checkedColorsArray) { dialog, which, isChecked ->
-//                // Update the current focused item's checked status
-//                checkedColorsArray[which] = isChecked
-//                // Get the current focused item
-//                val currentItem = colorsList[which]
-//                // Notify the current action
-//                Toast.makeText(applicationContext, currentItem + " " + isChecked, Toast.LENGTH_SHORT).show()
-//            }
-//            // Set the positive/yes button click listener
-//            builder.setPositiveButton("OK") { dialog, which ->
-//                // Do something when click positive button
-//                mSlctdTxtTv.text = "Your preferred colors..... \n"
-//                for (i in checkedColorsArray.indices) {
-//                    val checked = checkedColorsArray[i]
-//                    if (checked) {
-//                        mSlctdTxtTv.text = mSlctdTxtTv.text.toString() + colorsList[i] + "\n"
-//                    }
-//                }
-//            }
-//            // Set the neutral/cancel button click listener
-//            builder.setNeutralButton("Cancel") { dialog, which ->
-//                // Do something when click the neutral button
-//            }
-//            val dialog = builder.create()
-//            // Display the alert dialog on interface
-//            dialog.show()
+
+            viewModelUser.getUserContact(USER_LOGGED_IN_ID)
+
+            val checkContact = BooleanArray(contacts.size)
+
+            builder.setTitle("Select participants")
+            builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
+                checkContact[which] = isChecked
+            }
+            builder.setPositiveButton("OK") { dialog, which ->
+                for (i in checkContact.indices) {
+                    val checked = checkContact[i]
+                    binding.spParticipants.text = ""
+                    if (checked) {
+                        binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
+                        participantsList = mutableListOf()
+                        participantsList.add(contacts[i].userId)
+                    }
+                }
+            }
+            val dialog = builder.create()
+            dialog.show()
         }
 
         binding.btnCancel.setOnClickListener {
