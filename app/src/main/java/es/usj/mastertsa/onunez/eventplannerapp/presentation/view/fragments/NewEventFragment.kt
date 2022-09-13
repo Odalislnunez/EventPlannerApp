@@ -55,6 +55,7 @@ class NewEventFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUserContact(USER_LOGGED_IN_ID)
         initListeners()
         initObservers()
     }
@@ -89,8 +90,6 @@ class NewEventFragment : DialogFragment() {
 
                     binding.spParticipants.setOnClickListener {
                         val builder = AlertDialog.Builder(requireActivity())
-
-                        viewModel.getUserContact(USER_LOGGED_IN_ID)
 
                         val checkContact = BooleanArray(contacts.size)
 
