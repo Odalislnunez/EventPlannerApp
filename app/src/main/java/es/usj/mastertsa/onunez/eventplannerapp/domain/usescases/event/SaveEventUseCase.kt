@@ -9,6 +9,6 @@ import javax.inject.Inject
 class SaveEventUseCase @Inject constructor(
     private val eventRepository: IEventRepository
 ) {
-    suspend operator fun invoke(event: Event): Flow<DataState<Boolean>> =
-        eventRepository.saveEvent(event)
+    suspend operator fun invoke(event: Event, participants: List<String>): Flow<DataState<Boolean>> =
+        eventRepository.saveEvent(event, participants)
 }

@@ -288,7 +288,8 @@ class EditEventFragment : Fragment() {
                             creators = getAllCreators(),
                             participants = getAllParticipants(),
                             status =  0
-                        )
+                        ),
+                        mutableListOf()
                     )
                 }
                 else {
@@ -302,7 +303,8 @@ class EditEventFragment : Fragment() {
                             type = binding.spEventType.selectedItemPosition,
                             creators = getAllCreators(),
                             status =  0
-                        )
+                        ),
+                        mutableListOf()
                     )
                 }
             } else {

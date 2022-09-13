@@ -159,7 +159,7 @@ class NewEventFragment : DialogFragment() {
         binding.spParticipants.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
             // String array for alert dialog multi choice items
-            val colorsArray = arrayOf("Black", "Orange", "Green", "Yellow", "White", "Purple")
+            val contactUsers = arrayOf("Black", "Orange", "Green", "Yellow", "White", "Purple")
             // Boolean array for initial selected items
             val checkedColorsArray = booleanArrayOf(true, // Black checked
                 false, // Orange
@@ -169,10 +169,10 @@ class NewEventFragment : DialogFragment() {
                 false  //Purple
             )
             // Convert the color array to list
-            val colorsList = Arrays.asList(*colorsArray)
-            //setTitle
-            builder.setTitle("Select colors")
-            //set multichoice
+//            val colorsList = Arrays.asList(*colorsArray)
+//            //setTitle
+//            builder.setTitle("Select colors")
+//            //set multichoice
 //            builder.setMultiChoiceItems(colorsArray, checkedColorsArray) { dialog, which, isChecked ->
 //                // Update the current focused item's checked status
 //                checkedColorsArray[which] = isChecked
@@ -227,7 +227,8 @@ class NewEventFragment : DialogFragment() {
                         type = binding.spEventType.selectedItemPosition,
                         creators = listOf(USER_LOGGED_IN_ID),
                         status = 0
-                    )
+                    ),
+                    mutableListOf()
                 )
             } else {
                 activity?.showToast(getString(R.string.add_fields_new_event))

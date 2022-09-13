@@ -70,9 +70,9 @@ class EventsViewModel @Inject constructor(
     val getInvitationsEventState: LiveData<DataState<List<Event>>>
         get() = _getInvitationsEventState
 
-    fun saveEvent(event: Event){
+    fun saveEvent(event: Event, participants: List<String>){
         viewModelScope.launch {
-            saveEventUseCase(event)
+            saveEventUseCase(event, participants)
                 .onEach { dataState ->
                     _saveEventState.value = dataState
                 }.launchIn(viewModelScope)
