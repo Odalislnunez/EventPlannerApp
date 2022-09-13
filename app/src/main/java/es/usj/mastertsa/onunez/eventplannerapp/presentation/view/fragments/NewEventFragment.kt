@@ -100,7 +100,14 @@ class NewEventFragment : DialogFragment() {
                             val checked = checkContact[i]
                             binding.spParticipants.text = ""
                             if (checked) {
-                                binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
+                                if(i != checkContact.count() - 1) {
+                                    binding.spParticipants.text =
+                                        binding.spParticipants.text.toString() + contactsArray[i] + ",\n"
+                                }
+                                else {
+                                    binding.spParticipants.text =
+                                        binding.spParticipants.text.toString() + contactsArray[i]
+                                }
                                 participantsList = mutableListOf()
                                 participantsList.add(contacts[i].userId)
                             }
