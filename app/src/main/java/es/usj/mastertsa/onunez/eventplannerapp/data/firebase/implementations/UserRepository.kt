@@ -30,17 +30,10 @@ class UserRepository @Inject constructor(
     override suspend fun getUserDataInObject(userId: String): Flow<DataState<User>> = flow {
         emit(DataState.Loading)
         try {
-//            var user = User()
             val user = usersCollection.whereEqualTo("userId", userId)
                 .get()
                 .await()
                 .toObjects(User::class.java)[0]
-//            usersCollection.document(userId)
-//                .get()
-//                .addOnSuccessListener { document ->
-//                    user = document.toObject(User::class.java)!!
-//                }
-//                .await()
             emit(DataState.Success(user))
             emit(DataState.Finished)
             Log.d(TAG, "User: " + user.name)

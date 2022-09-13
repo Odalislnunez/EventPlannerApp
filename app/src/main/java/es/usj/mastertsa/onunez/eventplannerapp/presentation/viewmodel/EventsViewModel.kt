@@ -9,6 +9,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.*
+import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.user.GetUserContactUseCase
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
@@ -27,7 +28,8 @@ class EventsViewModel @Inject constructor(
     private val getEventParticipantsUseCase: GetEventParticipantsUseCase,
     private val participateEventUseCase: ParticipateEventUseCase,
     private val unparticipateEventUseCase: UnparticipateEventUseCase,
-    private val getInvitationsUseCase: GetInvitationsUseCase
+    private val getInvitationsUseCase: GetInvitationsUseCase,
+    private val getUserContactUseCase: GetUserContactUseCase
 ): ViewModel() {
 
     private val _saveEventState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -69,6 +71,10 @@ class EventsViewModel @Inject constructor(
     private val _getInvitationsEventState: MutableLiveData<DataState<List<Event>>> = MutableLiveData()
     val getInvitationsEventState: LiveData<DataState<List<Event>>>
         get() = _getInvitationsEventState
+
+    private val _getUserContactState: MutableLiveData<DataState<List<User>>> = MutableLiveData()
+    val getUserContactState : LiveData<DataState<List<User>>>
+        get() =_getUserContactState
 
     fun saveEvent(event: Event, participants: List<String>){
         viewModelScope.launch {
@@ -156,6 +162,15 @@ class EventsViewModel @Inject constructor(
             getInvitationsUseCase(userId)
                 .onEach { dataState ->
                     _getInvitationsEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getUserContact(userId: String){
+        viewModelScope.launch {
+            getUserContactUseCase(userId)
+                .onEach { dataState ->
+                    _getUserContactState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

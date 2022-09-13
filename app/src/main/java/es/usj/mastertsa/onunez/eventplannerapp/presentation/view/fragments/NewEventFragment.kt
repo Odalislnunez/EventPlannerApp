@@ -35,7 +35,6 @@ class NewEventFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel: EventsViewModel by viewModels()
-    private val viewModelUser: UsersViewModel by viewModels()
 
     private var date: String = ""
     private var time: String = ""
@@ -76,7 +75,7 @@ class NewEventFragment : DialogFragment() {
             }
         })
 
-        viewModelUser.getUserContactState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewModel.getUserContactState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
@@ -186,7 +185,7 @@ class NewEventFragment : DialogFragment() {
         binding.spParticipants.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
 
-            viewModelUser.getUserContact(USER_LOGGED_IN_ID)
+            viewModel.getUserContact(USER_LOGGED_IN_ID)
 
             val checkContact = BooleanArray(contacts.size)
 
