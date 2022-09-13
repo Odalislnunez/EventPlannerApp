@@ -84,7 +84,6 @@ class NewEventFragment : DialogFragment() {
                     var a = 0
                     contacts.forEach {
                         contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
-//                        contactsArray[a] = it.name + " " + it.lastname
                         a += 1
                     }
 
@@ -227,15 +226,7 @@ class NewEventFragment : DialogFragment() {
             if (isAllDataSet()){
                 showProgressBar()
 
-//                val date = Timestamp.valueOf("$date $time")
                 val date = "$date $time"
-
-                if (binding.spParticipants.text.toString().isNotEmpty()) {
-
-                }
-                else {
-
-                }
                 viewModel.saveEvent(
                     Event(
                         title = binding.etTitle.text.toString(),
@@ -246,23 +237,12 @@ class NewEventFragment : DialogFragment() {
                         creators = listOf(USER_LOGGED_IN_ID),
                         status = 0
                     ),
-                    mutableListOf()
+                    participantsList
                 )
             } else {
                 activity?.showToast(getString(R.string.add_fields_new_event))
             }
         }
-    }
-
-    private fun getAllParticipants(): List<String> {
-        val participants: MutableList<String> = mutableListOf()
-        val participants_list: List<String> = binding.spParticipants.text.toString().split(",").toList()
-
-        participants_list.forEach { participant ->
-            participants.add(participant)
-        }
-
-        return participants
     }
 
     private fun isAllDataSet(): Boolean {

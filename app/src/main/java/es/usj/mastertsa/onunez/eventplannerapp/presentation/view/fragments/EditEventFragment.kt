@@ -1,6 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -49,6 +50,10 @@ class EditEventFragment : Fragment() {
 
     private var creators: List<User> = mutableListOf()
     private var participants: List<User> = mutableListOf()
+
+    private var contacts: List<User> = mutableListOf()
+    private lateinit var participantsList: MutableList<String>
+    private var contactsArray: Array<String> = arrayOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -179,6 +184,56 @@ class EditEventFragment : Fragment() {
                 else -> Unit
             }
         })
+
+        viewModel.getUserContactState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    contacts = dataState.data
+                    var a = 0
+                    contacts.forEach {
+                        contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
+                        a += 1
+                    }
+
+                    val builder = AlertDialog.Builder(requireActivity())
+
+                    val checkContact = BooleanArray(contacts.size)
+
+                    builder.setTitle("Select participants")
+                    builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
+                        checkContact[which] = isChecked
+                    }
+                    builder.setPositiveButton("OK") { dialog, which ->
+                        for (i in checkContact.indices) {
+                            val checked = checkContact[i]
+                            binding.spParticipants.text = ""
+                            if (checked) {
+                                binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
+                                participantsList = mutableListOf()
+                                participantsList.add(contacts[i].userId)
+                            }
+                            else {
+                                participantsList.remove(contacts[i].userId)
+                            }
+                        }
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong))
+                }
+                else -> Unit
+            }
+        })
+    }
+
+    fun addElement(arr: Array<String>, element: String): Array<String> {
+        val mutableArray = arr.toMutableList()
+        mutableArray.add(element)
+        return mutableArray.toTypedArray()
     }
 
     private fun initListeners(){
