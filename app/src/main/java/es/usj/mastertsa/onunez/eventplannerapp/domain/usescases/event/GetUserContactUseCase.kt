@@ -2,7 +2,6 @@ package es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event
 
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IEventRepository
-import es.usj.mastertsa.onunez.eventplannerapp.domain.repository.interfaces.IUserRepository
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
