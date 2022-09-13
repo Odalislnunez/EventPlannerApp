@@ -83,7 +83,8 @@ class NewEventFragment : DialogFragment() {
                     contacts = dataState.data
                     var a = 0
                     contacts.forEach {
-                        contactsArray[a] = it.name + " " + it.lastname
+                        contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
+//                        contactsArray[a] = it.name + " " + it.lastname
                         a += 1
                     }
 
@@ -119,6 +120,12 @@ class NewEventFragment : DialogFragment() {
                 else -> Unit
             }
         })
+    }
+
+    fun addElement(arr: Array<String>, element: String): Array<String> {
+        val mutableArray = arr.toMutableList()
+        mutableArray.add(element)
+        return mutableArray.toTypedArray()
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
