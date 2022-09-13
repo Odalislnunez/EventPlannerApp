@@ -86,6 +86,31 @@ class NewEventFragment : DialogFragment() {
                         contactsArray[a] = it.name + " " + it.lastname
                         a += 1
                     }
+
+                    val builder = AlertDialog.Builder(requireActivity())
+
+                    val checkContact = BooleanArray(contacts.size)
+
+                    builder.setTitle("Select participants")
+                    builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
+                        checkContact[which] = isChecked
+                    }
+                    builder.setPositiveButton("OK") { dialog, which ->
+                        for (i in checkContact.indices) {
+                            val checked = checkContact[i]
+                            binding.spParticipants.text = ""
+                            if (checked) {
+                                binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
+                                participantsList = mutableListOf()
+                                participantsList.add(contacts[i].userId)
+                            }
+                            else {
+                                participantsList.remove(contacts[i].userId)
+                            }
+                        }
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
                 }
                 is DataState.Error -> {
                     hideProgressDialog()
@@ -185,31 +210,6 @@ class NewEventFragment : DialogFragment() {
 
         binding.spParticipants.setOnClickListener {
             viewModel.getUserContact(USER_LOGGED_IN_ID)
-
-            val builder = AlertDialog.Builder(requireActivity())
-
-            val checkContact = BooleanArray(contacts.size)
-
-            builder.setTitle("Select participants")
-            builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
-                checkContact[which] = isChecked
-            }
-            builder.setPositiveButton("OK") { dialog, which ->
-                for (i in checkContact.indices) {
-                    val checked = checkContact[i]
-                    binding.spParticipants.text = ""
-                    if (checked) {
-                        binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
-                        participantsList = mutableListOf()
-                        participantsList.add(contacts[i].userId)
-                    }
-                    else {
-                        participantsList.remove(contacts[i].userId)
-                    }
-                }
-            }
-            val dialog = builder.create()
-            dialog.show()
         }
 
         binding.btnCancel.setOnClickListener {
