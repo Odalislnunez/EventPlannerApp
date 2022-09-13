@@ -91,6 +91,7 @@ class EditEventFragment : Fragment() {
             if (mEvent.type == 1) {
                 binding.tvParticipants.isVisible = false
                 binding.spParticipants.isVisible = false
+                binding.btnChat.isVisible = false
             }
             else {
                 if(mEvent.participants?.isNotEmpty() == true) {

@@ -1,6 +1,7 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.fragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -18,6 +19,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBindi
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import java.sql.Timestamp
@@ -152,8 +154,52 @@ class NewEventFragment : DialogFragment() {
             }
         }
 
-//        binding.spOwners.text = creatorUser.name + " " + creatorUser.lastname
+        binding.spOwners.text = USER_LOGGED_IN_NAME
 
+        binding.spParticipants.setOnClickListener {
+            val builder = AlertDialog.Builder(requireActivity())
+            // String array for alert dialog multi choice items
+            val colorsArray = arrayOf("Black", "Orange", "Green", "Yellow", "White", "Purple")
+            // Boolean array for initial selected items
+            val checkedColorsArray = booleanArrayOf(true, // Black checked
+                false, // Orange
+                false, // Green
+                true, // Yellow checked
+                false, // White
+                false  //Purple
+            )
+            // Convert the color array to list
+            val colorsList = Arrays.asList(*colorsArray)
+            //setTitle
+            builder.setTitle("Select colors")
+            //set multichoice
+//            builder.setMultiChoiceItems(colorsArray, checkedColorsArray) { dialog, which, isChecked ->
+//                // Update the current focused item's checked status
+//                checkedColorsArray[which] = isChecked
+//                // Get the current focused item
+//                val currentItem = colorsList[which]
+//                // Notify the current action
+//                Toast.makeText(applicationContext, currentItem + " " + isChecked, Toast.LENGTH_SHORT).show()
+//            }
+//            // Set the positive/yes button click listener
+//            builder.setPositiveButton("OK") { dialog, which ->
+//                // Do something when click positive button
+//                mSlctdTxtTv.text = "Your preferred colors..... \n"
+//                for (i in checkedColorsArray.indices) {
+//                    val checked = checkedColorsArray[i]
+//                    if (checked) {
+//                        mSlctdTxtTv.text = mSlctdTxtTv.text.toString() + colorsList[i] + "\n"
+//                    }
+//                }
+//            }
+//            // Set the neutral/cancel button click listener
+//            builder.setNeutralButton("Cancel") { dialog, which ->
+//                // Do something when click the neutral button
+//            }
+//            val dialog = builder.create()
+//            // Display the alert dialog on interface
+//            dialog.show()
+        }
 
         binding.btnCancel.setOnClickListener {
             activity?.onBackPressed()
@@ -187,23 +233,6 @@ class NewEventFragment : DialogFragment() {
                 activity?.showToast(getString(R.string.add_fields_new_event))
             }
         }
-    }
-
-    private fun getAllCreators(): List<String> {
-        val creators: MutableList<String> = mutableListOf()
-
-        if(binding.spOwners.text.toString().isNotEmpty()) {
-            val creators_list: List<String> = binding.spOwners.text.toString().split(",").toList()
-
-            creators.add(USER_LOGGED_IN_ID)
-            creators_list.forEach { creator ->
-                creators.add(creator)
-            }
-        }
-        else {
-            creators.add(USER_LOGGED_IN_ID)
-        }
-        return creators
     }
 
     private fun getAllParticipants(): List<String> {

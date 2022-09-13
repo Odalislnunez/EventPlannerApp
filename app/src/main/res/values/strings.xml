@@ -85,5 +85,7 @@
     <string name="event_date_hint">Select the event date</string>
     <string name="event_time_hint">Select the event time</string>
     <string name="send_a_message">Send a message</string>
+    <string name="dashboard_start">Start creating events</string>
+    <string name="user_welcome">Welcome to EventPlanner</string>
 
 </resources>

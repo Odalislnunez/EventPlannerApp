@@ -1,5 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.data.firebase.implementations
 
+import androidx.compose.ui.res.fontResource
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObjects
@@ -104,10 +105,34 @@ class EventRepository @Inject constructor (
         }
     }
 
-    override suspend fun saveEvent(event: Event) = flow {
+    override suspend fun saveEvent(event: Event, participants: List<String>) = flow {
         emit(DataState.Loading)
         try {
             var isSuccessful = false
+
+            if (event.type == 0) {
+                val invitations = invitationsCollection.whereEqualTo("eventId", event.eventId)
+                    .get()
+                    .await()
+                    .toObjects(Invitation::class.java)
+
+                val invitationUsers: MutableList<String> = mutableListOf()
+
+                invitations.forEach {
+                    invitationUsers.add(it.userId)
+                    if (event.participants?.contains(it.userId) == true && !participants.contains(it.userId)) {
+                        saveInvitation(it.invitationId, it.userId, event.eventId, 3)
+                    }
+                }
+
+                participants.forEach {
+                    if (event.participants?.contains(it) == false && !invitationUsers.contains(it)){
+                        saveInvitation("", it, event.eventId, 0)
+                    }
+                }
+            }
+
+            event.participants = participants
 
             eventsCollection.document(event.eventId).set(event, SetOptions.merge())
                 .addOnSuccessListener { isSuccessful = true }
@@ -180,12 +205,7 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Invitation::class.java)[0]
 
-            invitation.answer = 1
-
-            invitationsCollection.document(invitation.InvitationId).set(invitation, SetOptions.merge())
-                .addOnSuccessListener { isSuccessful = true }
-                .addOnFailureListener { isSuccessful = false }
-                .await()
+            saveInvitation(invitation.invitationId, userId, event.eventId, 1)
 
             emit(DataState.Success(isSuccessful))
             emit(DataState.Finished)
@@ -216,12 +236,7 @@ class EventRepository @Inject constructor (
                 .await()
                 .toObjects(Invitation::class.java)[0]
 
-            invitation.answer = 2
-
-            invitationsCollection.document(invitation.InvitationId).set(invitation, SetOptions.merge())
-                .addOnSuccessListener { isSuccessful = true }
-                .addOnFailureListener { isSuccessful = false }
-                .await()
+            saveInvitation(invitation.invitationId, userId, event.eventId, 2)
 
             emit(DataState.Success(isSuccessful))
             emit(DataState.Finished)
@@ -268,6 +283,33 @@ class EventRepository @Inject constructor (
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
+    }
+
+    suspend fun saveInvitation(invitationId: String, userId: String, eventId: String, answer: Int): Boolean {
+        var isSuccessful = false
+        val invitation: Invitation
+        if (invitationId.isNotEmpty()) {
+            invitation = Invitation (
+                invitationId = invitationId,
+                userId = userId,
+                eventId = eventId,
+                answer = answer
+            )
+        }
+        else {
+            invitation = Invitation (
+                userId = userId,
+                eventId = eventId,
+                answer = answer
+            )
+        }
+
+        invitationsCollection.document(invitation.invitationId).set(invitation, SetOptions.merge())
+            .addOnSuccessListener { isSuccessful = true }
+            .addOnFailureListener { isSuccessful = false }
+            .await()
+
+        return isSuccessful
     }
 
 }
