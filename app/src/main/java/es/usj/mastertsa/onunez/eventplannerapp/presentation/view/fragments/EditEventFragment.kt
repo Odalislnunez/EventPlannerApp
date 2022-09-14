@@ -285,17 +285,17 @@ class EditEventFragment : Fragment() {
                         checkContact = BooleanArray(contacts.size)
                     }
 
-                    for (i in contactsArray.indices) {
-                        if(invitationsList.contains(contactsArray[i])) {
-                            checkContact[i] = true
-                        }
-                    }
-
                     val builder = AlertDialog.Builder(requireActivity())
 
                     builder.setTitle("Select participants")
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
+                    }
+
+                    for (i in contactsArray.indices) {
+                        if(invitationsList.contains(contactsArray[i])) {
+                            checkContact[i] = true
+                        }
                     }
 
                     binding.spParticipants.text = ""
