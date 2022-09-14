@@ -36,12 +36,12 @@ class MessageAdapter(private val user: String): RecyclerView.Adapter<MessageAdap
             holder.itemView.myMessageLayout.visibility = View.VISIBLE
             holder.itemView.otherMessageLayout.visibility = View.GONE
 
-            holder.itemView.myMessageTextView.text = message.message + "\n " + message.userName
+            holder.itemView.myMessageTextView.text = message.message + "\n " + message.userName + "\n " + message.dob
         } else {
             holder.itemView.myMessageLayout.visibility = View.GONE
             holder.itemView.otherMessageLayout.visibility = View.VISIBLE
 
-            holder.itemView.othersMessageTextView.text = message.message + "\n " + message.userName
+            holder.itemView.othersMessageTextView.text = message.message + "\n " + message.userName + "\n " + message.dob
         }
 
     }
