@@ -112,7 +112,7 @@ class NewEventFragment : DialogFragment() {
                             if (checked) {
                                 if(i != checkContact.count() - 1) {
                                     binding.spParticipants.text =
-                                        binding.spParticipants.text.toString() + contactsArray[i] + ",\n"
+                                        binding.spParticipants.text.toString() + contactsArray[i] + "\n"
                                 }
                                 else {
                                     binding.spParticipants.text =
