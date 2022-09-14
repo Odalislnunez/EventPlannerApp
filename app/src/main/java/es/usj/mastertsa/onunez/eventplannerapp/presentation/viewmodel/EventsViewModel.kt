@@ -28,6 +28,7 @@ class EventsViewModel @Inject constructor(
     private val unparticipateEventUseCase: UnparticipateEventUseCase,
     private val getInvitationsUseCase: GetInvitationsUseCase,
     private val getInvitationUseCase: GetInvitationUseCase,
+    private val getInvitationsListUseCase: GetInvitationsListUseCase,
     private val getUserContactUseCase: GetUserContactUseCase
 ): ViewModel() {
 
@@ -74,6 +75,10 @@ class EventsViewModel @Inject constructor(
     private val _getInvitationEventState: MutableLiveData<DataState<Invitation>> = MutableLiveData()
     val getInvitationEventState: LiveData<DataState<Invitation>>
         get() = _getInvitationEventState
+
+    private val _getInvitationsListState: MutableLiveData<DataState<List<String>>> = MutableLiveData()
+    val getInvitationsListState: LiveData<DataState<List<String>>>
+        get() = _getInvitationsListState
 
     private val _getUserContactState: MutableLiveData<DataState<List<User>>> = MutableLiveData()
     val getUserContactState : LiveData<DataState<List<User>>>
@@ -174,6 +179,15 @@ class EventsViewModel @Inject constructor(
             getInvitationUseCase(userId, eventId)
                 .onEach { dataState ->
                     _getInvitationEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getInvitationsList(eventId: String){
+        viewModelScope.launch {
+            getInvitationsListUseCase(eventId)
+                .onEach { dataState ->
+                    _getInvitationsListState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

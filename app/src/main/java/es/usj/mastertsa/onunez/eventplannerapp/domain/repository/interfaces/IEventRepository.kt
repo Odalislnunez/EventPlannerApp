@@ -30,6 +30,8 @@ interface IEventRepository {
 
     suspend fun getInvitation(userId: String, eventId: String): Flow<DataState<Invitation>>
 
+    suspend fun getInvitationsList(eventId: String): Flow<DataState<List<String>>>
+
     suspend fun getUserContact(userId: String): Flow<DataState<List<User>>>
 
 }

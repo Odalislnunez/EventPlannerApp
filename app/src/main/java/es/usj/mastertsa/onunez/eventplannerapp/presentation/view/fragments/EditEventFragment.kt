@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentEditEventBinding
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Invitation
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
@@ -50,6 +51,7 @@ class EditEventFragment : Fragment() {
     private var date: String = ""
     private var time: String = ""
     private var invitationAnswer: Int = 0
+    private val invitationsList: MutableList<String> = mutableListOf()
 
     private var contacts: List<User> = mutableListOf()
     private lateinit var participantsList: MutableList<String>
@@ -67,6 +69,8 @@ class EditEventFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mEvent = arguments?.getParcelable<Event>(EXTRAS_EVENT)?: Event()
+
+        viewModel.getInvitationsList(mEvent.eventId)
 
         initView()
         initObservers()
@@ -175,6 +179,20 @@ class EditEventFragment : Fragment() {
             }
         })
 
+        viewModel.getInvitationsListState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    invitationsList.addAll(dataState.data)
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Getting Invitation")
+                }
+                else -> Unit
+            }
+        })
+
         viewModel.participateEventState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success -> {
@@ -267,6 +285,9 @@ class EditEventFragment : Fragment() {
                     builder.setTitle("Select participants")
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
+                        if(!isChecked && invitationsList.contains(contactsArray[which])) {
+                            checkContact[which] = true
+                        }
                     }
                     participantsList = mutableListOf()
                     builder.setPositiveButton("OK") { dialog, which ->

@@ -311,6 +311,29 @@ class EventRepository @Inject constructor (
         }
     }
 
+    override suspend fun getInvitationsList(eventId: String): Flow<DataState<List<String>>> = flow {
+        emit(DataState.Loading)
+        try {
+            val invitationsList: MutableList<String> = mutableListOf()
+            val invitations = invitationsCollection.whereEqualTo("eventId", eventId)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)
+
+            invitations.forEach {
+                if(it.answer != 2 && it.answer != 3) {
+                    invitationsList.add(it.userId)
+                }
+            }
+
+            emit(DataState.Success(invitationsList))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
     override suspend fun getUserContact(userId: String): Flow<DataState<List<User>>> = flow {
         emit(DataState.Loading)
         try {
