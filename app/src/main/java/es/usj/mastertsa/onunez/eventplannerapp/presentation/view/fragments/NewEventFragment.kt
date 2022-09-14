@@ -101,10 +101,14 @@ class NewEventFragment : DialogFragment() {
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
                     }
+
+                    binding.spParticipants.text = ""
+                    participantsList = mutableListOf()
+
                     builder.setPositiveButton("OK") { dialog, which ->
                         for (i in checkContact.indices) {
                             val checked = checkContact[i]
-                            binding.spParticipants.text = ""
+
                             if (checked) {
                                 if(i != checkContact.count() - 1) {
                                     binding.spParticipants.text =
@@ -114,11 +118,7 @@ class NewEventFragment : DialogFragment() {
                                     binding.spParticipants.text =
                                         binding.spParticipants.text.toString() + contactsArray[i]
                                 }
-                                participantsList = mutableListOf()
                                 participantsList.add(contacts[i].userId)
-                            }
-                            else {
-                                participantsList.remove(contacts[i].userId)
                             }
                         }
                     }

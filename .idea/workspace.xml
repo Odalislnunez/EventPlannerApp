@@ -16,11 +16,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes.">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/EventRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/data/firebase/implementations/EventRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/EditEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/EditEventFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/es/usj/mastertsa/onunez/eventplannerapp/presentation/view/fragments/NewEventFragment.kt" afterDir="false" />
-    </list>
+    <list default="true" id="2927b6d9-b90f-4ce6-b81c-68572c19e8df" name="Changes" comment="Changes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -393,13 +389,6 @@
       <option name="presentableId" value="Default" />
       <updated>1655125183764</updated>
     </task>
-    <task id="LOCAL-00180" summary="Changes.">
-      <created>1662950817731</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1662950817731</updated>
-    </task>
     <task id="LOCAL-00181" summary="Changes.">
       <created>1662951235152</created>
       <option name="number" value="00181" />
@@ -736,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663178075802</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="Changes.">
+      <created>1663178746824</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1663178746824</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
