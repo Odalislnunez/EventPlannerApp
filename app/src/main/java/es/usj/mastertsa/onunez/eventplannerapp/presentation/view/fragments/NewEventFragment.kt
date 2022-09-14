@@ -227,7 +227,7 @@ class NewEventFragment : DialogFragment() {
             }
         }
 
-        binding.spEventType.setOnClickListener {
+        binding.spEventType.setOnItemClickListener { adapterView, view, i, l ->
             if(binding.spEventType.selectedItemPosition == 0) {
                 tv_participants.isVisible = true
                 sp_participants.isVisible = true
