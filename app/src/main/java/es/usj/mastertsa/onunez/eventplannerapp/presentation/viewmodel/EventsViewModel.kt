@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
+import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Invitation
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.domain.usescases.event.*
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
@@ -26,6 +27,7 @@ class EventsViewModel @Inject constructor(
     private val participateEventUseCase: ParticipateEventUseCase,
     private val unparticipateEventUseCase: UnparticipateEventUseCase,
     private val getInvitationsUseCase: GetInvitationsUseCase,
+    private val getInvitationUseCase: GetInvitationUseCase,
     private val getUserContactUseCase: GetUserContactUseCase
 ): ViewModel() {
 
@@ -68,6 +70,10 @@ class EventsViewModel @Inject constructor(
     private val _getInvitationsEventState: MutableLiveData<DataState<List<Event>>> = MutableLiveData()
     val getInvitationsEventState: LiveData<DataState<List<Event>>>
         get() = _getInvitationsEventState
+
+    private val _getInvitationEventState: MutableLiveData<DataState<Invitation>> = MutableLiveData()
+    val getInvitationEventState: LiveData<DataState<Invitation>>
+        get() = _getInvitationEventState
 
     private val _getUserContactState: MutableLiveData<DataState<List<User>>> = MutableLiveData()
     val getUserContactState : LiveData<DataState<List<User>>>
@@ -159,6 +165,15 @@ class EventsViewModel @Inject constructor(
             getInvitationsUseCase(userId)
                 .onEach { dataState ->
                     _getInvitationsEventState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getInvitationEvent(userId: String, eventId: String){
+        viewModelScope.launch {
+            getInvitationUseCase(userId, eventId)
+                .onEach { dataState ->
+                    _getInvitationEventState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

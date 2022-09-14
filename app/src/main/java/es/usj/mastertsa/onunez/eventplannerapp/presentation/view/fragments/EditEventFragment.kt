@@ -23,6 +23,8 @@ import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_CHAT_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_CHAT_USER_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_EVENT
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
@@ -47,9 +49,7 @@ class EditEventFragment : Fragment() {
 
     private var date: String = ""
     private var time: String = ""
-
-    private var creators: List<User> = mutableListOf()
-    private var participants: List<User> = mutableListOf()
+    private var invitationAnswer: Int = 0
 
     private var contacts: List<User> = mutableListOf()
     private lateinit var participantsList: MutableList<String>
@@ -113,6 +113,9 @@ class EditEventFragment : Fragment() {
                 }
             }
             else {
+                if (mEvent.type == 1) {
+                    viewModel.getInvitationEvent(USER_LOGGED_IN_ID, mEvent.eventId)
+                }
                 binding.btnParticipate.visibility = View.VISIBLE
                 binding.etDescription.isEnabled = false
                 binding.etPlace.isEnabled = false
@@ -124,6 +127,17 @@ class EditEventFragment : Fragment() {
             }
         }
     }
+
+//    private fun getAllParticipants(): List<String> {
+//        val participants: MutableList<String> = mutableListOf()
+//        val participants_list: List<String> = binding.spParticipants.text.toString().split(",").toList()
+//
+//        participants_list.forEach { participant ->
+//            participants.add(participant)
+//        }
+//
+//        return participants
+//    }
 
     @SuppressLint("SetTextI18n")
     private fun initObservers(){
@@ -141,13 +155,66 @@ class EditEventFragment : Fragment() {
             }
         })
 
+        viewModel.getInvitationEventState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    invitationAnswer = dataState.data.answer
+                    if(dataState.data.answer == 0) {
+                        binding.btnParticipate.text = getString(R.string.button_participate)
+                        binding.btnChat.visibility = View.GONE
+                    }
+                    else if (dataState.data.answer == 1) {
+                        binding.btnParticipate.text = getString(R.string.button_participating)
+                        binding.btnChat.visibility = View.VISIBLE
+                    }
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Getting Invitation")
+                }
+                else -> Unit
+            }
+        })
+
+        viewModel.participateEventState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.everything_correctly_saved))
+                    binding.btnParticipate.text = getString(R.string.button_participating)
+                    binding.btnChat.visibility = View.VISIBLE
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Getting Invitation")
+                }
+                else -> Unit
+            }
+        })
+
+        viewModel.unparticipateEventState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.everything_correctly_saved))
+                    binding.btnParticipate.text = getString(R.string.button_participate)
+                    binding.btnChat.visibility = View.GONE
+                }
+                is DataState.Error -> {
+                    hideProgressDialog()
+                    activity?.showToast(getString(R.string.error_something_went_wrong) + " Getting Invitation")
+                }
+                else -> Unit
+            }
+        })
+
         viewModel.eventCreatorsState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    creators = dataState.data
-                    creators.forEach {
-                        if(it.userId == creators.first().userId){
+                    dataState.data.forEach {
+                        if(it.userId == dataState.data.first().userId){
                             binding.spOwners.text = it.name + " " + it.lastname
                         }
                         else{
@@ -167,9 +234,8 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    participants = dataState.data
-                    participants.forEach {
-                        if(it.userId == participants.first().userId){
+                    dataState.data.forEach {
+                        if(it.userId == dataState.data.first().userId){
                             binding.spParticipants.text = it.name + " " + it.lastname
                         }
                         else{
@@ -320,9 +386,13 @@ class EditEventFragment : Fragment() {
             }
         }
 
+        binding.spParticipants.setOnClickListener {
+            viewModel.getUserContact(USER_LOGGED_IN_ID)
+        }
+
         binding.btnChat.setOnClickListener {
-//            val bundle = bundleOf(EXTRAS_EVENT to it)
-            findNavController().navigate(R.id.action_nav_edit_event_to_nav_chat)
+            val bundle = bundleOf(EXTRAS_CHAT_ID to mEvent.eventId, EXTRAS_CHAT_USER_ID to USER_LOGGED_IN_ID)
+            findNavController().navigate(R.id.action_nav_edit_event_to_nav_chat, bundle)
         }
 
         binding.btnSave.setOnClickListener {
@@ -330,78 +400,37 @@ class EditEventFragment : Fragment() {
                 showProgressBar()
 
                 val date = "$date $time"
-
-                if (binding.spParticipants.text.toString().isNotEmpty()) {
-                    viewModel.saveEvent(
-                        Event(
-                            eventId = mEvent.eventId,
-                            title = binding.tvTitle.text.toString(),
-                            description = binding.etDescription.text.toString(),
-                            place = binding.etPlace.text.toString(),
-                            datetime = date,
-                            type = binding.spEventType.selectedItemPosition,
-                            creators = getAllCreators(),
-                            participants = getAllParticipants(),
-                            status =  0
-                        ),
-                        mutableListOf()
-                    )
-                }
-                else {
-                    viewModel.saveEvent(
-                        Event(
-                            eventId = mEvent.eventId,
-                            title = binding.tvTitle.text.toString(),
-                            description = binding.etDescription.text.toString(),
-                            place = binding.etPlace.text.toString(),
-                            datetime = date,
-                            type = binding.spEventType.selectedItemPosition,
-                            creators = getAllCreators(),
-                            status =  0
-                        ),
-                        mutableListOf()
-                    )
-                }
+                viewModel.saveEvent(
+                    Event(
+                        title = binding.tvTitle.text.toString(),
+                        description = binding.etDescription.text.toString(),
+                        place = binding.etPlace.text.toString(),
+                        datetime = date,
+                        type = binding.spEventType.selectedItemPosition,
+                        creators = listOf(USER_LOGGED_IN_ID),
+                        participants = mEvent.participants,
+                        status = 0
+                    ),
+                    participantsList
+                )
             } else {
-                activity?.showToast(getString(R.string.add_fields_edit_event))
+                activity?.showToast(getString(R.string.add_fields_new_event))
             }
         }
 
         binding.btnParticipate.setOnClickListener {
-
-        }
-    }
-
-    private fun getAllCreators(): List<String> {
-        val creators: MutableList<String> = mutableListOf()
-
-        if(binding.spOwners.text.toString().isNotEmpty()) {
-            val creators_list: List<String> = binding.spOwners.text.toString().split(",").toList()
-
-            creators.add(Constants.USER_LOGGED_IN_ID)
-            creators_list.forEach { creator ->
-                creators.add(creator)
+            if (invitationAnswer == 0) {
+                viewModel.participateEvent(USER_LOGGED_IN_ID, mEvent.eventId)
+            }
+            else {
+                viewModel.unparticipateEvent(USER_LOGGED_IN_ID, mEvent.eventId)
             }
         }
-        else {
-            creators.add(Constants.USER_LOGGED_IN_ID)
-        }
-        return creators
-    }
-
-    private fun getAllParticipants(): List<String> {
-        val participants: MutableList<String> = mutableListOf()
-        val participants_list: List<String> = binding.spParticipants.text.toString().split(",").toList()
-
-        participants_list.forEach { participant ->
-            participants.add(participant)
-        }
-
-        return participants
     }
 
     private fun isAllDataSet(): Boolean {
         return !binding.etDescription.text.isNullOrEmpty() && !binding.etPlace.text.isNullOrEmpty() && !binding.etDate.text.isNullOrEmpty()
+                && !binding.etTime.text.isNullOrEmpty()
     }
 
     private fun hideProgressDialog() {

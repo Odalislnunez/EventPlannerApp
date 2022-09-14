@@ -127,6 +127,7 @@ class EventRepository @Inject constructor (
                     invitationUsers.add(it.userId)
                     if (originalEvent[0].participants?.contains(it.userId) == true && !participants.contains(it.userId)) {
                         saveInvitation(it.invitationId, it.userId, event.eventId, 3)
+                        event.participants?.minus(it.userId)
                     }
                 }
 
@@ -136,8 +137,6 @@ class EventRepository @Inject constructor (
                     }
                 }
             }
-
-            event.participants = participants
 
             eventsCollection.document(event.eventId).set(event, SetOptions.merge())
                 .addOnSuccessListener { isSuccessful = true }
@@ -283,6 +282,28 @@ class EventRepository @Inject constructor (
             }
 
             emit(DataState.Success(invitations))
+            emit(DataState.Finished)
+        }catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
+    override suspend fun getInvitation(userId: String, eventId: String): Flow<DataState<Invitation>> = flow {
+        emit(DataState.Loading)
+        try {
+            var invitation: Invitation = Invitation()
+            val invitations = invitationsCollection.whereEqualTo("userId", userId)
+                .whereEqualTo("eventId", eventId)
+                .get()
+                .await()
+                .toObjects(Invitation::class.java)
+
+            if(invitations.isNotEmpty()) {
+                invitation = invitations[0]
+            }
+
+            emit(DataState.Success(invitation))
             emit(DataState.Finished)
         }catch (e: Exception) {
             emit(DataState.Error(e))

@@ -30,4 +30,6 @@ object Constants {
     const val DEFAULT_PROFILE_IMAGE = "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
     const val EXTRAS_EVENT = "event"
     const val EXTRAS_USER = "user"
+    const val EXTRAS_CHAT_ID = "chat"
+    const val EXTRAS_CHAT_USER_ID = "user"
 }

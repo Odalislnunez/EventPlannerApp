@@ -8,7 +8,7 @@
     tools:context=".presentation.view.fragments.ChatFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_messages"
+        android:id="@+id/messagesRecylerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/relativeLayout_message"
@@ -29,7 +29,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <EditText
-            android:id="@+id/editText_message"
+            android:id="@+id/messageTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -41,7 +41,7 @@
             android:padding="8dp" />
 
         <ImageView
-            android:id="@+id/imageView_send"
+            android:id="@+id/sendMessageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
