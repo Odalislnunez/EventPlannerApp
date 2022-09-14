@@ -58,7 +58,7 @@
                         android:layout_height="80dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="50dp"
-                        android:layout_marginBottom="50dp"
+                        android:layout_marginBottom="70dp"
                         android:background="@drawable/logo_blanco2"
                         android:backgroundTint="@color/white"
                         android:contentDescription="@string/todo" />

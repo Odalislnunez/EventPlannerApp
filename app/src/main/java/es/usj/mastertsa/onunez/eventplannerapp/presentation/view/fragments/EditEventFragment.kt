@@ -151,11 +151,11 @@ class EditEventFragment : Fragment() {
                     invitationAnswer = dataState.data.answer
                     if(dataState.data.answer == 0) {
                         binding.btnParticipate.text = getString(R.string.button_participate)
-                        binding.btnChat.visibility = View.GONE
+                        binding.btnChat.isVisible = false
                     }
                     else if (dataState.data.answer == 1) {
                         binding.btnParticipate.text = getString(R.string.button_participating)
-                        binding.btnChat.visibility = View.VISIBLE
+                        binding.btnChat.isVisible = true
                     }
                 }
                 is DataState.Error -> {
