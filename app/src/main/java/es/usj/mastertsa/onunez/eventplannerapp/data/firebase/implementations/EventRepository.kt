@@ -322,7 +322,11 @@ class EventRepository @Inject constructor (
 
             invitations.forEach {
                 if(it.answer != 2 && it.answer != 3) {
-                    invitationsList.add(it.userId)
+                    val user = usersCollection.whereEqualTo("userId", it.userId)
+                        .get()
+                        .await()
+                        .toObjects(User::class.java)[0]
+                    invitationsList.add(user.name + " " + user.lastname)
                 }
             }
 

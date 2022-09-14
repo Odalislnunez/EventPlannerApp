@@ -53,9 +53,10 @@ class EditEventFragment : Fragment() {
     private var invitationAnswer: Int = 0
     private val invitationsList: MutableList<String> = mutableListOf()
 
-    private var contacts: List<User> = mutableListOf()
-    private lateinit var participantsList: MutableList<String>
+    private var contacts: MutableList<User> = mutableListOf()
+    private var participantsList: MutableList<String> = mutableListOf()
     private var contactsArray: Array<String> = arrayOf()
+    private lateinit var checkContact: BooleanArray
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -271,23 +272,30 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    contacts = dataState.data
-                    var a = 0
-                    contacts.forEach {
-                        contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
-                        a += 1
+                    contacts.clear()
+                    contacts.addAll(dataState.data)
+
+                    if(contactsArray.isEmpty()) {
+                        var a = 0
+                        contacts.forEach {
+                            contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
+                            a += 1
+                        }
+
+                        checkContact = BooleanArray(contacts.size)
+                    }
+
+                    invitationsList.forEach {
+                        if(contactsArray.contains(it)) {
+//                            checkContact[] = true
+                        }
                     }
 
                     val builder = AlertDialog.Builder(requireActivity())
 
-                    val checkContact = BooleanArray(contacts.size)
-
                     builder.setTitle("Select participants")
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
-                        if(!isChecked && invitationsList.contains(contactsArray[which])) {
-                            checkContact[which] = true
-                        }
                     }
                     participantsList = mutableListOf()
                     builder.setPositiveButton("OK") { dialog, which ->

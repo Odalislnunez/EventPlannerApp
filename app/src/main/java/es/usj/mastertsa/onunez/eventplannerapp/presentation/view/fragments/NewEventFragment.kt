@@ -39,9 +39,11 @@ class NewEventFragment : DialogFragment() {
     private var date: String = ""
     private var time: String = ""
 
-    private var contacts: List<User> = mutableListOf()
+    private var contacts: MutableList<User> = mutableListOf()
     private var participantsList: MutableList<String> = mutableListOf()
     private var contactsArray: Array<String> = arrayOf()
+    private lateinit var checkContact: BooleanArray
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,16 +82,20 @@ class NewEventFragment : DialogFragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
-                    contacts = dataState.data
-                    var a = 0
-                    contacts.forEach {
-                        contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
-                        a += 1
+                    contacts.clear()
+                    contacts.addAll(dataState.data)
+
+                    if(contactsArray.isEmpty()) {
+                        var a = 0
+                        contacts.forEach {
+                            contactsArray = addElement(contactsArray, it.name + " " + it.lastname)
+                            a += 1
+                        }
+
+                        checkContact = BooleanArray(contacts.size)
                     }
 
                     val builder = AlertDialog.Builder(requireActivity())
-
-                    val checkContact = BooleanArray(contacts.size)
 
                     builder.setTitle("Select participants")
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
