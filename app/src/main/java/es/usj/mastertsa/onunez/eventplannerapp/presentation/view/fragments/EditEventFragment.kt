@@ -436,6 +436,7 @@ class EditEventFragment : Fragment() {
                 val date = "$date $time"
                 viewModel.saveEvent(
                     Event(
+                        eventId = mEvent.eventId,
                         title = binding.tvTitle.text.toString(),
                         description = binding.etDescription.text.toString(),
                         place = binding.etPlace.text.toString(),
