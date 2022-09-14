@@ -142,6 +142,7 @@ class EditEventFragment : Fragment() {
             when(dataState){
                 is DataState.Success -> {
                     hideProgressDialog()
+                    initView()
                     activity?.showToast(getString(R.string.everything_correctly_saved))
                 }
                 is DataState.Error -> {
