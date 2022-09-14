@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,6 +25,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
+import kotlinx.android.synthetic.main.fragment_new_event.*
 import java.sql.Timestamp
 import java.util.*
 import kotlin.collections.ArrayList
@@ -222,6 +224,17 @@ class NewEventFragment : DialogFragment() {
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinner.adapter = adapter
+            }
+        }
+
+        binding.spEventType.setOnClickListener {
+            if(binding.spEventType.selectedItemPosition == 0) {
+                tv_participants.isVisible = true
+                sp_participants.isVisible = true
+            }
+            else {
+                tv_participants.isVisible = false
+                sp_participants.isVisible = false
             }
         }
 

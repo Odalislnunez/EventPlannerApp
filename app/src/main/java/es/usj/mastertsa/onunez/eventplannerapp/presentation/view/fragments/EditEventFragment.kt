@@ -110,6 +110,8 @@ class EditEventFragment : Fragment() {
                 }
             }
 
+            binding.spEventType.isEnabled = false
+
             if(mEvent.creators.contains(USER_LOGGED_IN_ID)) {
                 binding.btnSave.visibility = View.VISIBLE
                 val datet = Timestamp.valueOf(mEvent.datetime)
