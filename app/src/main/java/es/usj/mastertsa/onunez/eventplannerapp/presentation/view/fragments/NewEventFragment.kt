@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
@@ -20,15 +22,13 @@ import es.usj.mastertsa.onunez.eventplannerapp.databinding.FragmentNewEventBindi
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Event
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.User
 import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.EventsViewModel
-import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.UsersViewModel
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import es.usj.mastertsa.onunez.eventplannerapp.utils.DataState
 import es.usj.mastertsa.onunez.eventplannerapp.utils.showToast
 import kotlinx.android.synthetic.main.fragment_new_event.*
-import java.sql.Timestamp
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 @AndroidEntryPoint
 class NewEventFragment : DialogFragment() {
@@ -227,14 +227,19 @@ class NewEventFragment : DialogFragment() {
             }
         }
 
-        binding.spEventType.setOnItemClickListener { adapterView, view, i, l ->
-            if(binding.spEventType.selectedItemPosition == 0) {
-                tv_participants.isVisible = true
-                sp_participants.isVisible = true
+        binding.spEventType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
             }
-            else {
-                tv_participants.isVisible = false
-                sp_participants.isVisible = false
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(binding.spEventType.selectedItemPosition == 0) {
+                    tv_participants.isVisible = true
+                    sp_participants.isVisible = true
+                }
+                else {
+                    tv_participants.isVisible = false
+                    sp_participants.isVisible = false
+                }
             }
         }
 
