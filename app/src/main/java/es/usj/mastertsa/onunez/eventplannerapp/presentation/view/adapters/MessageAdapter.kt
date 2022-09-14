@@ -9,7 +9,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Message
 import kotlinx.android.synthetic.main.item_text_message.view.*
 
-class MessageAdapter(private val user: String, private val userName: String): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter(private val user: String): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     private var messages: List<Message> = emptyList()
 
@@ -36,12 +36,12 @@ class MessageAdapter(private val user: String, private val userName: String): Re
             holder.itemView.myMessageLayout.visibility = View.VISIBLE
             holder.itemView.otherMessageLayout.visibility = View.GONE
 
-            holder.itemView.myMessageTextView.text = message.message + "\n " + userName
+            holder.itemView.myMessageTextView.text = message.message + "\n " + message.userName
         } else {
             holder.itemView.myMessageLayout.visibility = View.GONE
             holder.itemView.otherMessageLayout.visibility = View.VISIBLE
 
-            holder.itemView.othersMessageTextView.text = message.message + "\n " + userName
+            holder.itemView.othersMessageTextView.text = message.message + "\n " + message.userName
         }
 
     }

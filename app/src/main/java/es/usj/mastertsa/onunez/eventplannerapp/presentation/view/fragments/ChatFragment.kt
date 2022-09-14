@@ -56,7 +56,7 @@ class ChatFragment : Fragment() {
 
     private fun initViews(){
         messagesRecylerView.layoutManager = LinearLayoutManager(requireActivity())
-        messagesRecylerView.adapter = MessageAdapter(userId, USER_LOGGED_IN_NAME)
+        messagesRecylerView.adapter = MessageAdapter(userId)
 
         sendMessageButton.setOnClickListener { sendMessage() }
 
