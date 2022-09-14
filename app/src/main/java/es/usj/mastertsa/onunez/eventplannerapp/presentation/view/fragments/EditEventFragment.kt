@@ -285,9 +285,9 @@ class EditEventFragment : Fragment() {
                         checkContact = BooleanArray(contacts.size)
                     }
 
-                    invitationsList.forEach {
-                        if(contactsArray.contains(it)) {
-//                            checkContact[] = true
+                    for (i in contactsArray.indices) {
+                        if(invitationsList.contains(contactsArray[i])) {
+                            checkContact[i] = true
                         }
                     }
 
@@ -297,11 +297,14 @@ class EditEventFragment : Fragment() {
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
                     }
+
+                    binding.spParticipants.text = ""
                     participantsList = mutableListOf()
+
                     builder.setPositiveButton("OK") { dialog, which ->
                         for (i in checkContact.indices) {
                             val checked = checkContact[i]
-                            binding.spParticipants.text = ""
+
                             if (checked) {
                                 if(i != checkContact.count() - 1) {
                                     binding.spParticipants.text =
@@ -312,9 +315,6 @@ class EditEventFragment : Fragment() {
                                         binding.spParticipants.text.toString() + contactsArray[i]
                                 }
                                 participantsList.add(contacts[i].userId)
-                            }
-                            else {
-                                participantsList.remove(contacts[i].userId)
                             }
                         }
                     }
