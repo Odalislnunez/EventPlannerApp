@@ -259,13 +259,20 @@ class EditEventFragment : Fragment() {
                     builder.setMultiChoiceItems(contactsArray, checkContact) { dialog, which, isChecked ->
                         checkContact[which] = isChecked
                     }
+                    participantsList = mutableListOf()
                     builder.setPositiveButton("OK") { dialog, which ->
                         for (i in checkContact.indices) {
                             val checked = checkContact[i]
-//                            binding.spParticipants.text = ""
+                            binding.spParticipants.text = ""
                             if (checked) {
-                                binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
-                                participantsList = mutableListOf()
+                                if(i != checkContact.count() - 1) {
+                                    binding.spParticipants.text =
+                                        binding.spParticipants.text.toString() + contactsArray[i] + ",\n"
+                                }
+                                else {
+                                    binding.spParticipants.text =
+                                        binding.spParticipants.text.toString() + contactsArray[i]
+                                }
                                 participantsList.add(contacts[i].userId)
                             }
                             else {

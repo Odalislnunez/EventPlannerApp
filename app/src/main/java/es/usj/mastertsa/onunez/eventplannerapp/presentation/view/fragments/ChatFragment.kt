@@ -19,6 +19,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.presentation.viewmodel.ChatViewMo
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_CHAT_ID
 import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.EXTRAS_CHAT_USER_ID
+import es.usj.mastertsa.onunez.eventplannerapp.utils.Constants.USER_LOGGED_IN_NAME
 import kotlinx.android.synthetic.main.fragment_chat.*
 
 @AndroidEntryPoint
@@ -55,7 +56,7 @@ class ChatFragment : Fragment() {
 
     private fun initViews(){
         messagesRecylerView.layoutManager = LinearLayoutManager(requireActivity())
-        messagesRecylerView.adapter = MessageAdapter(userId)
+        messagesRecylerView.adapter = MessageAdapter(userId, USER_LOGGED_IN_NAME)
 
         sendMessageButton.setOnClickListener { sendMessage() }
 
@@ -82,7 +83,8 @@ class ChatFragment : Fragment() {
     private fun sendMessage(){
         val message = Message(
             message = messageTextField.text.toString(),
-            from = userId
+            from = userId,
+            userName = USER_LOGGED_IN_NAME
         )
 
         db.collection("chats").document(chatId).collection("messages").document().set(message)

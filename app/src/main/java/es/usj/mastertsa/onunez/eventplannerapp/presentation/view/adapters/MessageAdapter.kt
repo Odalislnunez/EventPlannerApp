@@ -1,5 +1,6 @@
 package es.usj.mastertsa.onunez.eventplannerapp.presentation.view.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import es.usj.mastertsa.onunez.eventplannerapp.R
 import es.usj.mastertsa.onunez.eventplannerapp.domain.models.Message
 import kotlinx.android.synthetic.main.item_text_message.view.*
 
-class MessageAdapter(private val user: String): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter(private val user: String, private val userName: String): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     private var messages: List<Message> = emptyList()
 
@@ -27,6 +28,7 @@ class MessageAdapter(private val user: String): RecyclerView.Adapter<MessageAdap
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messages[position]
 
@@ -34,12 +36,12 @@ class MessageAdapter(private val user: String): RecyclerView.Adapter<MessageAdap
             holder.itemView.myMessageLayout.visibility = View.VISIBLE
             holder.itemView.otherMessageLayout.visibility = View.GONE
 
-            holder.itemView.myMessageTextView.text = message.message
+            holder.itemView.myMessageTextView.text = message.message + "\n " + userName
         } else {
             holder.itemView.myMessageLayout.visibility = View.GONE
             holder.itemView.otherMessageLayout.visibility = View.VISIBLE
 
-            holder.itemView.othersMessageTextView.text = message.message
+            holder.itemView.othersMessageTextView.text = message.message + "\n " + userName
         }
 
     }
