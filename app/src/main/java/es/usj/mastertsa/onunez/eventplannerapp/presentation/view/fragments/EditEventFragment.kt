@@ -128,17 +128,6 @@ class EditEventFragment : Fragment() {
         }
     }
 
-//    private fun getAllParticipants(): List<String> {
-//        val participants: MutableList<String> = mutableListOf()
-//        val participants_list: List<String> = binding.spParticipants.text.toString().split(",").toList()
-//
-//        participants_list.forEach { participant ->
-//            participants.add(participant)
-//        }
-//
-//        return participants
-//    }
-
     @SuppressLint("SetTextI18n")
     private fun initObservers(){
         viewModel.saveEventState.observe(viewLifecycleOwner, Observer { dataState ->
@@ -273,7 +262,7 @@ class EditEventFragment : Fragment() {
                     builder.setPositiveButton("OK") { dialog, which ->
                         for (i in checkContact.indices) {
                             val checked = checkContact[i]
-                            binding.spParticipants.text = ""
+//                            binding.spParticipants.text = ""
                             if (checked) {
                                 binding.spParticipants.text = binding.spParticipants.text.toString() + contactsArray[i] + "\n"
                                 participantsList = mutableListOf()
