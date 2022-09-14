@@ -113,7 +113,7 @@ class EditEventFragment : Fragment() {
                 }
             }
             else {
-                if (mEvent.type == 1) {
+                if (mEvent.type == 0) {
                     viewModel.getInvitationEvent(USER_LOGGED_IN_ID, mEvent.eventId)
                 }
                 binding.btnParticipate.visibility = View.VISIBLE
@@ -151,11 +151,11 @@ class EditEventFragment : Fragment() {
                     invitationAnswer = dataState.data.answer
                     if(dataState.data.answer == 0) {
                         binding.btnParticipate.text = getString(R.string.button_participate)
-                        binding.btnChat.isVisible = false
+                        binding.btnChat.visibility = View.GONE
                     }
                     else if (dataState.data.answer == 1) {
                         binding.btnParticipate.text = getString(R.string.button_participating)
-                        binding.btnChat.isVisible = true
+                        binding.btnChat.visibility = View.VISIBLE
                     }
                 }
                 is DataState.Error -> {
