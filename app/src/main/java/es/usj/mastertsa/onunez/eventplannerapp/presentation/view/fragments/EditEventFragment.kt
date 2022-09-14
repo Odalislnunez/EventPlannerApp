@@ -116,6 +116,14 @@ class EditEventFragment : Fragment() {
                 if (mEvent.type == 0) {
                     viewModel.getInvitationEvent(USER_LOGGED_IN_ID, mEvent.eventId)
                 }
+                else {
+                    if(mEvent.participants?.contains(USER_LOGGED_IN_ID) == true) {
+                        binding.btnParticipate.text = getString(R.string.button_participating)
+                    }
+                    else {
+                        binding.btnParticipate.text = getString(R.string.button_participate)
+                    }
+                }
                 binding.btnParticipate.visibility = View.VISIBLE
                 binding.etDescription.isEnabled = false
                 binding.etPlace.isEnabled = false
