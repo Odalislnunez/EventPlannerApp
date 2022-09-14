@@ -40,7 +40,7 @@ class NewEventFragment : DialogFragment() {
     private var time: String = ""
 
     private var contacts: List<User> = mutableListOf()
-    private lateinit var participantsList: MutableList<String>
+    private var participantsList: MutableList<String> = mutableListOf()
     private var contactsArray: Array<String> = arrayOf()
 
     override fun onCreateView(
